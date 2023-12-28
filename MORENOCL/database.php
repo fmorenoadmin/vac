@@ -24,7 +24,7 @@
 		protected $db_num_r = NULL;
 		protected $db_fre_r = NULL;
 		protected $db_close = NULL;
-		//---------------------------------------------------------
+		//---------------------------------------------------------CONST
 		public function __construct(){
 			$this->db_conec = $this->db_type.'connect';
 			$this->db_query = $this->db_type.'query';
@@ -44,49 +44,58 @@
 			$this->db_fre_r = $this->db_type.'free_result';
 			$this->db_close = $this->db_type.'close';
 		}
-		//---------------------------------------------------------
+		//---------------------------------------------------------CON
 			function connect($schu=null,$db='con'){
 				$fc_conec=$this->db_conec;
 				//----------------------------------
 				if (!is_null($schu)) { $name = "db".strtolower($schu); }else{ $name = "db".strtolower(SCHU); }
 				$db_host = $this->$name;
 				//----------------------------------
+				switch ($db) {
+					case 'vac2':
+						$_port = '';
+						$_user = 'root';
+						$_pass = '';
+						$_name = 'vac2';
+					break;
+					default:
+						$_port = $this->db_port;
+						$_user = $this->db_user;
+						$_pass = $this->db_pass;
+						$_name = $this->db_name;
+					break;
+				}
+				//----------------------------------
 				switch ($this->db_type) {
-					case 'pg_':
-						$con = $fc_conec("host=".$db_host." port=".$this->db_port." dbname=".$this->db_name." user=".$this->db_user." password=".$this->db_pass);
+					case 'pg_'://conexcióna  base de datos PostgreSQL
+						$con = $fc_conec("host=".$db_host." port=".$_port." dbname=".$_name." user=".$_user." password=".$_pass);
 						pg_set_client_encoding($con, "UTF8");
 					break;
-					case 'sqlsrv_':
+					case 'sqlsrv_'://conexcióna  base de datos SQL Server
 						$serverName = $db_host."\sqlexpress"; //serverName\instanceName
 						//$serverName = $db_host."\sqlexpress, 1542"; //serverName\instanceName, portNumber (por defecto es 1433)
 						//$connectionInfo = array( "Database"=>"dbName");
-						$connectionInfo = array( "Database" => $this->db_name, "UID" => $this->db_user, "PWD" => $this->db_pass);
+						$connectionInfo = array( "Database" => $_name, "UID" => $_user, "PWD" => $_pass);
 						$con = $fc_conec($serverName, $connectionInfo);
 						return($con);
 					break;
-					default:
-						$con = $fc_conec($db_host, $this->db_user, $this->db_pass);
-						mysqli_select_db($con, $this->db_name);
+					default://conexcióna  base de datos MySQL - Siempre por defecto
+						$con = $fc_conec($db_host, $_user, $_pass);
+						mysqli_select_db($con, $_name);
+						$con->set_charset("utf8");
 					break;
 				}
 				//----------------------------------
 				return($con);
 			}
-		//---------------------------------------------------------
+		//---------------------------------------------------------EXEC
 			public function db_exec($sql,$ret_res=true,$db='con'){
 				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
 				//---------------------------------------------------------
 				$data = new stdClass();
 				$error = NULL;
 				//----------------------------
-				switch ($db) {
-					case 'mkt':
-						//$_cc = $this->conduc_mkt();//conexión a otro server
-					break;
-					default:
-						$_cc = $this->connect(SCHU);
-					break;
-				}
+				$_cc = $this->connect(SCHU,$db);
 				//---------------------------------------------------------
 				$res = $fc_query($_cc, $sql) OR $error = $fc_error($_cc);
 				if ($res) {
@@ -122,14 +131,7 @@
 				$data = new stdClass();
 				$error = NULL;
 				//----------------------------
-				switch ($db) {
-					case 'mkt':
-						//$_cc = $this->conduc_mkt();//conexión a otro server
-					break;
-					default:
-						$_cc = $this->connect(SCHU);
-					break;
-				}
+				$_cc = $this->connect(SCHU,$db);
 				//---------------------------------------------------------
 				$res = $fc_query($_cc, $sql) OR $error = $fc_error($_cc);
 				if ($res) {
@@ -169,14 +171,7 @@
 				$data = new stdClass();$datos = array();
 				$error = NULL;
 				//----------------------------
-				switch ($db) {
-					case 'mkt':
-						//$_cc = $this->conduc_mkt();//conexión a otro server
-					break;
-					default:
-						$_cc = $this->connect(SCHU);
-					break;
-				}
+				$_cc = $this->connect(SCHU,$db);
 				//---------------------------------------------------------
 				$res = $fc_query($_cc, $sql) OR $error = $fc_error($_cc);
 				if ($res) {
@@ -211,7 +206,7 @@
 				$fc_close($_cc);
 				return $data;
 			}
-		//---------------------------------------------------------
+		//---------------------------------------------------------UTILIDADES
 			public function cal_fecha($fecha){
 				$inf = '<span class="btn btn-outline-{COLOR} btn-xs">'.$fecha.'</span>';
 				//-----------------------------
@@ -370,21 +365,42 @@
 				//-----------------------------
 				return $inf;
 			}
-		//---------------------------------------------------------
+			public function form_txt($input) {
+				// Eliminar caracteres especiales excepto acentos y ñ
+				$input = preg_replace('/[^a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s+\-_.,$@!¡?¿()]/u', '', $input);
+				//---------------------------------------
+				// Eliminar etiquetas HTML y PHP
+				$input = strip_tags($input);
+				//---------------------------------------
+				// Eliminar espacios al principio y al final
+				$input = trim($input);
+				//---------------------------------------
+				// Escapar comillas simples y dobles
+				$input = addslashes($input);
+				//---------------------------------------
+				return $input;
+			}
+			public function custom_escape_string($value) {
+				// Si estás utilizando una conexión a la base de datos,
+				// utiliza la función de escape proporcionada por tu API de base de datos
+				// o considera usar sentencias preparadas.
+				// Aquí hay un ejemplo básico de cómo podrías escapar caracteres especiales.
+				// Esta función no garantiza la seguridad contra todas las formas de ataque.
+				$search = array("\\", "\x00", "\n", "\r", "'", '"', "\x1a");
+				$replace = array("\\\\", "\\0", "\\n", "\\r", "\\'", '\\"', "\\Z");
+				//---------------------------------------------------------
+				$_temp = str_replace($search, $replace, $value);
+				//---------------------------------------------------------
+				return $_temp;
+			}
+		//---------------------------------------------------------GET
 			public function db_get_string($dt,$json,$db='con'){
 				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
 				//---------------------------------------------------------
 				$data = new stdClass(); $sql = null;
 				$data->error = null;
 				//----------------------------
-				switch ($db) {
-					case 'mkt':
-						//$_cc = $this->conduc_mkt();//conexión a otro server
-					break;
-					default:
-						$_cc = $this->connect(SCHU);
-					break;
-				}
+				$_cc = $this->connect(SCHU,$db);
 				//----------------------------
 				$er=1;
 				if(is_null($json->tname)){ $er=0; }
@@ -434,16 +450,8 @@
 				$data = new stdClass(); $sql = null;
 				$data->error = null;
 				//----------------------------
-				switch ($db) {
-					case 'mkt':
-						//$_cc = $this->conduc_mkt();//conexión a otro server
-						$tipo_get = 12;//8 select por ID - sin usuarios
-					break;
-					default:
-						$_cc = $this->connect(SCHU);
-						$tipo_get = 8;//8 select por ID
-					break;
-				}
+				$_cc = $this->connect(SCHU);
+				$tipo_get = 8;//8 select por ID
 				//----------------------------
 				$er=1;
 				if(is_null($json->tname)){ $er=0; }
@@ -493,14 +501,7 @@
 				$data = new stdClass(); $sql = null; $datos = array();
 				$data->error = null;
 				//----------------------------
-				switch ($db) {
-					case 'mkt':
-						//$_cc = $this->conduc_mkt();//conexión a otro server
-					break;
-					default:
-						$_cc = $this->connect(SCHU);
-					break;
-				}
+				$_cc = $this->connect(SCHU,$db);
 				//----------------------------
 				$er=1;
 				if(is_null($json->tname)){ $er=0; }
@@ -549,14 +550,7 @@
 				$data = new stdClass(); $sql = null; $fila = array(); $inf = array();
 				$data->error = null;$n=0;
 				//----------------------------
-				switch ($db) {
-					case 'mkt':
-						//$_cc = $this->conduc_mkt();//conexión a otro server
-					break;
-					default:
-						$_cc = $this->connect(SCHU);
-					break;
-				}
+				$_cc = $this->connect(SCHU,$db);
 				//----------------------------
 				$er=1;
 				if(is_null($json->tname)){ $er=0; }
@@ -610,21 +604,145 @@
 				//------------------
 				return $data;
 			}
-		//---------------------------------------------------------
+			public function db_get_cant($dt,$json,$db='con'){
+				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
+				//---------------------------------------------------------
+				$data = new stdClass(); $sql = null;
+				$data->error = null;
+				//----------------------------
+				$_cc = $this->connect(SCHU);
+				//----------------------------
+				$er=1;
+				if(is_null($json->tname)){ $er=0; }
+				if(is_null($json->tid)){ $er=0; }
+				//----------------------------
+				if ($er == 1) {
+					$sql = "SELECT COUNT(*) AS total FROM ".$json->tname." WHERE status=1 ;";
+					$res = $fc_query($_cc,$sql) OR $data->error = ($fc_error($_cc));
+					if ($res) {
+						if ((($this->db_type == 'mysqli_') ? $res->$fc_num_r : $fc_num_r($res)) > 0) {
+							$data->result = true;
+							$data->mensaje = "Registro encontrado exitosamente.";
+							//----------------------------
+							while ($row = $fc_assoc($res)) {
+								foreach ($row as $key => $value) {
+									$data->$key = $value;
+								}
+							}
+							//----------------------------
+							$row = null;
+						}else{
+							$data->result = false;
+							$data->total = 0;
+							$data->mensaje = "La repuesta está vacía.";
+						}
+						//----------------------------
+						$fc_fre_r($res);
+					}else{
+						$data->result = false;
+						$data->total = 0;
+						$data->mensaje = "No se encontró coincidencia, para el ID: ".$json->tname.".";
+					}
+				}else{
+					$data->result = false;
+					$data->total = 0;
+					$data->mensaje = "No existe el nombre de la tabla.";
+				}
+				//------------------
+				//$data->sql = $sql;
+				//$data->input = $json;
+				//------------------
+				$fc_close($_cc);
+				return $data;
+			}
+			public function db_get_btns($total,$pag,$url){
+				$data = new stdClass(); $sql = null; $inf = null;
+				//----------------------------
+					// Parsear la URL
+					$parsedUrl = parse_url($url);
+					//----------------------------
+					// Verificar si existe la consulta "?pag="
+					if (isset($parsedUrl['query'])) {
+						// Parsear los parámetros de la consulta
+						parse_str($parsedUrl['query'], $queryParams);
+						//----------------------------
+						// Verificar si existe el parámetro "pag"
+						if (isset($queryParams['pag'])) {
+							// Eliminar el parámetro "pag"
+							unset($queryParams['pag']);
+							//----------------------------
+							// Construir la nueva URL
+							$newUrl = $parsedUrl['scheme'] . '://' . $parsedUrl['host'] . $parsedUrl['path'];
+							//----------------------------
+							// Agregar los nuevos parámetros si hay alguno
+							if (!empty($queryParams)) {
+								$newUrl .= '?' . http_build_query($queryParams);
+							}
+							//----------------------------
+							// Mostrar la nueva URL
+							$_url = $newUrl;
+						} else {
+							// No hay parámetro "pag", la URL permanece igual
+							$_url = $url;
+						}
+					} else {
+						// No hay consulta en la URL, la URL permanece igual
+						$_url = $url;
+					}
+				//----------------------------
+				$inf .= '<ul class="pagination justify-content-end">';
+					//----------------------------
+					// Configuración de la paginación
+					$resultados_por_pagina = ROWS;
+					$total_paginas = ceil($total / $resultados_por_pagina);
+					//----------------------------
+					//boton anterior
+					$anterior = max(1, $pag - 1);
+					//----------------------------
+					$inf .= '<li class="page-item ' . (($pag == 1) ? 'disabled' : null) . '">';
+					$inf .= '<a href="' . (($pag == 1) ? null : $_url . '?pag=' . base64_encode($anterior)) . '" class="page-link">Anterior</a>';
+					$inf .= '</li>';
+					//----------------------------
+					//calcular el rango de botones de página a mostrar
+					$rango_inicial = max(1, $pag - 2);
+					$rango_final = min($total_paginas, $rango_inicial + 4);
+					//----------------------------
+					// Mostrar botones de página
+					for ($i = $rango_inicial; $i <= $rango_final; $i++) {
+					    $inf .= '<li class="page-item ' . (($i == $pag) ? 'active' : null) . '"><a href="' . $_url . '?pag=' . base64_encode($i) . '" class="page-link">' . $i . '</a></li>';
+					}
+					//----------------------------
+					// Agregar puntos suspensivos si hay más páginas después del rango final
+					if ($rango_final < $total_paginas) {
+					    $inf .= '<li class="page-item disabled"><span class="page-link">...</span></li>';
+					}
+					//----------------------------
+					// Mostrar el último botón de página si no es parte del rango final
+					if ($rango_final != $total_paginas) {
+					    $inf .= '<li class="page-item"><a href="' . $_url . '?pag=' . base64_encode($total_paginas) . '" class="page-link">' . $total_paginas . '</a></li>';
+					}
+					//----------------------------
+					//boton siguiente
+					$siguiente = min($total_paginas, $pag + 1);
+					$inf .= '<li class="page-item ' . (($pag == $total_paginas || $total_paginas <= 1) ? 'disabled' : null) . '">';
+					$inf .= '<a href="' . (($pag == $total) ? null : $_url . '?pag=' . base64_encode($siguiente)) . '" class="page-link">Siguiente</a>';
+					$inf .= '</li>';
+				$inf .= '</ul>';
+				//----------------------------
+				$data->inf = $inf;
+				//$data->sql = $sql;
+				//$data->input = $json;
+				//----------------------------
+				return $data;
+			}
+		//---------------------------------------------------------ADD Y EDIT
 			public function db_add($dt,$json,$db='con'){
 				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
 				//---------------------------------------------------------
 				$data = new stdClass(); $sql = null;
 				$data->error = null;
 				//----------------------------
-				switch ($db) {
-					case 'mkt':
-						//$_cc = $this->conduc_mkt();//conexión a otro server
-					break;
-					default:
-						$_cc = $this->connect(SCHU);
-					break;
-				}
+				$_cc = $this->connect(SCHU,$db);
 				//----------------------------
 				$er=1;
 				if(is_null($json->tname)){ $er=0; }
@@ -664,14 +782,7 @@
 				$data = new stdClass(); $sql = null; $result = array(); $fila_res = array();
 				$data->error = null;
 				//----------------------------
-				switch ($db) {
-					case 'mkt':
-						//$_cc = $this->conduc_mkt();//conexión a otro server
-					break;
-					default:
-						$_cc = $this->connect(SCHU);
-					break;
-				}
+				$_cc = $this->connect(SCHU,$db);
 				//----------------------------
 				$er=1;$n=0;
 				if(is_null($json->tname)){ $er=0; }
@@ -746,14 +857,7 @@
 				$data->error = null;
 				$data->pid = 0;
 				//----------------------------
-				switch ($db) {
-					case 'mkt':
-						//$_cc = $this->conduc_mkt();//conexión a otro server
-					break;
-					default:
-						$_cc = $this->connect(SCHU);
-					break;
-				}
+				$_cc = $this->connect(SCHU,$db);
 				//----------------------------
 				$er=1;
 				if(is_null($json->tname)){ $er=0; }
@@ -804,14 +908,7 @@
 				$data = new stdClass(); $sql = null;
 				$data->error = null;
 				//----------------------------
-				switch ($db) {
-					case 'mkt':
-						//$_cc = $this->conduc_mkt();//conexión a otro server
-					break;
-					default:
-						$_cc = $this->connect(SCHU);
-					break;
-				}
+				$_cc = $this->connect(SCHU,$db);
 				//----------------------------
 				switch ($json->success) {
 					case "edit":
@@ -882,14 +979,7 @@
 				$data = new stdClass(); $sql = null;
 				$data->error = null;
 				//----------------------------
-				switch ($db) {
-					case 'mkt':
-						//$_cc = $this->conduc_mkt();//conexión a otro server
-					break;
-					default:
-						$_cc = $this->connect(SCHU);
-					break;
-				}
+				$_cc = $this->connect(SCHU,$db);
 				//----------------------------
 				switch ($json->success) {
 					case "edit":
@@ -954,7 +1044,7 @@
 				$fc_close($_cc);
 				return $data;
 			}
-		//---------------------------------------------------------
+		//---------------------------------------------------------PREDETERMINADO
 			public function get_datos($pid,$type){
 				$data = new stdClass();
 				//---------------------------------------------------------
