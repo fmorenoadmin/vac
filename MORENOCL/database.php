@@ -1045,7 +1045,7 @@
 				return $data;
 			}
 		//---------------------------------------------------------PREDETERMINADO
-			public function get_datos($pid,$type){
+			public function get_datos($pid,$type,$db='con'){
 				$data = new stdClass();
 				//---------------------------------------------------------
 				switch ($type) {
@@ -1064,7 +1064,7 @@
 				}
 				//---------------------------------------------------------
 				if (!is_null($sql)) {
-					$data = $this->db_exec_sql($sql);
+					$data = $this->db_exec_sql($sql,$db);
 				}
 				//---------------------------------------------------------
 				return $data;
