@@ -35,7 +35,7 @@
 					</li>
 				</ul>
 				<DIV class="d-flex" role="search">
-					<A class="btn btn-outline-success" type="submit">Salir</A>
+					<A class="btn btn-outline-danger" href="<?= ACTI; ?>logout.php">Salir <i class="fas fa-sign-out"></i></A>
 				</div>
 			</div>
 		</div>

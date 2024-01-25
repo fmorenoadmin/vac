@@ -6,7 +6,7 @@ $_SESSION['location'] = $location = HTTPS.$_SERVER['HTTP_HOST'].$_SERVER['REQUES
 if ($_SERVER['REQUEST_URI'] == DIRERR) {
 }else if ($_SERVER['REQUEST_URI'] == DIR) {
 }else{
-	if (!isset($_SESSION['user_id'])) {
+	if (!isset($_SESSION['user_id']) || $_SESSION['user_id']==0) {
 		$_SESSION['_dir_url'] = base64_encode($_SERVER['REQUEST_URI']);
 		//-----------------------------------------------------------------------
 		header("Location: ".LOGI);

@@ -64,17 +64,17 @@
 				.done(function( data, textStatus, jqXHR ) {
 					//console.log(data);
 					if (data==1) {
-					window.location = '<?= URL2; ?>'+_dir_url;
+						window.location = '<?= ((SCHU=='_qas') ? URL_L : URL2); ?>'+_dir_url;
 					}else if(data==0){
-					Swal.fire({
-						icon: 'error',
-						title: 'Oops...',
-						text: 'Lo sentimos!',
-						html: `
-							Tus Credenciales son incorrectas:
-							<pre>Por seguridad.<br>Este intento de acceso al sistema será ingresado<br>en la base de datos,<br>junto con tu Dirección IP: <b><?= $_SERVER["REMOTE_ADDR"] ?></b>.</pre>
-						`
-					})
+						Swal.fire({
+							icon: 'error',
+							title: 'Oops...',
+							text: 'Lo sentimos!',
+							html: `
+								Tus Credenciales son incorrectas:
+								<pre>Por seguridad.<br>Este intento de acceso al sistema será ingresado<br>en la base de datos,<br>junto con tu Dirección IP: <b><?= $_SERVER["REMOTE_ADDR"] ?></b>.</pre>
+							`
+						})
 					}
 				})
 				.fail(function( jqXHR, textStatus, errorThrown ) {

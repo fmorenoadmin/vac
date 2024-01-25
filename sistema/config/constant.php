@@ -30,6 +30,8 @@ if (SCHU == '_qas') {
 	define('DOM', 'localhost/');
 	define('D_DIR', 'vac');
 	//-------------------------------------------
+	define('URL_L', HTTPS.substr(DOM, 0, -1));
+	//-------------------------------------------
 	define('URL', HTTPS.DOM.D_DIR.'/sistema/');
 	define('URL2', HTTPS.DOM.D_DIR.'/sistema');
 }else{
