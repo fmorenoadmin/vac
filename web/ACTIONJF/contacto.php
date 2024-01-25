@@ -20,9 +20,7 @@
 		//----------------------------------------
 		if (isset($_SESSION['sid'])) {
 			require_once($ru0.DIRMOR.$cls['dbs'].'.php');
-			require_once($ru0.DIRMOR.$cls['cl1'].'.php');
 			$_dbs = new $cls['dbs']();
-			$_cl1 = new $cls['cl1']();
 			//----------------------------------------
 			$_tbl->success = 'add';
 			$_tbl->danger = 'no'.$_tbl->success;
@@ -119,6 +117,6 @@
 			header("Location: ".$url);
 			exit();
 		}else{
-			include_once($ru0.'403.shtml');
+			include_once($ru0.'error/403.shtml');
 		}
 	}

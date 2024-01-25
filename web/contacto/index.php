@@ -1,8 +1,11 @@
 <?php
 	if(isset($_SESSION)){}else{ session_start(); }
-	$rut='../';
+	//---------------------------------------------
+	$rut='../';$_pg_na='contacto';
+	//---------------------------------------------
 	$pagina='Contacto';
 	$direc='contacto.php';
+	//---------------------------------------------
 	require_once($rut.'config/0code.php');
 ?>
 <!DOCTYPE html>

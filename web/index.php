@@ -1,8 +1,11 @@
 <?php
 	if(isset($_SESSION)){}else{ session_start(); }
-	$rut='./';
+	//---------------------------------------------
+	$rut='./';$_pg_na='index';
+	//---------------------------------------------
 	$pagina='Principal';
 	$direc='index.php';
+	//---------------------------------------------
 	require_once($rut.'config/0code.php');
 ?>
 <!DOCTYPE html>

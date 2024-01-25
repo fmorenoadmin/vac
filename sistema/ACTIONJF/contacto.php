@@ -158,7 +158,7 @@
 			//header("Location: ".$url);
 			//exit();
 		}else{
-			include_once($ru0.'403.shtml');
+			include_once($ru0.'error/403.shtml');
 		}
 	}
 	if (isset($_POST['addSeg'])) {
@@ -192,7 +192,7 @@
 			header("Location: ".$url);
 			exit();
 		}else{
-			include_once($ru0.'403.shtml');
+			include_once($ru0.'error/403.shtml');
 		}
 	}
 	if (isset($_REQUEST['met'])) {
@@ -224,7 +224,7 @@
 			header("Location: ".$url);
 			exit();
 		}else{
-			include_once($ru0.'403.shtml');
+			include_once($ru0.'error/403.shtml');
 		}
 	}
 	if (isset($_POST['eliminar'])) {
@@ -256,7 +256,7 @@
 			header("Location: ".$url);
 			exit();
 		}else{
-			include_once($ru0.'403.shtml');
+			include_once($ru0.'error/403.shtml');
 		}
 	}
 	if (isset($_POST['dropSeg'])) {
@@ -290,6 +290,6 @@
 			header("Location: ".$url);
 			exit();
 		}else{
-			include_once($ru0.'403.shtml');
+			include_once($ru0.'error/403.shtml');
 		}
 	}
