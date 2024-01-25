@@ -66,7 +66,11 @@
 	<li>
 		vac/ (Carpeta donde de alojará todo el proyecto)
 		<ul>
-			<li>Web
+			<li>archivos</li>
+			<li>plugins</li>
+			<li>sistema</li>
+			<li>test</li>
+			<li>web
 				<ul>
 					<li>
 						ACTIONJF/ (Nombre de Carpeta de Acciones)
