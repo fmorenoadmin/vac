@@ -1,9 +1,12 @@
 <?php
 	if(isset($_SESSION)){}else{ session_start(); }
+	//---------------------------------
 	$rut='../';
 	$rut2='../../';
+	//---------------------------------
 	$pagina='Cursos';
 	$direc='cursos.php';
+	//---------------------------------
 	require_once($rut.'config/0code.php');
 ?>
 <!DOCTYPE html>
@@ -13,19 +16,19 @@
 	<title><?= $pagina.TIT; ?></title>
 	<?php
 		require_once($rut.CONF.'1styles.php');
-		//----------------------
+		//---------------------------------
 		$data=null;$inf=null;
-		//----------------------
+		//---------------------------------
 		require_once($rut2.DIRACT.$direc);
 		$data = index($rut2,$location);
-		//----------------------
+		//---------------------------------
 		if (isset($data->inf)) {
 			$inf = $data->inf;
 		}else{
 			header("Location: ".$rut);
 			exit();
 		}
-		//----------------------
+		//---------------------------------
 		require_once($rut.CONF.'0mens.php');
 	?>
 </head>

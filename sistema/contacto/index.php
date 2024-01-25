@@ -1,9 +1,12 @@
 <?php
 	if(isset($_SESSION)){}else{ session_start(); }
+	//---------------------------------
 	$rut='../';
 	$rut2='../../';
+	//---------------------------------
 	$pagina='contacto';
 	$direc='contacto.php';
+	//---------------------------------
 	require_once($rut.'config/0code.php');
 ?>
 <!DOCTYPE html>

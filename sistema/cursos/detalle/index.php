@@ -1,10 +1,13 @@
 <?php
 	if(isset($_SESSION)){}else{ session_start(); }
+	//---------------------------------
 	$rut='../../';
 	$rut2='../../../';
+	//---------------------------------
 	$pagina='Detalle del Curso';
 	$padre='Curso';
 	$direc='cursos.php';
+	//---------------------------------
 	require_once($rut.'config/0code.php');
 ?>
 <!DOCTYPE html>

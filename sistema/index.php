@@ -1,7 +1,9 @@
 <?php
 	if(isset($_SESSION)){}else{ session_start(); }
+	//---------------------------------
 	$rut='./';
 	$rut2='../';
+	//---------------------------------
 	require_once($rut.'config/0code.php');
 ?>
 <!DOCTYPE html>
