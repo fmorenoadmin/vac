@@ -64,7 +64,7 @@
 
 <ul>
 	<li>
-		dominio.ejm/ (Carpeta donde de alojará todo el proyecto)
+		vac/ (Carpeta donde de alojará todo el proyecto)
 		<ul>
 			<li>
 				ACTIONJF/ (Nombre de Carpeta de Acciones)
