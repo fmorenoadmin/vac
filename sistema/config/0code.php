@@ -1,5 +1,5 @@
 <?php
-require_once($rut2.'config/constant.php');
+require_once($rut.'config/constant.php');
 //------------------------------------
 $_SESSION['location'] = $location = HTTPS.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 //------------------------------------

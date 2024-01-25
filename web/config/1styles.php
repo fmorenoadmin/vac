@@ -1,6 +1,8 @@
 <meta name="description" content="">
 <meta name="keywords" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Favicons -->
+<link href="https://localhost/vac/archivos/img/favicon.png" rel="icon"/>
 <!-- Stylesheets -->
 <link rel="stylesheet" href="<?= ARCH; ?>css/bootstrap.min.css"/>
 <link rel="stylesheet" href="<?= ARCH; ?>css/font-awesome.min.css"/>

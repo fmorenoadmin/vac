@@ -1,20 +1,132 @@
 /*----------------------------VAC---------------------------*/
-	CREATE DATABASE vac;
+	CREATE DATABASE IF NOT EXISTS vac;
 	USE vac;
-/*----------------------------VAC---------------------------*/
+/*----------------------------------------------------------*/
+/*----------------------------------------------------------*/
+/*----------------------------------------------------------*/
+/*----------------------------------------------------------*/
+/*----------------------------------------------------------*/
+/*----------------------------------------------------------*/
+/*----------------------------------------------------------*/
+/*----------------------------------------------------------*/
+/*-----------------------tabla-tipos_usuarios---------------*/
+	DROP TABLE IF EXISTS tipos_usuarios;
+	CREATE TABLE tipos_usuarios(
+		id_tipo INT PRIMARY KEY AUTO_INCREMENT,
+		nombre_t VARCHAR(250) NULL DEFAULT NULL,
+		descrip_t TEXT NULL DEFAULT NULL,
+		created_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+		id_created INT NULL DEFAULT 1,
+		updated_at DATETIME NULL DEFAULT NULL,
+		id_updated INT NULL DEFAULT 0,
+		drop_at DATETIME NULL DEFAULT NULL,
+		motivo_drop TEXT NULL DEFAULT NULL,
+		id_drop INT NULL DEFAULT 0,
+		status INT NULL DEFAULT 1
+	);
+	INSERT INTO tipos_usuarios (nombre_t) VALUES
+		('Super Administrador'),
+		('Administrador'),
+		('Vendedor'),
+		('Comprador'),
+		('Almacen'),
+		('Finanzas')
+	;
+/*-----------------------tabla-usuarios---------------------*/
+	DROP TABLE IF EXISTS usuarios;
+	CREATE TABLE usuarios(
+		id_user INT PRIMARY KEY AUTO_INCREMENT,
+		id_tipo INT NOT NULL,
+		nombre_u VARCHAR(300) NULL DEFAULT NULL,
+		apellido_u VARCHAR(300) NULL DEFAULT NULL,
+		correo_u VARCHAR(200) NULL DEFAULT NULL,
+		usuario_u VARCHAR(200) NULL DEFAULT NULL,
+		contrasenia_u VARCHAR(350) NULL DEFAULT NULL,
+		telefono_u VARCHAR(25) NULL DEFAULT NULL,
+		foto_u VARCHAR(900) NULL DEFAULT NULL,
+		descrip_u TEXT NULL DEFAULT NULL,
+		created_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+		id_created INT NULL DEFAULT 1,
+		updated_at DATETIME NULL DEFAULT NULL,
+		id_updated INT NULL DEFAULT 0,
+		drop_at DATETIME NULL DEFAULT NULL,
+		motivo_drop TEXT NULL DEFAULT NULL,
+		id_drop INT NULL DEFAULT 0,
+		status INT NULL DEFAULT 1,
+		FOREIGN KEY (id_tipo) REFERENCES tipos_usuarios (id_tipo)
+	);
+	INSERT INTO usuarios (id_tipo, nombre_u, apellido_u, correo_u, usuario_u, contrasenia_u, telefono_u) VALUES
+		(1, 'Admin', 'Moreno', 'admin@frankmorenoalburqueque.com', 'admin', '$2y$10$NZys55dL8cIGjVQJ9Df9huXYpC/M8n04IwIFN2WRQMf9d5AJOXcwO', '+51924741703')
+	;
+/*-----------------------tabla-registro---------------------*/
+	DROP TABLE IF EXISTS registro;
+	CREATE TABLE registro(
+		id_r INT PRIMARY KEY AUTO_INCREMENT,
+		id_user INT NOT NULL,
+		ip_cli VARCHAR(300) NULL DEFAULT NULL,
+		nav_cli TEXT NULL DEFAULT NULL,
+		sist_cli TEXT NULL DEFAULT NULL,
+		geo_ip TEXT NULL DEFAULT NULL,
+		descrip TEXT NULL DEFAULT NULL,
+		created_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+		id_created INT NULL DEFAULT 1,
+		updated_at DATETIME NULL DEFAULT NULL,
+		id_updated INT NULL DEFAULT 0,
+		drop_at DATETIME NULL DEFAULT NULL,
+		motivo_drop TEXT NULL DEFAULT NULL,
+		id_drop INT NULL DEFAULT 0,
+		status INT NULL DEFAULT 1
+	);
+/*-----------------------tabla-intentos---------------------*/
+	DROP TABLE IF EXISTS intentos;
+	CREATE TABLE intentos(
+		id_i INT PRIMARY KEY AUTO_INCREMENT,
+		user VARCHAR(300) NULL DEFAULT NULL,
+		pass VARCHAR(300) NULL DEFAULT NULL,
+		ip_cli VARCHAR(300) NULL DEFAULT NULL,
+		nav_cli TEXT NULL DEFAULT NULL,
+		sist_cli TEXT NULL DEFAULT NULL,
+		geo_ip TEXT NULL DEFAULT NULL,
+		descrip TEXT NULL DEFAULT NULL,
+		created_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+		id_created INT NULL DEFAULT 1,
+		updated_at DATETIME NULL DEFAULT NULL,
+		id_updated INT NULL DEFAULT 0,
+		drop_at DATETIME NULL DEFAULT NULL,
+		motivo_drop TEXT NULL DEFAULT NULL,
+		id_drop INT NULL DEFAULT 0,
+		status INT NULL DEFAULT 1
+	);
+/*-----------------------tabla-ip_block---------------------*/
+	DROP TABLE IF EXISTS ip_block;
+	CREATE TABLE ip_block(
+		id_ipb INT PRIMARY KEY AUTO_INCREMENT,
+		ip VARCHAR(300) NULL DEFAULT NULL,
+		motivo TEXT NULL DEFAULT NULL,
+		created_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+		id_created INT NULL DEFAULT 1,
+		updated_at DATETIME NULL DEFAULT NULL,
+		id_updated INT NULL DEFAULT 0,
+		drop_at DATETIME NULL DEFAULT NULL,
+		motivo_drop TEXT NULL DEFAULT NULL,
+		id_drop INT NULL DEFAULT 0,
+		status INT NULL DEFAULT 1
+	);
 /*-----------------------tabla-cursos-----------------------*/
+	DROP TABLE IF EXISTS cursos;
 	CREATE TABLE cursos(
 		id INT PRIMARY KEY AUTO_INCREMENT,
 		nombre VARCHAR(250) NULL DEFAULT NULL,
 		descrip TEXT NULL DEFAULT NULL,
 		imagen VARCHAR(950) NULL DEFAULT NULL,
 		created_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
-		id_created INT NULL DEFAULT '1',
+		id_created INT NULL DEFAULT 1,
 		updated_at DATETIME NULL DEFAULT NULL,
-		id_updated INT NULL DEFAULT '0',
+		id_updated INT NULL DEFAULT 0,
 		drop_at DATETIME NULL DEFAULT NULL,
-		id_drop INT NULL DEFAULT '0',
-		status INT NULL DEFAULT '1'
+		motivo_drop TEXT NULL DEFAULT NULL,
+		id_drop INT NULL DEFAULT 0,
+		status INT NULL DEFAULT 1
 	);
 	INSERT INTO cursos (nombre,imagen) VALUES 
 		('Comuncaion','20200628182542Comunicació-estratègica5.jpg'),
@@ -25,6 +137,7 @@
 	;
 	SELECT * FROM cursos WHERE status=1;
 /*-----------------------tabla-contacto---------------------*/
+	DROP TABLE IF EXISTS contacto;
 	CREATE TABLE contacto(
 		id INT PRIMARY KEY AUTO_INCREMENT,
 		nombre VARCHAR(250) NULL DEFAULT NULL,
@@ -43,12 +156,13 @@
 		fbclid TEXT NULL DEFAULT NULL,
 		gclid TEXT NULL DEFAULT NULL,
 		created_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
-		id_created INT NULL DEFAULT '1',
+		id_created INT NULL DEFAULT 1,
 		updated_at DATETIME NULL DEFAULT NULL,
-		id_updated INT NULL DEFAULT '0',
+		id_updated INT NULL DEFAULT 0,
 		drop_at DATETIME NULL DEFAULT NULL,
-		id_drop INT NULL DEFAULT '0',
-		status INT NULL DEFAULT '1'
+		motivo_drop TEXT NULL DEFAULT NULL,
+		id_drop INT NULL DEFAULT 0,
+		status INT NULL DEFAULT 1
 	);
 	SELECT * FROM contacto WHERE status=1;
 /*-----------------------tabla-cursos-----------------------*/
@@ -58,11 +172,27 @@
 		id_usuario INT NULL DEFAULT 1,
 		respuesta TEXT NULL DEFAULT NULL,
 		created_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
-		id_created INT NULL DEFAULT '1',
+		id_created INT NULL DEFAULT 1,
 		updated_at DATETIME NULL DEFAULT NULL,
-		id_updated INT NULL DEFAULT '0',
+		id_updated INT NULL DEFAULT 0,
 		drop_at DATETIME NULL DEFAULT NULL,
-		id_drop INT NULL DEFAULT '0',
-		status INT NULL DEFAULT '1'
+		id_drop INT NULL DEFAULT 0,
+		status INT NULL DEFAULT 1
 	);
-/*-----------------------tabla-cursos-----------------------*/
+/*----------------------------------------------------------*/
+/*----------------------------------------------------------*/
+/*----------------------------------------------------------*/
+/*----------------------------------------------------------*/
+/*----------------------------------------------------------*/
+/*----------------------------------------------------------*/
+/*----------------------------------------------------------*/
+/*----------------------------------------------------------*/
+/*----------------------------------------------------------*/
+/*----------------------------------------------------------*/
+/*----------------------------------------------------------*/
+/*----------------------------------------------------------*/
+/*----------------------------------------------------------*/
+/*----------------------------------------------------------*/
+/*----------------------------------------------------------*/
+/*----------------------------------------------------------*/
+/*----------------------------------------------------------*/
