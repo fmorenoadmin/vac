@@ -1,3 +1,0 @@
-<html>
-<?= $allTheThings; ?>
-</html>
