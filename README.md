@@ -68,19 +68,19 @@
 		<ul>
 			<li>archivos/ (carpeta para el subdominio: archivos.domain.ext - En este lugar se almacenarán todos los recursos de la web y el sistema: css, js, img, files, etc)
 				<ul>
-					<li>css/ (Carpeta con los estilos que se ueden usar en la web o el sistema)</li>
+					<li>css/ (Carpeta con los estilos que se pueden usar en la proyecto)</li>
 					<li>error/ (Carpeta que contiene los archivos de errores SHTML)
 						<ul>
 							<li>[400-600].shtml (Archivos de error personalizados) <a href="https://github.com/fmorenoadmin/errors_shtml" target="_blank">Los encuentras en este repositorio</a></li>
 						</ul>
 					</li>
-					<li></li>
-					<li></li>
-					<li></li>
-					<li></li>
+					<li>fonts/ (Carpeta con fuentes que usa la web)</li>
+					<li>img/ (Carpeta con todas las imágenes que se usan en el proyecto)</li>
+					<li>js/ (Carpeta con los javascripts que se pueden usar en la proyecto)</li>
+					<li>sass/ (Nombre de carpeta que contiene los archivos SCSS del Tema de la Web)</li>
 				</ul>
 			</li>
-			<li>plugins/ (carpeta para el subdominio: plugins.domain.ext - En este lugar se almacearán todos las librerias que se pueden usar en la web o el sistema)
+			<li>plugins/ (carpeta para el subdominio: plugins.domain.ext - En este lugar se almacearán todos las librerias que se pueden usar en la proyecto)
 				<ul>
 					<li></li>
 				</ul>
