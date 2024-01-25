@@ -66,11 +66,23 @@
 	<li>
 		vac/ (Carpeta donde de alojará todo el proyecto)
 		<ul>
-			<li>archivos</li>
-			<li>plugins</li>
-			<li>sistema</li>
-			<li>test</li>
-			<li>web
+			<li>archivos/ (carpeta para el subdominio: archivos.domain.ext - En este lugar se almacenarán todos los recursos de la web y el sistema: css, js, img, files, etc)
+				<ul>
+					<li></li>
+				</ul>
+			</li>
+			<li>plugins/ (carpeta para el subdominio: plugins.domain.ext - En este lugar se almacearán todos las librerias que se pueden usar en la web o el sistema)
+				<ul>
+					<li></li>
+				</ul>
+			</li>
+			<li>sistema/ (carpeta para el subdominio: sistema.domain.ext - En este lugar se almacenan los archivos del Sistema)
+				<ul>
+					<li></li>
+				</ul>
+			</li>
+			<li>test/</li>
+			<li>web/ (carpeta para el dominio: domain.ext - En este lugar se almacenan los archivos de la web principal)
 				<ul>
 					<li>
 						ACTIONJF/ (Nombre de Carpeta de Acciones)
