@@ -6,7 +6,7 @@
 	require($rut.'config/constant.php');
 	$inf=null;
 	//-------------------------------------------
-	require_once '../plugins/dompdf/autoload.inc.php';
+	require_once '../../plugins/dompdf/autoload.inc.php';
 	//-------------------------------------------
 	use Dompdf\Dompdf;
 	//-------------------------------------------

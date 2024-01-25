@@ -21,6 +21,8 @@ define('DB_TYPE', 'mysqli_');
 //define('DB_TYPE', 'pg_');
 //define('DB_TYPE', 'sqlsrv_');
 //-------------------------------------------
+define('ROWS', 25);
+//-------------------------------------------
 define('SCHU', '_qas');//esquema
 //define('SCHU', '_prd');
 //-------------------------------------------

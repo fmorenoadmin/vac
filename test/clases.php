@@ -120,15 +120,16 @@
 				$inf.='<tbody style="width: 100%;">';
 					$sql = "SELECT * FROM ".$this->table0." WHERE id_tipo IN (".(($tipo=='clie') ? '22, 23' : '25, 26').") AND status=".$act." ";
 						//--------------------------------
-						if ($busq==true) {
-							$sql .= " AND (id_int LIKE '%".$val."%' OR nombre_comp LIKE '%".$val."%' OR razon_soc LIKE '%".$val."%' OR telefono_u LIKE '%".$val."%' OR correo_u LIKE '%".$val."%' OR datos_adic::text LIKE '%".$val."%') ";
-						}
+							if ($busq==true) {
+								$sql .= " AND (id_int LIKE '%".$val."%' OR nombre_comp LIKE '%".$val."%' OR razon_soc LIKE '%".$val."%' OR telefono_u LIKE '%".$val."%' OR correo_u LIKE '%".$val."%' OR datos_adic::text LIKE '%".$val."%') ";
+							}
+							//--------------------------------
+							$sql .= " ORDER BY ".$this->tid." DESC ";
+							//--------------------------------
+							if ($busq==false) {
+								$sql .= " LIMIT ".$resultados_por_pagina." OFFSET ".$inicio." ";
+							}
 						//--------------------------------
-						$sql .= " ORDER BY ".$this->tid." DESC ";
-						//--------------------------------
-						if ($busq==false) {
-							$sql .= " LIMIT ".$resultados_por_pagina." OFFSET ".$inicio." ";
-						}
 					$sql .= " ;";
 					//--------------------------------
 					$res = $this->db_exec($sql);
@@ -230,7 +231,7 @@
 					$data->sql = $sql;
 				}
 				//--------------------------------
-				$fc_close();
+				$fc_close($this->connect());
 				return $data;
 			}
 			function cuentas($pid,$test=false){

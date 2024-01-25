@@ -19,7 +19,7 @@
 		$data=null;$inf=null;
 		//---------------------------------
 		require_once($rut.DIRACT.$action);
-		$data = index($rut,$location);
+		$data = index($rut,$uid,$rid,$location,$pag);
 		//---------------------------------
 		if (isset($data->inf)) {
 			$inf = $data->inf;
@@ -68,9 +68,22 @@
 
 		<div class="row pb-5">
 			<div class="col-sm-12">
-				<table id="table1" class="table table-hover">
-					<?= $inf; $inf=null; ?>
-				</table>
+				<div class="container-fluid">
+					<div class="d-flex">
+						<input class="form-control me-2 light-table-filter" id="val" type="text" placeholder="Buscar:">
+						<button type="button" id="btn_busq" class="btn btn-info"><i class="fa fa-search"></i></button>
+						<a href="<?= $location; ?>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+					</div>
+				</div>
+				<hr>
+				<div id="div1" class="col-sm-12">
+					<table id="tblDatos" class="table table-hover">
+						<?= $inf->inf; $inf->inf=null; ?>
+					</table>
+				</div>
+				<div id="pagination" aria-label="navigation pagination">
+					<?= $data->btns->inf; $data->btns->inf = null; ?>
+				</div>
 			</div>
 		</div>
 	</div>

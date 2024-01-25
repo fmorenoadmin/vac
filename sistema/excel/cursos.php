@@ -19,7 +19,7 @@
 		$html.= '<meta charset="utf-8" />';
 		$html.= '<br>';
 		$html.= '<table border="1">';
-			$html.= $inf; $inf=null;
+			$html.= $inf->inf; $inf->inf=null;
 		$html.= '</table>';
 		//-------------------------------------------
 		echo $html;
