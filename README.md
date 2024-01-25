@@ -68,7 +68,7 @@
 		<ul>
 			<li>archivos/ (carpeta para el subdominio: archivos.domain.ext - En este lugar se almacenarán todos los recursos de la web y el sistema: css, js, img, files, etc)
 				<ul>
-					<li>css/ (Carpeta con los estilos que se pueden usar en la proyecto)</li>
+					<li>css/ (Carpeta con los estilos que se pueden usar en el proyecto)</li>
 					<li>error/ (Carpeta que contiene los archivos de errores SHTML)
 						<ul>
 							<li>[400-600].shtml (Archivos de error personalizados) <a href="https://github.com/fmorenoadmin/errors_shtml" target="_blank">Los encuentras en este repositorio</a></li>
@@ -76,18 +76,83 @@
 					</li>
 					<li>fonts/ (Carpeta con fuentes que usa la web)</li>
 					<li>img/ (Carpeta con todas las imágenes que se usan en el proyecto)</li>
-					<li>js/ (Carpeta con los javascripts que se pueden usar en la proyecto)</li>
+					<li>js/ (Carpeta con los javascripts que se pueden usar en el proyecto)</li>
 					<li>sass/ (Nombre de carpeta que contiene los archivos SCSS del Tema de la Web)</li>
 				</ul>
 			</li>
-			<li>plugins/ (carpeta para el subdominio: plugins.domain.ext - En este lugar se almacearán todos las librerias que se pueden usar en la proyecto)
-				<ul>
-					<li></li>
-				</ul>
-			</li>
+			<li>plugins/* (carpeta para el subdominio: plugins.domain.ext - En este lugar se almacearán todos las librerias que se pueden usar en el proyecto)</li>
 			<li>sistema/ (carpeta para el subdominio: sistema.domain.ext - En este lugar se almacenan los archivos del Sistema)
 				<ul>
-					<li></li>
+					<li>index.php (Vista del Login al sistema)</li>
+					<li>
+						ACTIONJF/ (Nombre de Carpeta de Acciones)
+						<ul>
+							<li>contacto.php (Acción: De la Vista contacto de la web)</li>
+							<li>cursos.php (Acción: De la Vista Cursos del sistema)</li>
+							<li>index.php (Acción: De la Vista Principal de la web)</li>
+						</ul>
+					</li>
+					<li>
+						config/ (Carpeta donde se guardarán todos los archivos de configuración)
+						<ul>
+							<li>0code.php (Archivo de configuración. Requerido en todas las vistas)</li>
+							<li>0mens.php (Archivo de Mensajes. Este archivo se configurarán los mensajes que se mostrarán cuando se complete un CRUD)</li>
+							<li>0error.php (Archivo donde se muestra los mensajes de alerts en las vistas. Requerido en todas las vistas)</li>
+							<li>1styles.php (Archivo que contendrá los <link /> a estilos CSS . Requerido en todas las vistas)</li>
+							<li>2java.php (Archivo que contendrá los <scritp></scritp> a los JavaScript . Requerido en todas las vistas)</li>
+							<li>3toastr.php (Archivo que contendrá el muestreo de mesajes . Requerido en todas las vistas)</li>
+						</ul>
+					</li>
+					<li>
+						error/ (Nombre de carpeta que contiene los archivos de errores SHTML)
+						<ul>
+							<li>[400-600].shtml (Archivos de error personalizados) <a href="https://github.com/fmorenoadmin/errors_shtml" target="_blank">Los encuentras en este repositorio</a></li>
+						</ul>
+					</li>
+					<li>
+						excel/ (Nombre de carpeta que contiene los archivos de exportación a EXCEL)
+						<ul>
+							<li>contacto.php (Exportar: De la Vista contacto)</li>
+							<li>cursos.php (Exportar: De la Vista Cursos)</li>
+						</ul>
+					</li>
+					<li>home/ (Carpeta donde se crearán todas las vistas del sistema)
+						<ul>
+							<li>index.php (Vista de bienvenida al sistema)</li>
+							<li>
+								contacto/ (Carpeta de nuestra Vista: Contacto)
+								<ul>
+									<li>index.php (Vista: Contacto)</li>
+									<li>
+										detalle/ (Carpeta del Detalle del contacto)
+										<ul>
+											<li>index.php (vista: Contacto Detalle)</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<li>
+								cursos/ (Carpeta de nuestra Vista: Curso)
+								<ul>
+									<li>index.php (Vista: Curso)</li>
+									<li>
+										detalle/ (Carpeta del Detalle del curso)
+										<ul>
+											<li>index.php (vista: Curso Detalle)</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li>
+						pdf/ (Nombre de carpeta que contiene los archivos de exportación a PDF)
+						<ul>
+							<li>contacto.php (Exportar: De la Vista contacto)</li>
+							<li>cursos.php (Exportar: De la Vista Cursos)</li>
+						</ul>
+					</li>
+					<li>Seguridad.php (Clase que permite obtener el Navegador y Sistema Operativo del Cliente)</li>
 				</ul>
 			</li>
 			<li>test/ (En este lugar se almacenan los archivos que sirven para tomar de ejemplos para: acciones, clases, codigo html, otros)
@@ -123,7 +188,6 @@
 							<li>index.php (vista del formulario de contato)</li>
 						</ul>
 					</li>
-					<li>css/* (Nombre de carpeta que contiene los archivos CSS del Tema de la Web)</li>
 					<li>
 						error/ (Nombre de carpeta que contiene los archivos de errores SHTML)
 						<ul>
@@ -131,73 +195,12 @@
 						</ul>
 					</li>
 					<li>
-						excel/ (Nombre de carpeta que contiene los archivos de exportación a EXCEL)
-						<ul>
-							<li>contacto.php (Exportar: De la Vista contacto)</li>
-							<li>cursos.php (Exportar: De la Vista Cursos)</li>
-						</ul>
-					</li>
-					<li>fonts/* (Nombre de carpeta que contiene los archivos de fuentes del Tema de la Web)</li>
-					<li>img/* (Nombre de carpeta que contiene las imágenes del proyecto)</li>
-					<li>js/* (Nombre de carpeta que contiene los archivos JS del Tema de la Web)</li>
-					<li>
 						MORENOCL/ (Nombre de Carpeta de Clases)
 						<ul>
 							<li>db.php (Clase: DataBase para la cadena de conexión)</li>
 							<li>contacto.php (Clase: Cursos Para nuestro ejemplo Contacto)</li>
 							<li>cursos.php (Clase: Cursos Para nuestro ejemplo Cursos)</li>
 							<li>function.php (Funciones para llamar en Clases que ejecutan sentencias dentro de un FOR o WHILE)</li>
-						</ul>
-					</li>
-					<li>
-						pdf/ (Nombre de carpeta que contiene los archivos de exportación a PDF)
-						<ul>
-							<li>contacto.php (Exportar: De la Vista contacto)</li>
-							<li>cursos.php (Exportar: De la Vista Cursos)</li>
-						</ul>
-					</li>
-					<li>
-						plugins/ (Nombre de carpeta que contiene las librerias adicionales que se estan ocupando)
-						<ul>
-							<li>ckeditor/* (Convierte textarea en mini-word)</li>
-							<li>dompdf/* (Exportar documentos PDF)</li>
-							<li>toastr/* (Mensaje flotantes)</li>
-						</ul>
-					</li>
-					<li>sass/* (Nombre de carpeta que contiene los archivos SCSS del Tema de la Web)</li>
-					<li>
-						sistem/ Carpeta del sistema administrativo
-						<ul>
-							<li>
-								contacto/ (Carpeta de nuestra Vista: Contacto)
-								<ul>
-									<li>index.php (Vista: Contacto)</li>
-									<li>
-										detalle/ (Carpeta del Detalle del contacto)
-										<ul>
-											<li>index.php (vista: Contacto Detalle)</li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-							<li>
-								cursos/ (Carpeta de nuestra Vista: Curso)
-								<ul>
-									<li>index.php (Vista: Curso)</li>
-									<li>
-										detalle/ (Carpeta del Detalle del curso)
-										<ul>
-											<li>index.php (vista: Curso Detalle)</li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-							<li>0code.php (Archivo de configuración. Requerido en todas las vistas)</li>
-							<li>0mens.php (Archivo de Mensajes. Este archivo se configurarán los mensajes que se mostrarán cuando se complete un CRUD)</li>
-							<li>0error.php (Archivo donde se muestra los mensajes de alerts en las vistas. Requerido en todas las vistas)</li>
-							<li>1styles.php (Archivo que contendrá los <link /> a estilos CSS . Requerido en todas las vistas)</li>
-							<li>2java.php (Archivo que contendrá los <scritp></scritp> a los JavaScript . Requerido en todas las vistas)</li>
-							<li>3toastr.php (Archivo que contendrá el muestreo de mesajes . Requerido en todas las vistas)</li>
 						</ul>
 					</li>
 					<li>database.sql (Archivo que contendrá las estructuras de nuestras tablas de la base de datos)</li>
