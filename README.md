@@ -81,7 +81,12 @@
 					<li></li>
 				</ul>
 			</li>
-			<li>test/</li>
+			<li>test/ (En este lugar se almacenan los archivos que sirven para tomar de ejemplos para: acciones, clases, codigo html, otros)
+				<ul>
+					<li>actions.php (Modelo para copiar y pegar de las acciones en el sistema)</li>
+					<li>clases.php (Modelo para copiar y pegar de las clases en el sistema)</li>
+				</ul>
+			</li>
 			<li>web/ (carpeta para el dominio: domain.ext - En este lugar se almacenan los archivos de la web principal)
 				<ul>
 					<li>

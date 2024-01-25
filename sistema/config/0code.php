@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_URI'] == DIRERR) {
 //variables
 $uid=null;$rid=null;$tna=null;$una=null;$uno=null;$uap=null;$uus=null;$uem=null;$ufe=null;$uho=null;$ufo=null;$tallid=0;$tallna=null;$pid=null;$vdat=null;$ap_M=false;$u_inte=null;$u_inic=null;$u_proy=null;$is_vac=0;
 $schu=SCHU;$singlr=null;
-$bot=' <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>';
+$bot=' <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
 //--------------------------------------------------
 if (isset($_REQUEST['p'])) { $_SESSION['pid'] = base64_decode($_REQUEST['p']); }
 if (isset($_REQUEST['v'])) { $_SESSION['vid'] = base64_decode($_REQUEST['v']); }
