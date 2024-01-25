@@ -1,11 +1,10 @@
 <?php
 	if(isset($_SESSION)){}else{ session_start(); }
 	//---------------------------------
-	$rut='../';
-	$rut2='../../';
+	$rut='../../';
 	//---------------------------------
-	$pagina='contacto';
-	$direc='contacto.php';
+	$pagina='Contactos';$singlr='Contacto';
+	$action='contacto.php';
 	//---------------------------------
 	require_once($rut.'config/0code.php');
 ?>
@@ -19,8 +18,8 @@
 		//---------------------------------
 		$data=null;$inf=null;
 		//---------------------------------
-		require_once($rut2.DIRACT.$direc);
-		$data = index($rut2,$location);
+		require_once($rut.DIRACT.$action);
+		$data = index($rut,$location);
 		//---------------------------------
 		if (isset($data->inf)) {
 			$inf = $data->inf;
@@ -36,8 +35,9 @@
 	<?php include_once($rut.CONF.'nav.php'); ?>
 
 	<div class="container">
-		<div class="row pb-5">
+		<div class="row pb-5" style="display: none;">
 			<br>
+			<?= $location; ?>
 		</div>
 
 		<hr>
@@ -45,14 +45,14 @@
 		<div class="row">
 			<div class="col-sm-3">
 				<div class="dropdown">
-				  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Acciones
-				  </button>
-				  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					<a class="dropdown-item" href="<?= XCEL.$direc; ?>">Exportar Excel <i class="fa fa-file-excel-o"></i></a>
-					<a class="dropdown-item" href="<?= PDFS.$direc; ?>">Exportar PDF <i class="fa fa-file-pdf-o"></i></a>
+					</button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					<a class="dropdown-item" href="<?= XCEL.$action; ?>">Exportar Excel <i class="fa fa-file-excel-o"></i></a>
+					<a class="dropdown-item" href="<?= PDFS.$action; ?>">Exportar PDF <i class="fa fa-file-pdf-o"></i></a>
 					<!--<a class="dropdown-item" href="#">Something else here</a>-->
-				  </div>
+					</div>
 				</div>
 			</div>
 			<div class="col-sm-6 text-center">
@@ -76,34 +76,42 @@
 	</div>
 	<?php require_once($rut.CONF.'2java.php'); ?>
 	<?php require_once($rut.CONF.'3toastr.php'); ?>
-	<div class="modal fade" id="drop" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	  <div class="modal-dialog">
-		<div class="modal-content">
-		  <form method="POST" action="<?= ACTI.$direc; ?>">
-			  <div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Eliminar <?= substr($pagina, 0, -1); ?></h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				  <span aria-hidden="true">&times;</span>
-				</button>
-			  </div>
-			  <div class="modal-body">
-				  <div class="form-group">
-				  	<p>¿Está seguro de <b>Eliminar el Registro: <em><label class="col-form-label" id="nombre_curso"></label></em></b>?</p>
-				  </div>
-			  </div>
-			  <div class="modal-footer">
-				<input type="hidden" name="pid" id="dropid" />
-				<input type="hidden" name="sid" value="<?= base64_encode($sid); ?>" />
-				<input type="hidden" name="url" value="<?= base64_encode($location); ?>" />
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-				<button type="submit" name="eliminar" class="btn btn-primary">Borrar el <?= substr($pagina, 0, -1); ?></button>
-			  </div>
-		  </form>
+	<div class="modal fade" id="eliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form method="POST" action="<?= ACTI.$action; ?>" enctype="multipart/form-data">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Eliminar <?= $singlr; ?></h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="form-group">
+									<p>¿Está seguro de <b>Eliminar el Registro: <em><label class="col-form-label" id="lbl_name"></label></em></b>?</p>
+								</div>
+							</div>
+							<div class="col-sm-12">
+								<div class="form-group">
+									<label for="" class="form-control-plaintext">Motivo de Eliminación:</label>
+									<textarea name="motivo_drop" class="form-control ckeditor" required="required"></textarea>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<input type="hidden" name="pid" id="dropid" />
+						<input type="hidden" name="sid" value="<?= base64_encode($sid); ?>" />
+						<input type="hidden" name="url" value="<?= base64_encode($location); ?>" />
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+						<button type="submit" name="drop" class="btn btn-primary">Borrar el <?= $singlr; ?></button>
+					</div>
+				</form>
+			</div>
 		</div>
-	  </div>
 	</div>
 	<script type="text/javascript">
-		function drop(datos){
+		function eliminar(datos){
 			var infor=datos.split("||");
 			/*
 			Divide la cadena a array por este caracter: ( || )
@@ -114,7 +122,7 @@
 			*/
 			//--------------------------------
 			$('#dropid').val(infor[0]);
-			$('#nombre_curso').html(atob(infor[1]));
+			$('#lbl_name').html(infor[1]);
 		}
 	</script>
 </body>

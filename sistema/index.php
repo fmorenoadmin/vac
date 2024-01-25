@@ -33,21 +33,21 @@
 			</div>
 
 			<div class="form-floating">
-				<input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+				<input type="text" class="form-control" name="user" value="admin" placeholder="name@example.com">
 				<label for="floatingInput">Usuario o Correo</label>
 			</div>
 			<div class="form-floating">
-				<input type="password" class="form-control" id="floatingPassword" placeholder="Contraseña">
+				<input type="password" class="form-control" name="pass" value="admin" id="pass" placeholder="Contraseña">
 				<label for="floatingPassword">Contraseña</label>
 			</div>
 
 			<div class="form-check text-start my-3">
-				<input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
-				<label class="form-check-label" for="flexCheckDefault">
+				<input class="form-check-input"  type="checkbox" id="check" onchange="document.getElementById('pass').type = this.checked ? 'text' : 'password'">
+				<label class="form-check-label" for="check">
 					Ver contraseña
 				</label>
 			</div>
-			<button class="btn btn-primary w-100 py-2" type="submit">Ingresar</button>
+			<button class="btn btn-primary w-100 py-2" type="submit" name="entrar">Ingresar</button>
 			<div class="col-sm-12 text-center">
 				<p class="mt-5 mb-3 text-body-secondary">Copyrigth &copy; 2017–<?= date('Y'); ?> - <a href="<?= FMMA; ?>" target="_blank">FMMA</a></p>
 			</div>

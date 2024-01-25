@@ -37,8 +37,8 @@
 	CREATE TABLE usuarios(
 		id_user INT PRIMARY KEY AUTO_INCREMENT,
 		id_tipo INT NOT NULL,
-		nombre_u VARCHAR(300) NULL DEFAULT NULL,
-		apellido_u VARCHAR(300) NULL DEFAULT NULL,
+		nombres_u VARCHAR(300) NULL DEFAULT NULL,
+		apellidos_u VARCHAR(300) NULL DEFAULT NULL,
 		correo_u VARCHAR(200) NULL DEFAULT NULL,
 		usuario_u VARCHAR(200) NULL DEFAULT NULL,
 		contrasenia_u VARCHAR(350) NULL DEFAULT NULL,
@@ -55,7 +55,7 @@
 		status INT NULL DEFAULT 1,
 		FOREIGN KEY (id_tipo) REFERENCES tipos_usuarios (id_tipo)
 	);
-	INSERT INTO usuarios (id_tipo, nombre_u, apellido_u, correo_u, usuario_u, contrasenia_u, telefono_u) VALUES
+	INSERT INTO usuarios (id_tipo, nombres_u, apellidos_u, correo_u, usuario_u, contrasenia_u, telefono_u) VALUES
 		(1, 'Admin', 'Moreno', 'admin@frankmorenoalburqueque.com', 'admin', '$2y$10$NZys55dL8cIGjVQJ9Df9huXYpC/M8n04IwIFN2WRQMf9d5AJOXcwO', '+51924741703')
 	;
 /*-----------------------tabla-registro---------------------*/
@@ -63,9 +63,10 @@
 	CREATE TABLE registro(
 		id_r INT PRIMARY KEY AUTO_INCREMENT,
 		id_user INT NOT NULL,
-		ip_cli VARCHAR(300) NULL DEFAULT NULL,
-		nav_cli TEXT NULL DEFAULT NULL,
-		sist_cli TEXT NULL DEFAULT NULL,
+		fecha_ing VARCHAR(50) NULL DEFAULT NULL,
+		hora_ing VARCHAR(50) NULL DEFAULT NULL,
+		nav_ing VARCHAR(700) NULL DEFAULT NULL,
+		ip_ing VARCHAR(200) NULL DEFAULT NULL,
 		geo_ip TEXT NULL DEFAULT NULL,
 		descrip TEXT NULL DEFAULT NULL,
 		created_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
@@ -81,11 +82,12 @@
 	DROP TABLE IF EXISTS intentos;
 	CREATE TABLE intentos(
 		id_i INT PRIMARY KEY AUTO_INCREMENT,
-		user VARCHAR(300) NULL DEFAULT NULL,
+		usua VARCHAR(300) NULL DEFAULT NULL,
 		pass VARCHAR(300) NULL DEFAULT NULL,
-		ip_cli VARCHAR(300) NULL DEFAULT NULL,
-		nav_cli TEXT NULL DEFAULT NULL,
-		sist_cli TEXT NULL DEFAULT NULL,
+		fecha_int VARCHAR(50) NULL DEFAULT NULL,
+		hora_int VARCHAR(50) NULL DEFAULT NULL,
+		nav_int VARCHAR(300) NULL DEFAULT NULL,
+		ip_int TEXT NULL DEFAULT NULL,
 		geo_ip TEXT NULL DEFAULT NULL,
 		descrip TEXT NULL DEFAULT NULL,
 		created_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP,

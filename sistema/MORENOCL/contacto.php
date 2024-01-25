@@ -60,7 +60,7 @@
 										$inf.='</a>';
 									break;
 								}
-								$inf.='<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#drop" onclick="drop('."'".base64_encode($row[$this->tid])."||".base64_encode($row['nombre'])."||'".');"><i class="fa fa-trash"></i></button>';
+								$inf.='<button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#eliminar" onclick="eliminar('."'".base64_encode($row[$this->tid])."||".base64_encode($row['nombre'])."||'".');"><i class="fa fa-trash"></i></button>';
 							$inf.='</td>';
 						$inf.='</tr>';
 						//-------------------------------------
@@ -108,7 +108,7 @@
 							$inf.='<td>'.$row['telefono'].'</td>';
 							$inf.='<td>'.$row['created_at'].'</td>';
 							$inf.='<td>';
-								$inf.='<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#dropSeg" onclick="dropSeg('."'".base64_encode($row[$this->tid2])."||'".');"><i class="fa fa-trash"></i></button>';
+								$inf.='<button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#dropSeg" onclick="dropSeg('."'".base64_encode($row[$this->tid2])."||'".');"><i class="fa fa-trash"></i></button>';
 							$inf.='</td>';
 						$inf.='</tr>';
 						//-------------------------------------

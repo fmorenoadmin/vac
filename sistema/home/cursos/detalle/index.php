@@ -1,12 +1,11 @@
 <?php
 	if(isset($_SESSION)){}else{ session_start(); }
 	//---------------------------------
-	$rut='../../';
-	$rut2='../../../';
+	$rut='../../../';
 	//---------------------------------
 	$pagina='Detalle del Curso';
 	$padre='Curso';
-	$direc='cursos.php';
+	$action='cursos.php';
 	//---------------------------------
 	require_once($rut.'config/0code.php');
 ?>
@@ -20,8 +19,8 @@
 		//---------------------------------
 		$data=null;$inf=null;
 		//---------------------------------
-		require_once($rut2.DIRACT.$direc);
-		$data = detalle($rut2,$pid);
+		require_once($rut.DIRACT.$action);
+		$data = detalle($rut,$pid);
 		//---------------------------------
 		if (isset($data->inf)) {
 			$inf = $data->inf;
@@ -61,7 +60,7 @@
 		<div class="row">
 			<div class="col-sm-1"></div>
 			<div class="col-sm-10">
-				<form class="col-sm-12" method="post" enctype="multipart/form-data" action="<?= ACTI.$direc; ?>">
+				<form class="col-sm-12" method="post" enctype="multipart/form-data" action="<?= ACTI.$action; ?>">
 					<div class="card">
 					  <div class="card-header">
 						Editar el <?= $padre; ?>

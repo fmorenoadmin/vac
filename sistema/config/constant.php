@@ -11,38 +11,44 @@ define('TIT', ' | Sistema | Metedología VAC con PHP');
 define('DIRMOR', 'MORENOCL/');
 define('DIRACT', 'ACTIONJF/');
 //-------------------------------------------
-define('__DIRIMG__', $_SERVER['DOCUMENT_ROOT']."/vac/img/");
+define('__DIRIMG__', $_SERVER['DOCUMENT_ROOT']."/vac/archivos/img/");
 define('DIRERR', '/error/');
+define('DIR', '/vac/sistema/');
 define('CONF', 'config/');
+define('VIEW', 'views/');
 //-------------------------------------------
+define('DB_TYPE', 'mysqli_');
+//define('DB_TYPE', 'pg_');
+//define('DB_TYPE', 'sqlsrv_');
 //-------------------------------------------
 define('SCHU', '_qas');//esquema
 //define('SCHU', '_prd');
 //-------------------------------------------
 if (SCHU == '_qas') {
 	define('DOM', 'localhost/');
-	define('DIR', 'vac');
+	define('D_DIR', 'vac');
 	//-------------------------------------------
-	define('URL', HTTPS.DOM.DIR.'/sistema/');
-	define('URL2', HTTPS.DOM.DIR.'/sistema');
+	define('URL', HTTPS.DOM.D_DIR.'/sistema/');
+	define('URL2', HTTPS.DOM.D_DIR.'/sistema');
 }else{
 	define('DOM', 'frankmorenoalburqueque.com/');
-	define('DIR', '');
+	define('D_DIR', '');
 	//-------------------------------------------
-	define('URL', HTTPS.'vac.'.DOM.DIR.'sistema/');
-	define('URL2', HTTPS.'vac.'.DOM.DIR.'sistema');
+	define('URL', HTTPS.'vac.'.DOM.D_DIR.'sistema/');
+	define('URL2', HTTPS.'vac.'.DOM.D_DIR.'sistema');
 }
 //-------------------------------------------
-define('ARCH', HTTPS.DOM.DIR.'/archivos/');
-define('PLUG', HTTPS.DOM.DIR.'/plugins/');
-define('SIST', HTTPS.DOM.DIR.'/sistema/');
+define('ARCH', HTTPS.DOM.D_DIR.'/archivos/');
+define('PLUG', HTTPS.DOM.D_DIR.'/plugins/');
+define('SIST', HTTPS.DOM.D_DIR.'/sistema/');
 //-------------------------------------------
 define('IMG', ARCH.'img/');
 define('XCEL', SIST.'excel/');
-define('LOGI', SIST.'login/');
 define('PDFS', SIST.'pdf/');
 //-------------------------------------------
 define('ACTI', URL.DIRACT);
+define('HOME', URL.'home/');
+define('LOGI', URL.'login/');
 //-------------------------------------------
 define('FMMA', 'https://www.frankmorenoalburqueque.com/');
 define('LOGOF', FMMA.'images/logo.png');

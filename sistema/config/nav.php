@@ -1,26 +1,43 @@
-	<header>
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<div class="container-fluid">
-			  <a class="navbar-brand" href="<?= URL; ?>"><img class="img" src="<?= LOGOF; ?>" style="height: 85px;"></a>
-			  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+<header>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="<?= HOME; ?>"><img class="img" src="<?= IMG; ?>ico.png" style="max-height: 85px;"></a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
-			  </button>
-			  <div class="collapse navbar-collapse" id="navbarColor01">
-				<ul class="navbar-nav mb-2 mb-lg-0 text-right d-flex">
-				  <li class="nav-item">
-					<a class="nav-link active" aria-current="page" href="<?= URL; ?>">Inicio</a>
-				  </li>
-				  <li class="nav-item">
-					<a class="nav-link" href="<?= SIST; ?>">Sistema</a>
-				  </li>
-				  <li class="nav-item">
-					<a class="nav-link" href="<?= SIST; ?>cursos/">Cursos</a>
-				  </li>
-				  <li class="nav-item">
-					<a class="nav-link" href="<?= SIST; ?>contacto/">Contacto</a>
-				  </li>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarScroll">
+				<ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="<?= HOME; ?>">Inicio</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							Gestión
+						</a>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item" href="<?= SIST; ?>tipos_usuarios/">Tipos de Usuarios</a></li>
+							<li><a class="dropdown-item" href="<?= HOME; ?>usuarios/">Usuarios</a></li>
+							<li><hr class="dropdown-divider"></li>
+							<li><a class="dropdown-item" href="<?= HOME; ?>usuarios/">Permisos</a></li>
+						</ul>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href=""></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href=""></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="<?= HOME; ?>cursos/">Cursos</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="<?= HOME; ?>contacto/">Contacto</a>
+					</li>
 				</ul>
-			  </div>
+				<DIV class="d-flex" role="search">
+					<A class="btn btn-outline-success" type="submit">Salir</A>
+				</div>
 			</div>
-		</nav>
-	</header>
+		</div>
+	</nav>
+</header>

@@ -62,7 +62,7 @@
 										$inf.='</a>';
 									break;
 								}
-								$inf.='<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#drop" onclick="drop('."'".base64_encode($row[$this->tid])."||".$row['nombre']."||'".');"><i class="fa fa-trash"></i></button>';
+								$inf.='<button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#eliminar" onclick="eliminar('."'".base64_encode($row[$this->tid])."||".$row['nombre']."||'".');"><i class="fa fa-trash"></i></button>';
 							$inf.='</td>';
 						$inf.='</tr>';
 						//----------------------------------

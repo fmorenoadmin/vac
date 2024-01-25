@@ -11,10 +11,13 @@ define('TIT', ' | Metedología VAC con PHP');
 define('DIRMOR', 'MORENOCL/');
 define('DIRACT', 'ACTIONJF/');
 //-------------------------------------------
-define('__DIRIMG__', $_SERVER['DOCUMENT_ROOT']."/vac/img/");
+define('__DIRIMG__', $_SERVER['DOCUMENT_ROOT']."/vac/archivos/img/");
 define('DIRERR', '/error/');
 define('CONF', 'config/');
 //-------------------------------------------
+define('DB_TYPE', 'mysqli_');
+//define('DB_TYPE', 'pg_');
+//define('DB_TYPE', 'sqlsrv_');
 //-------------------------------------------
 define('SCHU', '_qas');//esquema
 //define('SCHU', '_prd');

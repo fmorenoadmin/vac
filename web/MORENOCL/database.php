@@ -12,9 +12,7 @@
 		private $db_user = 'root';
 		private $db_pass = '';
 		//---------------------------------------
-		protected $db_type = 'mysqli_';
-		//protected $db_type = 'pg_';
-		//protected $db_type = 'sqlsrv_';
+		protected $db_type = DB_TYPE;
 		protected $db_conec = NULL;
 		protected $db_query = NULL;
 		protected $db_error = NULL;

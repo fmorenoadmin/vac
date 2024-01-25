@@ -1,12 +1,11 @@
 <?php
 	if(isset($_SESSION)){}else{ session_start(); }
 	//---------------------------------
-	$rut='../../';
-	$rut2='../../../';
+	$rut='../../../';
 	//---------------------------------
 	$pagina='Detalle del Contacto';
 	$padre='Contacto';
-	$direc='contacto.php';
+	$action='contacto.php';
 	//---------------------------------
 	require_once($rut.'config/0code.php');
 ?>
@@ -20,8 +19,8 @@
 		//---------------------------------
 		$data=null;$inf=null;
 		//---------------------------------
-		require_once($rut2.DIRACT.$direc);
-		$data = detalle($rut2,$pid);
+		require_once($rut.DIRACT.$action);
+		$data = detalle($rut,$pid);
 		//---------------------------------
 		if (isset($data->inf)) {
 			$inf = $data->inf;
@@ -79,7 +78,7 @@
 		<div class="row">
 			<div class="col-sm-1"></div>
 			<div class="col-sm-10">
-				<form class="col-sm-12" method="post" enctype="multipart/form-data" action="<?= ACTI.$direc; ?>">
+				<form class="col-sm-12" method="post" enctype="multipart/form-data" action="<?= ACTI.$action; ?>">
 					<div class="card">
 					  <div class="card-header">
 						Información del <?= $padre; ?>
@@ -197,7 +196,7 @@
 	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
 		<div class="modal-content">
-		  <form method="POST" enctype="multipart/form-data" action="<?= ACTI.$direc; ?>">
+		  <form method="POST" enctype="multipart/form-data" action="<?= ACTI.$action; ?>">
 			  <div class="modal-header">
 				<h5 class="modal-title" id="exampleModalLabel">Nuevo Seguimiento</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -224,7 +223,7 @@
 	<div class="modal fade" id="dropSeg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
 		<div class="modal-content">
-		  <form method="POST" action="<?= ACTI.$direc; ?>">
+		  <form method="POST" action="<?= ACTI.$action; ?>">
 			  <div class="modal-header">
 				<h5 class="modal-title" id="exampleModalLabel">Eliminar <?= substr($pagina, 0, -1); ?></h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">

@@ -12,9 +12,7 @@
 		private $db_user = 'root';
 		private $db_pass = '';
 		//---------------------------------------
-		protected $db_type = 'mysqli_';
-		//protected $db_type = 'pg_';
-		//protected $db_type = 'sqlsrv_';
+		protected $db_type = DB_TYPE;
 		protected $db_conec = NULL;
 		protected $db_query = NULL;
 		protected $db_error = NULL;
@@ -111,6 +109,7 @@
 						}
 					}else{
 						$data->result = true;
+						$data->cant = (($this->db_type == 'mysqli_') ? $res->$fc_num_r : $fc_num_r($res));
 						$data->mensaje = "Ejecutado exitosamente";
 					}
 				}else{
@@ -1050,7 +1049,7 @@
 				//---------------------------------------------------------
 				switch ($type) {
 					case 'user':
-						$sql = "SELECT * FROM scheme_name.view_users_all WHERE id_usuario=".$pid." LIMIT 1 ;";
+						$sql = "SELECT u.*, tu.nombre_t FROM usuarios u INNER JOIN tipos_usuarios tu ON u.id_tipo=tu.id_tipo WHERE id_user=".$pid." LIMIT 1 ;";
 					break;
 					case 'placa':
 						$sql = "SELECT * FROM scheme_name.unidades WHERE placa LIKE '".$pid."' LIMIT 1 ;";
