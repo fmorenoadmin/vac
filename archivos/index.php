@@ -1,7 +1,7 @@
 <html class="h-100" data-bs-theme="dark" data-darkreader-mode="dynamic" data-darkreader-scheme="dark" lang="en">
 <head>
 	<title>
-		Archivos · Jayway Net S.A.C.
+		Archivos
 	</title>
 	<!-- Favicons -->
 	<link href="https://archivos.jayway.net.pe/img/favicon.png" rel="icon"/>

@@ -1,7 +1,7 @@
 Options -Indexes
 
 <IfModule mod_headers.c>
-	SetEnvIf Origin "^https?://(.+\.)?(jayway\.(com|net|org|nom|pe))$" ALLOW_ORIGIN=$0
+	SetEnvIf Origin "^https?://(.+\.)?(localhost\.(com|net|org|nom|pe))$" ALLOW_ORIGIN=$0
 	Header always set Access-Control-Allow-Origin %{ALLOW_ORIGIN}e env=ALLOW_ORIGIN
 	Header always set Referrer-Policy "strict-origin-when-cross-origin"
 	#
