@@ -25,6 +25,9 @@
 			<ul class="nav__menu">
 				<li><a href="<?= URL; ?>" <?= (($_pg_na=='index') ? 'class="menu--active"' : NULL); ?> >Cursos</a></li>
 				<li><a href="<?= URL; ?>contacto/" <?= (($_pg_na=='contacto') ? 'class="menu--active"' : NULL); ?> >Contacto</a></li>
+				<?php if ($_pg_na=='curso_detail'): ?>
+					<li><a href="<?= $location; ?>" class="menu--active">Detalle del Curso</a></li>
+				<?php endif ?>
 				<li><a href="<?= SIST; ?>" target="_blank">Sistema</a></li>
 			</ul>
 		</nav>
