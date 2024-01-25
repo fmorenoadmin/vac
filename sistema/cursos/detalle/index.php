@@ -90,9 +90,9 @@
 						  </div>
 						  <hr>
 						  <div class="form-group">
-							<input type="hidden" name="pid" value="<?= base64_encode($pid); ?>">
-			  				<input type="hidden" name="sid" value="<?= base64_encode($sid); ?>">
-			  				<input type="hidden" name="url" value="<?= base64_encode($location); ?>">
+							<input type="hidden" name="pid" value="<?= base64_encode($pid); ?>" />
+			  				<input type="hidden" name="sid" value="<?= base64_encode($sid); ?>" />
+			  				<input type="hidden" name="url" value="<?= base64_encode($location); ?>" />
 							<a href="../" class="btn btn-secondary">Regresar</a>
 							<button type="submit" name="editar" class="btn btn-primary">Editar <i class="fa fa-edit"></i></button>
 						  </div>

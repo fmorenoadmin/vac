@@ -211,9 +211,9 @@
 				  </div>
 			  </div>
 			  <div class="modal-footer">
-				<input type="hidden" name="pid" value="<?= base64_encode($pid); ?>">
-			  	<input type="hidden" name="sid" value="<?= base64_encode($sid); ?>">
-			  	<input type="hidden" name="url" value="<?= base64_encode($location); ?>">
+				<input type="hidden" name="pid" value="<?= base64_encode($pid); ?>" />
+			  	<input type="hidden" name="sid" value="<?= base64_encode($sid); ?>" />
+			  	<input type="hidden" name="url" value="<?= base64_encode($location); ?>" />
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
 				<button type="submit" name="addSeg" class="btn btn-primary">Guardar Seguimiento</button>
 			  </div>
@@ -237,9 +237,9 @@
 				  </div>
 			  </div>
 			  <div class="modal-footer">
-				<input type="hidden" id="dropid" name="pid">
-			  	<input type="hidden" name="sid" value="<?= base64_encode($sid); ?>">
-			  	<input type="hidden" name="url" value="<?= base64_encode($location); ?>">
+				<input type="hidden" id="dropid" name="pid" />
+			  	<input type="hidden" name="sid" value="<?= base64_encode($sid); ?>" />
+			  	<input type="hidden" name="url" value="<?= base64_encode($location); ?>" />
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
 				<button type="submit" name="dropSeg" class="btn btn-primary">Borrar el <?= substr($pagina, 0, -1); ?></button>
 			  </div>

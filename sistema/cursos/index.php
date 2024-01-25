@@ -106,8 +106,8 @@
 				  </div>
 			  </div>
 			  <div class="modal-footer">
-			  	<input type="hidden" name="sid" value="<?= base64_encode($sid); ?>">
-			  	<input type="hidden" name="url" value="<?= base64_encode($location); ?>">
+  				<input type="hidden" name="sid" value="<?= base64_encode($sid); ?>" />
+  				<input type="hidden" name="url" value="<?= base64_encode($location); ?>" />
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
 				<button type="submit" name="guardar" class="btn btn-primary">Guardar <?= substr($pagina, 0, -1); ?></button>
 			  </div>
@@ -146,9 +146,9 @@
 				  </div>
 			  </div>
 			  <div class="modal-footer">
-				<input type="hidden" name="pid" id="dropid">
-			  	<input type="hidden" name="sid" value="<?= base64_encode($sid); ?>">
-			  	<input type="hidden" name="url" value="<?= base64_encode($location); ?>">
+				<input type="hidden" name="pid" id="dropid" />
+			  	<input type="hidden" name="sid" value="<?= base64_encode($sid); ?>" />
+			  	<input type="hidden" name="url" value="<?= base64_encode($location); ?>" />
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
 				<button type="submit" name="eliminar" class="btn btn-primary">Borrar el <?= substr($pagina, 0, -1); ?></button>
 			  </div>
