@@ -108,7 +108,7 @@
 					//----------------------------------------
 					$r_cor = $_cor->sendMail($ru0, $json);
 					//----------------------------------------
-					echo $_SESSION['mensjEmail'] = $r_cor;
+					$_SESSION['mensjEmail'] = $r_cor;
 				}
 			}
 			$_SESSION['stat'] = $resp->inf;
@@ -116,8 +116,8 @@
 			//----------------------------------------
 			$_POST = null;
 			//----------------------------------------
-			//header("Location: ".$url);
-			//exit();
+			header("Location: ".$url);
+			exit();
 		}else{
 			include_once($ru0.'403.shtml');
 		}
