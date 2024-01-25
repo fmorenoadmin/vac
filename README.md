@@ -68,6 +68,15 @@
 		<ul>
 			<li>archivos/ (carpeta para el subdominio: archivos.domain.ext - En este lugar se almacenarán todos los recursos de la web y el sistema: css, js, img, files, etc)
 				<ul>
+					<li>css/ (Carpeta con los estilos que se ueden usar en la web o el sistema)</li>
+					<li>error/ (Carpeta que contiene los archivos de errores SHTML)
+						<ul>
+							<li>[400-600].shtml (Archivos de error personalizados) <a href="https://github.com/fmorenoadmin/errors_shtml" target="_blank">Los encuentras en este repositorio</a></li>
+						</ul>
+					</li>
+					<li></li>
+					<li></li>
+					<li></li>
 					<li></li>
 				</ul>
 			</li>
