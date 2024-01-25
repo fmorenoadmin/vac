@@ -5,7 +5,7 @@
 	$pagina='Detalle del Curso';
 	$padre='Curso';
 	$direc='cursos.php';
-	require_once($rut.'0code.php');
+	require_once($rut.'config/0code.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -13,7 +13,7 @@
 	<meta charset="utf-8">
 	<title><?= $pagina.TIT; ?></title>
 	<?php
-		require_once($rut.'1styles.php');
+		require_once($rut.CONF.'1styles.php');
 		//---------------------------------
 		$data=null;$inf=null;
 		//---------------------------------
@@ -27,11 +27,11 @@
 			exit();
 		}
 		//---------------------------------
-		require_once($rut.'0mens.php');
+		require_once($rut.CONF.'0mens.php');
 	?>
 </head>
 <body>
-	<?php include_once($rut.'nav.php'); ?>
+	<?php include_once($rut.CONF.'nav.php'); ?>
 
 	<div class="container">
 		<div class="row pb-5">
@@ -51,7 +51,7 @@
 			</div>
 		</div>
 		
-		<?php include_once($rut.'0error.php'); ?>
+		<?php include_once($rut.CONF.'0error.php'); ?>
 		
 		<hr>
 
@@ -101,8 +101,8 @@
 		</div>
 	</div>
 
-	<?php require_once($rut.'2java.php'); ?>
-	<?php require_once($rut.'3toastr.php'); ?>
+	<?php require_once($rut.CONF.'2java.php'); ?>
+	<?php require_once($rut.CONF.'3toastr.php'); ?>
 </body>
 </html>
 <?php
