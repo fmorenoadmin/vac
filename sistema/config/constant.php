@@ -6,7 +6,7 @@ header("Access-Control-Allow-Origin: https://vac.frankmorenoalburqueque.com/");
 define('HTTP', 'http://');
 define('HTTPS', 'https://');
 //-------------------------------------------
-define('TIT', ' | Metedología VAC con PHP');
+define('TIT', ' | Sistema | Metedología VAC con PHP');
 //-------------------------------------------
 define('DIRMOR', 'MORENOCL/');
 define('DIRACT', 'ACTIONJF/');
@@ -23,14 +23,14 @@ if (SCHU == '_qas') {
 	define('DOM', 'localhost/');
 	define('DIR', 'vac');
 	//-------------------------------------------
-	define('URL', HTTPS.DOM.DIR.'/web/');
-	define('URL2', HTTPS.DOM.DIR.'/web');
+	define('URL', HTTPS.DOM.DIR.'/sistema/');
+	define('URL2', HTTPS.DOM.DIR.'/sistema');
 }else{
 	define('DOM', 'frankmorenoalburqueque.com/');
 	define('DIR', '');
 	//-------------------------------------------
-	define('URL', HTTPS.'vac.'.DOM.DIR.'/');
-	define('URL2', HTTPS.'vac.'.DOM.DIR.'');
+	define('URL', HTTPS.'vac.'.DOM.DIR.'sistema/');
+	define('URL2', HTTPS.'vac.'.DOM.DIR.'sistema');
 }
 //-------------------------------------------
 define('ARCH', HTTPS.DOM.DIR.'/archivos/');

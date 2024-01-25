@@ -13,7 +13,7 @@
 	<?php include_once($rut.CONF.'1styles.php'); ?>
 
 	<?php
-		require_once($rut.'sistem/0mens.php');
+		require_once($rut.CONF.'0mens.php');
 	?>
 </head>
 <body>
@@ -73,7 +73,7 @@
 
 	<!--====== Javascripts & Jquery ======-->
 		<?php include_once($rut.CONF.'4java.php'); ?>
-		<?php require_once($rut.'sistem/3toastr.php'); ?>
+		<?php require_once($rut.CONF.'3toastr.php'); ?>
 		<script type="text/javascript">
 			$(document).ready(function() {
 				$('#enviar').click(function() {

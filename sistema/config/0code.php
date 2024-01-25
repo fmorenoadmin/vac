@@ -21,3 +21,13 @@ $bot=' <button type="button" class="close" data-dismiss="alert" aria-label="Cerr
 //------------------------------------
 if (isset($_SESSION['sid'])) { $sid = $_SESSION['sid']; }else{ $sid = $_SESSION['sid'] = session_id(); }
 if (isset($_REQUEST['p'])) { $pid = base64_decode($_REQUEST['p']); }else{ $pid = 0; }
+//--------------------------------------------------
+if (isset($_REQUEST['pag'])) {
+	$pag = base64_decode($_REQUEST['pag']);
+	if ($pag > 0) {
+	}else{
+		$pag = 1;
+	}
+}else{
+	$pag = 1;
+}

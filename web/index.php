@@ -30,7 +30,7 @@
 
 	<!-- Hero Section -->
 	<section class="hero__section">
-		<?php echo $inf; $inf=null; ?>
+		<?= $inf; $inf=null; ?>
 	</section>
 	<!-- Hero Section end -->
 
