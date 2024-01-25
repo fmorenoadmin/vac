@@ -20,17 +20,17 @@
 		private $tid4	="";
 		private $tid5	="";
 		//----------------------------------
-			function cantidad($rid,$tipo='clie'){
+			function cantidad($rid){
 				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
 				//---------------------------------------------------------
 				$inf = 0;
 				//---------------------------------------------------------
-				$sql = "SELECT ".$this->tid." FROM ".$this->table0." WHERE id_tipo IN (".(($tipo=='clie') ? '22, 23' : '25, 26').") AND status=1 ;";
+				$sql = "SELECT ".$this->tid." FROM ".$this->table0." WHERE status=1 ;";
 				$res = $this->db_exec($sql,false);
 				//--------------------------------
 				$inf = $res->cant;
 				//--------------------------------
-				$fc_close();
+				$fc_close($this->connect());
 				return $inf;
 			}
 		//----------------------------------
@@ -51,7 +51,7 @@
 					$inf.='<option value="No se ejecutó la consulta. Error: '.$res->error.'">';
 				}
 				//--------------------------------
-				$fc_close();
+				$fc_close($this->connect());
 				return $inf;
 			}
 			function cbo($rid){
@@ -74,11 +74,11 @@
 					$inf .= '<option value="'.base64_encode(0).'">No se obtivo la información. Error: '.$res->error.'</option>';
 				}
 				//--------------------------------
-				$fc_close();
+				$fc_close($this->connect());
 				return $inf;
 			}
 		//----------------------------------
-			function listar($total,$pag,$rid,$uid,$url,$act,$tipo,$busq=false,$val=null,$test=false){
+			function listar($total,$pag,$rid,$uid,$url,$busq=false,$val=null,$test=false){
 				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
 				//---------------------------------------------------------
 				$data = new stdClass();
@@ -118,7 +118,7 @@
 					$inf.='</tr>';
 				$inf.='</thead>';
 				$inf.='<tbody style="width: 100%;">';
-					$sql = "SELECT * FROM ".$this->table0." WHERE id_tipo IN (".(($tipo=='clie') ? '22, 23' : '25, 26').") AND status=".$act." ";
+					$sql = "SELECT * FROM ".$this->table0." WHERE status<>2 ";
 						//--------------------------------
 							if ($busq==true) {
 								$sql .= " AND (id_int LIKE '%".$val."%' OR nombre_comp LIKE '%".$val."%' OR razon_soc LIKE '%".$val."%' OR telefono_u LIKE '%".$val."%' OR correo_u LIKE '%".$val."%' OR datos_adic::text LIKE '%".$val."%') ";
@@ -382,5 +382,76 @@
 				$fc_close();
 				return $data;
 			}
-		//----------------------------------
+		//---------------------------------------
+			function exportar($tip){
+				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
+				//---------------------------------------------------------
+				$inf=null;$n=1;$cant=10;
+				//-------------------------------------
+				$inf.='<thead>';
+					$inf.='<tr>';
+						$inf.='<th>#</th>';
+						$inf.='<th>Nombre</th>';
+						$inf.='<th>Descripción</th>';
+						$inf.='<th>Creado</th>';
+						$inf.='<th>Editado</th>';
+						$inf.='<th>Eliminado</th>';
+						$inf.='<th>Estado</th>';
+						$inf.='<th>Imagen</th>';
+					$inf.='</tr>';
+				$inf.='</thead>';
+				$inf.='<tbody>';
+					$sql = "SELECT * FROM ".$this->table." WHERE status<>2 ;";
+					$res = $this->db_exec($sql);
+					if ($res->result==true && $res->cant > 0) {
+						while ($row = $fc_assoc($res->res)) {
+							$inf.='<tr>';
+								$inf.='<th>'.$n.'</th>';
+								$inf.='<td>'.$row['nombre'].'</td>';
+								$inf.='<td>'.$row['descrip'].'</td>';
+								$inf.='<td>'.$row['created_at'].'</td>';
+								$inf.='<td>'.$row['updated_at'].'</td>';
+								$inf.='<td>'.$row['drop_at'].'</td>';
+								$inf.='<td>';
+									switch ($row['status']) {
+										case 0:
+											$inf.='Inactivo';
+										break;
+										case 1:
+											$inf.='Activo';
+										break;
+										case 2:
+											$inf.='Eliminado';
+										break;
+									}
+								$inf.='</td>';
+									$inf.='<td>';
+										if (strlen($row['imagen']) > 5) {
+											if ($tip==1) {
+												$inf.='<img style="max-width: 100px; max-height: 100px;" src="'.IMG.'cursos/'.$row['imagen'].'" />';
+											}else{
+												$inf.='<img style="max-width: 100px; max-height: 100px;" src="'.__DIRIMG__.'cursos/'.$row['imagen'].'" />';
+											}
+										}else{
+											$inf.='No imagen';
+										}
+									$inf.='</td>';
+							$inf.='</tr>';
+							//-------------------------------------
+							$n++;
+						}
+						$fc_fre_r($res->res);//liberar memoria del resultado
+					}else{
+						if ($res->cant == 0) {
+							$inf.='';
+						}else{
+							$inf.='<tr><td colspan="'.$cant.'"><div class="alert alert-danger">Error: '.$res->error.'</div></td></tr>';
+						}
+					}
+				$inf.='</tbody>';
+				//-------------------------------------
+				$fc_close($this->connect());
+				return $inf;
+			}
+		//---------------------------------------
 	}

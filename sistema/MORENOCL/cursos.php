@@ -23,7 +23,7 @@
 				return $inf;
 			}
 		//----------------------------------
-			function listar($total,$pag,$rid,$uid,$url,$busq=null,$val=null){
+			function listar($total,$pag,$rid,$uid,$url,$busq=null,$val=null,$test=false){
 				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
 				//---------------------------------------------------------
 				$data = new stdClass();
@@ -191,7 +191,7 @@
 					$inf.='</tr>';
 				$inf.='</thead>';
 				$inf.='<tbody>';
-					$sql = "SELECT * FROM ".$this->table." ;";
+					$sql = "SELECT * FROM ".$this->table." WHERE status<>2 ;";
 					$res = $this->db_exec($sql);
 					if ($res->result==true && $res->cant > 0) {
 						while ($row = $fc_assoc($res->res)) {
