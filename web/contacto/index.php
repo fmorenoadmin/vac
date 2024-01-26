@@ -13,9 +13,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title><?= $pagina.TIT; ?></title>
-	<?php include_once($rut.CONF.'1styles.php'); ?>
-
 	<?php
+		include_once($rut.CONF.'1styles.php');
+		//---------------------------------------------
 		require_once($rut.CONF.'0mens.php');
 	?>
 </head>

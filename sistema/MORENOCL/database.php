@@ -167,6 +167,7 @@
 						}
 					}else{
 						$data->result = true;
+						$data->cant = (($this->db_type == 'mysqli_') ? $res->$fc_num_r : $fc_num_r($res));
 						$data->mensaje = "Ejecutado exitosamente";
 					}
 				}else{
