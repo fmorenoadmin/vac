@@ -19,7 +19,7 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
 	<link rel="stylesheet" href="<?= ARCH; ?>css/login.css" />
 	<!-- Favicons -->
-	<link href="https://localhost/vac/archivos/img/favicon.png" rel="icon"/>
+	<link href="<?= IMG; ?>favicon.png" rel="icon"/>
 	<!-- Google tag (gtag.js) -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q69SF4RY9T"></script>
 	<script>
