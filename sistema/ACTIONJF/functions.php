@@ -2,8 +2,8 @@
 	if (isset($_REQUEST['meth'])) {
 		require_once($ru0.'config/constant.php');
 		if (isset($_SESSION['user_id'])) {
-			require($ru0.DIRCLA.$cls['dbs'].'.php');
-			require_once($ru0.DIRCLA.$cls['cl1'].'.php');
+			require($ru0.DIRMOR.$cls['dbs'].'.php');
+			require_once($ru0.DIRMOR.$cls['cl1'].'.php');
 			$_dbs = new $cls['dbs']();
 			$_cl1 = new $cls['cl1']();
 			//-----------------------------------
@@ -22,6 +22,9 @@
 			$resp = $_dbs->db_edit($drop,$_tbl);
 			if ($resp->result) {
 				$_SESSION['SMStrue'] = $resp->mensaje;
+				if (isset($_tbl->test) && $_tbl->test==true) {
+					$_SESSION['sql'] = $resp->sql;
+				}
 			}else{
 				$_SESSION['SMSfalse'] = $resp->mensaje;
 			}
@@ -38,8 +41,8 @@
 	if (isset($_POST['drop'])) {
 		require_once($ru0.'config/constant.php');
 		if (isset($_SESSION['user_id'])) {
-			require($ru0.DIRCLA.$cls['dbs'].'.php');
-			require_once($ru0.DIRCLA.$cls['cl1'].'.php');
+			require($ru0.DIRMOR.$cls['dbs'].'.php');
+			require_once($ru0.DIRMOR.$cls['cl1'].'.php');
 			$_dbs = new $cls['dbs']();
 			$_cl1 = new $cls['cl1']();
 			//-----------------------------------
@@ -61,6 +64,9 @@
 				$_SESSION['SMStrue'] = $resp->mensaje;
 			}else{
 				$_SESSION['SMSfalse'] = $resp->mensaje;
+			}
+			if (isset($_tbl->test) && $_tbl->test==true) {
+				$_SESSION['sql'] = $resp->sql;
 			}
 			//-----------------------------------
 			$_POST = null;

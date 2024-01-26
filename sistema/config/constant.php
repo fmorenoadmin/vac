@@ -54,6 +54,11 @@ define('ACTI', URL.DIRACT);
 define('HOME', URL.'home/');
 define('LOGI', URL.'login/');
 //-------------------------------------------
+define('E401', URL2.DIRERR.'401.shtml');
+define('E402', URL2.DIRERR.'402.shtml');
+define('E403', URL2.DIRERR.'403.shtml');
+define('E404', URL2.DIRERR.'404.shtml');
+//-------------------------------------------
 define('FMMA', 'https://www.frankmorenoalburqueque.com/');
 define('LOGOF', FMMA.'images/logo.png');
 define('FACE', 'https://www.facebook.com/fmorenoadmin/');

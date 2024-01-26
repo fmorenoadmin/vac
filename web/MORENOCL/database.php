@@ -433,7 +433,7 @@
 					}
 				}else{
 					$data->result = false;
-					$data->mensaje = "No existe el nombre de la tabla.";
+					$data->mensaje = "No existe el nombre de la tabla. Datos: ".json_encode($json);
 				}
 				//------------------
 				//$data->sql = $sql;
@@ -484,7 +484,7 @@
 					}
 				}else{
 					$data->result = false;
-					$data->mensaje = "No existe el nombre de la tabla.";
+					$data->mensaje = "No existe el nombre de la tabla. Datos: ".json_encode($json);
 				}
 				//------------------
 				//$data->sql = $sql;
@@ -532,7 +532,7 @@
 					}
 				}else{
 					$data->result = false;
-					$data->mensaje = "No existe el nombre de la tabla.";
+					$data->mensaje = "No existe el nombre de la tabla. Datos: ".json_encode($json);
 				}
 				//------------------
 				$data->datos = $datos;
@@ -589,7 +589,7 @@
 					}
 				}else{
 					$data->result = false;
-					$data->mensaje = "No existe el nombre de la tabla.";
+					$data->mensaje = "No existe el nombre de la tabla. Datos: ".json_encode($json);
 				}
 				//------------------
 				$data->rows = count($inf);
@@ -644,7 +644,7 @@
 				}else{
 					$data->result = false;
 					$data->total = 0;
-					$data->mensaje = "No existe el nombre de la tabla.";
+					$data->mensaje = "No existe el nombre de la tabla. Datos: ".json_encode($json);
 				}
 				//------------------
 				//$data->sql = $sql;
@@ -766,7 +766,7 @@
 				}else{
 					$data->result = false;
 					$data->inf = 'null';
-					$data->mensaje = "No existe el nombre de la tabla.";
+					$data->mensaje = "No existe el nombre de la tabla. Datos: ".json_encode($json);
 				}
 				//------------------
 				$data->sql = $sql;
@@ -892,7 +892,7 @@
 				}else{
 					$data->result = false;
 					$data->inf = 'null';
-					$data->mensaje = "No existe el nombre de la tabla.";
+					$data->mensaje = "No existe el nombre de la tabla. Datos: ".json_encode($json);
 				}
 				//------------------
 				//$data->sql = $sql;
@@ -963,7 +963,7 @@
 				}else{
 					$data->result = false;
 					$data->inf = 'null';
-					$data->mensaje = "No existe el nombre de la tabla.";
+					$data->mensaje = "No existe el nombre de la tabla. Datos: ".json_encode($json);
 				}
 				//------------------
 				$data->sql = $sql;
@@ -1034,7 +1034,7 @@
 				}else{
 					$data->result = false;
 					$data->inf = 'null';
-					$data->mensaje = "No existe el nombre de la tabla.";
+					$data->mensaje = "No existe el nombre de la tabla. Datos: ".json_encode($json);
 				}
 				//------------------
 				//$data->sql = $sql;

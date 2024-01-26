@@ -5,7 +5,7 @@
 	class cursos extends database
 	{
 		private $table ='cursos';
-		private $action='cursos.php?met=';
+		private $action='cursos.php?meth=';
 		private $detail='detalle/?p=';
 		private $tid= 'id';
 		//---------------------------------------
@@ -86,7 +86,7 @@
 									$inf.='</a>';
 									switch ($row['status']) {
 										case 0:
-											$inf.='<a href="'.ACTI.$this->action.'acti&pid='.base64_encode($row[$this->tid]).'&url='.base64_encode($url).'" class="btn btn-outline-warning" title="Clic para Activar">';
+											$inf.='<a href="'.ACTI.$this->action.'act&pid='.base64_encode($row[$this->tid]).'&url='.base64_encode($url).'" class="btn btn-outline-warning" title="Clic para Activar">';
 												$inf.='<i class="fa fa-ban"></i>';
 											$inf.='</a>';
 										break;
@@ -96,7 +96,7 @@
 											$inf.='</a>';
 										break;
 										default:
-											$inf.='<a href="'.ACTI.$this->action.'acti&pid='.base64_encode($row[$this->tid]).'&url='.base64_encode($url).'" class="btn btn-outline-danger" title="Clic para Activar">';
+											$inf.='<a href="'.ACTI.$this->action.'act&pid='.base64_encode($row[$this->tid]).'&url='.base64_encode($url).'" class="btn btn-outline-danger" title="Clic para Activar">';
 												$inf.='<i class="fa fa-times"></i>';
 											$inf.='</a>';
 										break;

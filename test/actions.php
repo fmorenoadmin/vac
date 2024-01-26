@@ -7,13 +7,16 @@
 		"dbs"	=>	'DataBase',
 		"cl1"	=>	'[CLASS_NAME]',
 	);
-	$di1 = $cls['cl1'].'/';
 	//-----------------------------------
-	$dt = new stdClass();
+	$di1 = $cls['cl1'].'/';
+	$di2=$di1.'detalle/?p=';
+	$dt = array();$json = new stdClass();
+	//-----------------------------------
 	$_tbl = new stdClass();
 	$_tbl->tname = 'public.'.$cls['cl1'];
 	$_tbl->tid = '[TABLE_ID]';
 	$_tbl->pid = 0;
+	$_tbl->test = true;
 	//-----------------------------------
 		function index($rut,$rid,$uid,$url){
 			global $cls;
@@ -48,6 +51,9 @@
 	//-----------------------------------
 	if (isset($_POST['nuevo'])) {
 		require_once($ru0.'config/constant.php');
+		//----------------------------------------
+		$destino= __DIRIMG__."cursos/";
+		//----------------------------------------
 		if (isset($_SESSION['user_id'])) {
 			require($ru0.DIRCLA.$cls['dbs'].'.php');
 			require_once($ru0.DIRCLA.$cls['cl1'].'.php');
@@ -77,6 +83,9 @@
 			}else{
 				$_SESSION['SMSfalse'] = $resp->mensaje;
 			}
+			if (isset($_tbl->test) && $_tbl->test==true) {
+				$_SESSION['sql'] = $resp->sql;
+			}
 			//-----------------------------------
 			$_POST = null;
 			//-----------------------------------
@@ -89,6 +98,9 @@
 	}
 	if (isset($_POST['editar'])) {
 		require_once($ru0.'config/constant.php');
+		//----------------------------------------
+		$destino= __DIRIMG__."cursos/";
+		//----------------------------------------
 		if (isset($_SESSION['user_id'])) {
 			require($ru0.DIRCLA.$cls['dbs'].'.php');
 			require_once($ru0.DIRCLA.$cls['cl1'].'.php');
@@ -119,6 +131,9 @@
 			}else{
 				$_SESSION['SMSfalse'] = $resp->mensaje;
 			}
+			if (isset($_tbl->test) && $_tbl->test==true) {
+				$_SESSION['sql'] = $resp->sql;
+			}
 			//-----------------------------------
 			$_POST = null;
 			//-----------------------------------
@@ -131,7 +146,7 @@
 	}
 	if (isset($_POST['busq'])) {
 		require_once($ru0.'config/constant.php');
-		$_tbl = new stdClass();
+		$resp = new stdClass();
 		//-----------------------------
 		if (isset($_SESSION['user_id'])) {
 			require_once($ru0.DIRMOR.$cls['dbs'].'.php');
@@ -148,20 +163,23 @@
 			//-----------------------------
 			$val = $_dbs->custom_escape_string($_POST['val']);
 			//-----------------------------
-			$_tbl->inf = $_cl1->listar($total,$pag,$rid,$uid,$url,true,$val);
-			$_tbl->btns = $_dbs->db_get_btns($total,$pag,$url);
+			$resp->inf = $_cl1->listar($total,$pag,$rid,$uid,$url,true,$val);
+			$resp->btns = $_dbs->db_get_btns($total,$pag,$url);
+			if (isset($_tbl->test) && $_tbl->test==true) {
+				$_SESSION['sql'] = $resp->inf->sql;
+			}
 			//-----------------------------
 			$_POST = null;
 			//-----------------------------
-			$_tbl->result = true;
+			$resp->result = true;
 		}else{
-			$_tbl->result = false;
-			$_tbl->error = true;
-			$_tbl->mensaje = 'Usted no tiene Permisos para acceder a este recurso';
+			$resp->result = false;
+			$resp->error = true;
+			$resp->mensaje = 'Usted no tiene Permisos para acceder a este recurso';
 		}
 		//-----------------------------
 		header("Content-type: application/json; Charset: UTF-8;");
-		echo json_encode($_tbl);
+		echo json_encode($resp);
 	}
 	//-----------------------------------
 	require_once('functions.php');

@@ -168,6 +168,7 @@
 	);
 	SELECT * FROM contacto WHERE status=1;
 /*-----------------------tabla-cursos-----------------------*/
+	DROP TABLE IF EXISTS seg_contacto;
 	CREATE TABLE seg_contacto(
 		id_seg INT PRIMARY KEY AUTO_INCREMENT,
 		id INT NULL DEFAULT 1,
@@ -178,6 +179,7 @@
 		updated_at DATETIME NULL DEFAULT NULL,
 		id_updated INT NULL DEFAULT 0,
 		drop_at DATETIME NULL DEFAULT NULL,
+		motivo_drop TEXT NULL DEFAULT NULL,
 		id_drop INT NULL DEFAULT 0,
 		status INT NULL DEFAULT 1
 	);

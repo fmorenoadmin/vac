@@ -38,13 +38,14 @@
 	<div class="container">
 		<div class="row pb-5">
 			<br>
+			<pre class="" style="display: none;"><?php print_r($data); ?></pre>
 		</div>
 
 		<hr>
 		
 		<div class="row">
 			<div class="col-sm-3 text-left">
-				<a href="../" class="btn btn-secondary">Regresar</a>
+				<a href="../" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Regresar</a>
 			</div>
 			<div class="col-sm-6 text-center">
 				<h2><?= $pagina; ?></h2>

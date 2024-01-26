@@ -124,10 +124,11 @@
 						</div>
 					</div>
 					<div class="modal-footer">
+						<input type="hidden" name="uid" value="<?= base64_encode($uid); ?>" />
 						<input type="hidden" name="sid" value="<?= base64_encode($sid); ?>" />
 						<input type="hidden" name="url" value="<?= base64_encode($location); ?>" />
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-					<button type="submit" name="guardar" class="btn btn-primary">Guardar <?= $singlr; ?></button>
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+						<button type="submit" name="guardar" class="btn btn-primary">Guardar <?= $singlr; ?></button>
 					</div>
 				</form>
 			</div>
@@ -158,6 +159,7 @@
 					</div>
 					<div class="modal-footer">
 						<input type="hidden" name="pid" id="dropid" />
+						<input type="hidden" name="uid" value="<?= base64_encode($uid); ?>" />
 						<input type="hidden" name="sid" value="<?= base64_encode($sid); ?>" />
 						<input type="hidden" name="url" value="<?= base64_encode($location); ?>" />
 						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

@@ -6,10 +6,12 @@
 	{
 		private $table ='contacto';
 		private $table1='seg_contacto';
-		private $action='contacto.php?met=';
+		private $table2='usuarios';
+		private $action='contacto.php?meth=';
 		private $detail='detalle/?p=';
 		private $tid = 'id';
-		private $tid2= 'id_seg';
+		private $tid1= 'id_seg';
+		private $tid2= 'id_user';
 		//---------------------------------------
 			function cantidad($rid){
 				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
@@ -84,7 +86,7 @@
 									$inf.='</a>';
 									switch ($row['status']) {
 										case 0:
-											$inf.='<a href="'.ACTI.$this->action.'acti&pid='.base64_encode($row[$this->tid]).'&url='.base64_encode($url).'" class="btn btn-outline-warning" title="Clic para Activar">';
+											$inf.='<a href="'.ACTI.$this->action.'act&pid='.base64_encode($row[$this->tid]).'&url='.base64_encode($url).'" class="btn btn-outline-warning" title="Clic para Activar">';
 												$inf.='<i class="fa fa-ban"></i>';
 											$inf.='</a>';
 										break;
@@ -94,7 +96,7 @@
 											$inf.='</a>';
 										break;
 										default:
-											$inf.='<a href="'.ACTI.$this->action.'acti&pid='.base64_encode($row[$this->tid]).'&url='.base64_encode($url).'" class="btn btn-outline-danger" title="Clic para Activar">';
+											$inf.='<a href="'.ACTI.$this->action.'act&pid='.base64_encode($row[$this->tid]).'&url='.base64_encode($url).'" class="btn btn-outline-danger" title="Clic para Activar">';
 												$inf.='<i class="fa fa-times"></i>';
 											$inf.='</a>';
 										break;
@@ -134,27 +136,23 @@
 					$inf.='<tr>';
 						$inf.='<th>#</th>';
 						$inf.='<th>Respuesta</th>';
-						$inf.='<th>Nombre Cliente</th>';
-						$inf.='<th>Correo Cliente</th>';
-						$inf.='<th>Teléfono Cliente</th>';
 						$inf.='<th>Fecha de respuesta</th>';
+						$inf.='<th>Empleado</th>';
 						$inf.='<th>Gestión</th>';
 					$inf.='</tr>';
 				$inf.='</thead>';
 				$inf.='<tbody>';
-					$sql = "SELECT r.*, c.nombre, c.correo, c.telefono FROM ".$this->table1." r INNER JOIN ".$this->table." c ON r.".$this->tid."=c.".$this->tid." WHERE r.status=1 AND r.".$this->tid."=".$pid." ORDER BY r.".$this->tid2." DESC;";
+					$sql = "SELECT r.*, CONCAT(u.nombres_u, ' ', u.apellidos_u) AS empleado FROM ".$this->table1." r INNER JOIN ".$this->table2." u ON r.id_usuario=u.id_user WHERE r.status=1 AND r.".$this->tid."=".$pid." ORDER BY r.".$this->tid1." DESC;";
 					$res = $this->db_exec($sql);
 					if ($res->result==true && $res->cant > 0) {
 						while ($row = $fc_assoc($res->res)) {
 							$inf.='<tr>';
 								$inf.='<th scope="row">'.$n.'</th>';
 								$inf.='<td>'.$row['respuesta'].'</td>';
-								$inf.='<td>'.$row['nombre'].'</td>';
-								$inf.='<td>'.$row['correo'].'</td>';
-								$inf.='<td>'.$row['telefono'].'</td>';
 								$inf.='<td>'.$row['created_at'].'</td>';
+								$inf.='<td>'.$row['empleado'].'</td>';
 								$inf.='<td>';
-									$inf.='<button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#dropSeg" onclick="dropSeg('."'".base64_encode($row[$this->tid2])."||'".');"><i class="fa fa-trash"></i></button>';
+									$inf.='<button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#dropSeg" onclick="dropSeg('."'".base64_encode($row[$this->tid1])."||".base64_encode(utf8_encode($row['respuesta']))."'".');"><i class="fa fa-trash"></i></button>';
 								$inf.='</td>';
 							$inf.='</tr>';
 							//-------------------------------------

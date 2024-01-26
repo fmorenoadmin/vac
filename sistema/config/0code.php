@@ -19,8 +19,8 @@ $uid=null;$rid=null;$tna=null;$una=null;$uno=null;$uap=null;$uus=null;$uem=null;
 $schu=SCHU;$singlr=null;
 $bot=' <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
 //--------------------------------------------------
-if (isset($_REQUEST['p'])) { $_SESSION['pid'] = base64_decode($_REQUEST['p']); }
-if (isset($_REQUEST['v'])) { $_SESSION['vid'] = base64_decode($_REQUEST['v']); }
+if (isset($_REQUEST['p'])) { $pid = $_SESSION['pid'] = base64_decode($_REQUEST['p']); }
+if (isset($_REQUEST['v'])) { $vid = $_SESSION['vid'] = base64_decode($_REQUEST['v']); }
 //--------------------------------------------------SESSIONES
 	if (isset($_SESSION['sid'])) { $sid = $_SESSION['sid']; }else{ $sid = $_SESSION['sid'] = session_id(); }
 	//--------------------------------------------------

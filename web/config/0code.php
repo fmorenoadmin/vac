@@ -1,7 +1,7 @@
 <?php
 require_once($rut.'config/constant.php');
 //------------------------------------
-$_SESSION['location'] = $location = HTTPS.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+$_SESSION['location_web'] = $location = HTTPS.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 //------------------------------------
 if ($_SERVER['REQUEST_URI'] == DIRERR) {
 }else if ($_SERVER['REQUEST_URI'] == DIR) {

@@ -5,18 +5,18 @@
 	//------------------------------
 	$cls = array(
 		"dbs"	=>	"database",
-		"cl0"	=>	"correo",
 		"cl1"	=>	"contacto",
 	);
 	//------------------------------
-	$di1=$cls['cl1'].'/';
-	$di2=$di1.'detalle/?p=';
+	$di1 = $cls['cl1'].'/';
+	$di2 = $di1.'detalle/?p=';
 	$dt = array();$json = new stdClass();
 	//------------------------------
 	$_tbl = new stdClass();
 	$_tbl->tname = $cls['cl1'];
 	$_tbl->tid = 'id';
 	$_tbl->pid = 0;
+	$_tbl->test = true;
 	//-------------------------------
 		function index($rut,$uid,$rid,$url,$pag){
 			global $cls;
@@ -76,7 +76,9 @@
 			//----------------------------------------
 			$add = array(
 				"id"	=>	base64_decode($_POST['pid']),
+				"id_usuario"	=>	base64_decode($_POST['uid']),
 				"respuesta"	=>	str_replace("'", '´', $_POST['respuesta']),
+				"id_created"	=>	base64_decode($_POST['uid']),
 				"created_at"	=>	date('Y-m-d H:i:s')
 			);
 			//----------------------------------------
@@ -104,24 +106,31 @@
 			//----------------------------------------
 			$_tbl->tname = 'seg_contacto';//seg_contacto
 			$_tbl->tid = 'id_seg';
+			$_tbl->pid = base64_decode($_POST['pid']);
 			$_tbl->success = 'drop';
 			$_tbl->danger = 'no'.$_tbl->success;
-			$_tbl->pid = base64_decode($_POST['pid']);
-			//----------------------------------------
+			//-----------------------------------
 			$drop = array(
-				"id_drop"	=>	1,
-				"drop_at"	=>	date('Y-m-d H:i:s'),
-				"status"	=>	2
+				"motivo_drop" => str_replace("'", '´', $_POST['motivo_drop']),
+				"drop_at" => date('Y-m-d H:i:s'),
+				"id_drop" => base64_decode($_POST['uid']),
+				"status" => 2,
 			);
-			//----------------------------------------
+			//-----------------------------------
 			$url = base64_decode($_POST['url']);
-			//----------------------------------------
+			//-----------------------------------
 			$resp = $_dbs->db_edit($drop,$_tbl);
-			$_SESSION['stat'] = $resp->inf;
-			$_SESSION['sql'] = $resp->sql;
-			//----------------------------------------
+			if ($resp->result) {
+				$_SESSION['SMStrue'] = $resp->mensaje;
+			}else{
+				$_SESSION['SMSfalse'] = $resp->mensaje;
+			}
+			if (isset($_tbl->test) && $_tbl->test==true) {
+				$_SESSION['sql'] = $resp->sql;
+			}
+			//-----------------------------------
 			$_POST = null;
-			//----------------------------------------
+			//-----------------------------------
 			header("Location: ".$url);
 			exit();
 		}else{
