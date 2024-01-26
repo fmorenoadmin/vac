@@ -71,7 +71,7 @@
 			$_tbl->success = 'add';
 			$_tbl->danger = 'no'.$_tbl->success;
 			//----------------------------------------
-			$nombre = filter_var($_POST['nombre'], FILTER_SANITIZE_STRING);
+			$nombre = $_dbs->custom_escape_string($_POST['nombre']);
 			$descrip = str_replace("'", '´', $_POST['descrip']);
 			//----------------------------------------
 			if (is_uploaded_file($_FILES["imagen"]["tmp_name"])) {
@@ -126,7 +126,7 @@
 			$_tbl->success = 'edit';
 			$_tbl->danger = 'no'.$_tbl->success;
 			//----------------------------------------
-			$nombre = filter_var($_POST['nombre'], FILTER_SANITIZE_STRING);
+			$nombre = $_dbs->custom_escape_string($_POST['nombre']);
 			$descrip = str_replace("'", '´', $_POST['descrip']);
 			//----------------------------------------
 			if (is_uploaded_file($_FILES["imagen"]["tmp_name"])) {

@@ -64,11 +64,11 @@
 			$_tbl->danger = 'no'.$_tbl->success;
 			//-----------------------------------
 			$add = array(
-				"nombre" => $_POST['nombre'],
-				"und_neg" => $_POST['und_neg'],
-				"direccion" => $_POST['direccion'],
-				"enlace" => $_POST['enlace'],
-				"telefono" => str_replace(array(" ", '-', '_'), '', $_POST['telefono']),
+				"campo_uno" => $_dbs->custom_escape_string($_POST['campo_uno']),
+				"campo_dos" => $_dbs->custom_escape_string($_POST['campo_dos']),
+				"campo_tres" => $_dbs->custom_escape_string($_POST['campo_tres']),
+				"campo_cuatro" => $_dbs->custom_escape_string($_POST['campo_cuatro']),
+				"telefono" => $_dbs->custom_escape_string(str_replace(array(" ", '-', '_'), '', $_POST['telefono'])),
 				"descrip" => str_replace("'", '´', $_POST['descrip']),
 				"created_at" => date('Y-m-d H:i:s'),
 				"id_created" => base64_decode($_POST['uid']),
@@ -112,11 +112,11 @@
 			$_tbl->danger = 'no'.$_tbl->success;
 			//-----------------------------------
 			$edit = array(
-				"nombre" => $_POST['nombre'],
-				"und_neg" => $_POST['und_neg'],
-				"direccion" => $_POST['direccion'],
-				"enlace" => $_POST['enlace'],
-				"telefono" => str_replace(array(" ", '-', '_'), '', $_POST['telefono']),
+				"campo_uno" => $_dbs->custom_escape_string($_POST['campo_uno']),
+				"campo_dos" => $_dbs->custom_escape_string($_POST['campo_dos']),
+				"campo_tres" => $_dbs->custom_escape_string($_POST['campo_tres']),
+				"campo_cuatro" => $_dbs->custom_escape_string($_POST['campo_cuatro']),
+				"telefono" => $_dbs->custom_escape_string(str_replace(array(" ", '-', '_'), '', $_POST['telefono'])),
 				"descrip" => str_replace("'", '´', $_POST['descrip']),
 				"updated_at" => date('Y-m-d H:i:s'),
 				"id_updated" => base64_decode($_POST['uid']),

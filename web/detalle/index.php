@@ -53,22 +53,30 @@
 				<div class="col-lg-4">
 					<div class="skills__text">
 						<h3 class="about__title">Skills</h3>
-						<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit. Vivamus at nibh tincidunt, bibendum ligula id. </p>
+						<p>Convierte tu gratitud en acción: cada donación impulsa la creación de contenido PHP gratuito para todos. Tu apoyo no solo construye repositorios, sino también un puente hacia un mundo de conocimiento compartido. ¡Haz clic en el botón de PayPal y únete a la revolución del código abierto hoy!</p>
+						<p class="text-center">
+							<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+								<input name="cmd" type="hidden" value="_s-xclick"/>
+								<input name="hosted_button_id" type="hidden" value="KN32TH6DXPUXQ"/>
+								<input alt="Donate with PayPal button" border="0" name="submit" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" type="image"/>
+								<img alt="" border="0" height="1" src="https://www.paypal.com/en_PE/i/scr/pixel.gif" width="1"/>
+							</form>
+						</p>
 						<div class="single-progress-item">
-							<h6>Development</h6>
-							<div class="progress-bar-style" data-progress="70"></div>
+							<h6>PHP</h6>
+							<div class="progress-bar-style" data-progress="80"></div>
 						</div>
 						<div class="single-progress-item">
-							<h6>APP Design</h6>
-							<div class="progress-bar-style" data-progress="70"></div>
+							<h6>HTML</h6>
+							<div class="progress-bar-style" data-progress="10"></div>
 						</div>
 						<div class="single-progress-item">
-							<h6>Graphic Design</h6>
-							<div class="progress-bar-style" data-progress="70"></div>
+							<h6>CSS</h6>
+							<div class="progress-bar-style" data-progress="5"></div>
 						</div>
 						<div class="single-progress-item">
-							<h6>Photography</h6>
-							<div class="progress-bar-style" data-progress="70"></div>
+							<h6>JS</h6>
+							<div class="progress-bar-style" data-progress="5"></div>
 						</div>
 					</div>
 				</div>
