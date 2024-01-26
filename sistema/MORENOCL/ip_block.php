@@ -48,7 +48,7 @@
 					$ip_cli = $ip;
 				}
 				//---------------------------------------------------------
-				$sql="SELECT ip_block FROM ".$this->table." WHERE ip_block LIKE '".$ip_cli."' AND status=1;";
+				$sql="SELECT ip FROM ".$this->table." WHERE ip LIKE '".$ip_cli."' AND status=1;";
 				//--------------------------------
 				$res = $this->db_exec($sql,false);
 				//--------------------------------
@@ -107,7 +107,7 @@
 									$inf .= '</td>';
 									$inf .= '<td>'.$n.'</td>';
 									$inf .= '<td>'.$row[$this->tid].'</td>';
-									$inf .= '<td>'.$row['ip_block'].'</td>';
+									$inf .= '<td>'.$row['ip'].'</td>';
 									$inf .= '<td>'.$row['detalle_block'].'</td>';
 									$inf .= '<td>'.$row['created_at'].'</td>';
 									$inf .= '<td>';

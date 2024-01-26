@@ -4,7 +4,7 @@
 	$rut='../';
 	//-----------------------------------------------
 	$cls = array(
-		"dbs"	=>	'DataBase',
+		"dbs"	=>	'database',
 		"seg"	=>	'Seguridad',
 		"ses"	=>	'Sesiones',
 		"ipb"	=>	'ip_block',
@@ -73,7 +73,7 @@
 		$_int = new $cls['int']();
 		$_reg = new $cls['reg']();
 		//-----------------------------------------------
-		$user = filter_var($_POST['user'], FILTER_SANITIZE_STRING);
+		$user = $_dbs->custom_escape_string($_POST['user']);
 		$pass = str_replace("'", '´', $_POST['pass']);
 		//-----------------------------------------------
 		$dt = getinfoIP($ip);

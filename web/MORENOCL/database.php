@@ -5,12 +5,19 @@
 	class database
 	{
 		//-----------------------------
-		private $db_prd = 'ohwnggei_vac';//IP SERVER prd
+		private $db_prd = 'localhost';//IP SERVER prd
 		private $db_qas = 'localhost';//IP SERVER qas
+		//---------------------------------------
 		private $db_port = '5489';
-		private $db_name = 'vac';
-		private $db_user = 'root';
-		private $db_pass = 'mph#_%@GB=NjHM3X.j';
+		//---------------------------------------
+		private $db_name_qas = 'vac';
+		private $db_name_prd = 'ohwnggei_vac';
+		//---------------------------------------
+		private $db_user_qas = 'root';
+		private $db_user_prd = 'ohwnggei_vac';
+		//---------------------------------------
+		private $db_pass_qas = '';
+		private $db_pass_prd = 'mph#_%@GB=NjHM3X.j';
 		//---------------------------------------
 		protected $db_type = DB_TYPE;
 		protected $db_conec = NULL;
@@ -46,39 +53,49 @@
 			function connect($schu=null,$db='con'){
 				$fc_conec=$this->db_conec;
 				//----------------------------------
-				if (!is_null($schu)) { $name = "db".strtolower($schu); }else{ $name = "db".strtolower(SCHU); }
-				$db_host = $this->$name;
+				if (!is_null($schu)) {
+					$name = "db".strtolower($schu);
+					$base = "db_name".strtolower($schu);
+					$user = "db_user".strtolower($schu);
+					$pass = "db_pass".strtolower($schu);
+				}else{
+					$name = "db".strtolower(SCHU);
+					$base = "db_name".strtolower(SCHU);
+					$user = "db_user".strtolower(SCHU);
+					$pass = "db_pass".strtolower(SCHU);
+				}
+				$_host = $this->$name;
 				//----------------------------------
 				switch ($db) {
 					case 'vac2':
 						$_port = $this->db_port;
-						$_user = ((SCHU=='_qas') ? $this->db_user : 'ohwnggei_vac');
-						$_pass = ((SCHU=='_qas') ? NULL : $this->db_pass);
-						$_name = ((SCHU=='_qas') ? NULL : 'ohwnggei_').'vac2';
+						$_user = $this->$user;
+						$_pass = $this->$pass;
+						$_name = 'vac2';//nombre de otra base de datos
 					break;
 					default:
 						$_port = $this->db_port;
-						$_user = ((SCHU=='_qas') ? $this->db_user : 'ohwnggei_vac');
-						$_pass = ((SCHU=='_qas') ? NULL : $this->db_pass);
-						$_name = ((SCHU=='_qas') ? NULL : 'ohwnggei_').$this->db_name;
+						$_user = $this->$user;
+						$_pass = $this->$pass;
+						$_name = $this->$base;
 					break;
 				}
 				//----------------------------------
 				switch ($this->db_type) {
 					case 'pg_'://conexcióna  base de datos PostgreSQL
-						$con = $fc_conec("host=".$db_host." port=".$_port." dbname=".$_name." user=".$_user." password=".$_pass);
+						$con = $fc_conec("host=".$_host." port=".$_port." dbname=".$_name." user=".$_user." password=".$_pass);
 						pg_set_client_encoding($con, "UTF8");
 					break;
 					case 'sqlsrv_'://conexcióna  base de datos SQL Server
-						$serverName = $db_host."\sqlexpress"; //serverName\instanceName
-						//$serverName = $db_host."\sqlexpress, 1542"; //serverName\instanceName, portNumber (por defecto es 1433)
+						$serverName = $_host."\sqlexpress"; //serverName\instanceName
+						//$serverName = $_host."\sqlexpress, 1542"; //serverName\instanceName, portNumber (por defecto es 1433)
 						//$connectionInfo = array( "Database"=>"dbName");
 						$connectionInfo = array( "Database" => $_name, "UID" => $_user, "PWD" => $_pass);
 						$con = $fc_conec($serverName, $connectionInfo);
 						return($con);
 					break;
 					default://conexcióna  base de datos MySQL - Siempre por defecto
-						$con = $fc_conec($db_host, $_user, $_pass) OR die($db_host.' - '.$_user.' - '.$_pass);
+						$con = $fc_conec($_host, $_user, $_pass) OR die($_host.' - '.$_user.' - '.$_pass);
 						mysqli_select_db($con, $_name);
 						$con->set_charset("utf8");
 					break;

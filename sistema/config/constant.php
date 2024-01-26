@@ -1,12 +1,18 @@
 <?php
 date_default_timezone_set("America/Lima");
 header("Access-Control-Allow-Origin: https://localhost/");
-header("Access-Control-Allow-Origin: https://vac.frankmorenoalburqueque.com/");
+header("Access-Control-Allow-Origin: https://vac.net.pe/");
+header("Access-Control-Allow-Origin: https://www.vac.net.pe/");
+header("Access-Control-Allow-Origin: https://archivos.vac.net.pe/");
+header("Access-Control-Allow-Origin: https://sistema.vac.net.pe/");
+header("Access-Control-Allow-Origin: https://plugins.vac.net.pe/");
 //-------------------------------------------
 define('HTTP', 'http://');
 define('HTTPS', 'https://');
+define('HTTP2', 'https://www.');
 //-------------------------------------------
 define('TIT', ' | Sistema | Metedología VAC con PHP');
+define('TIPE', 'Metedología VAC-PHP');
 //-------------------------------------------
 define('DIRMOR', 'MORENOCL/');
 define('DIRACT', 'ACTIONJF/');
@@ -22,8 +28,10 @@ define('DB_TYPE', 'mysqli_');
 //-------------------------------------------
 define('ROWS', 25);
 //-------------------------------------------
-define('SCHU', '_qas');//esquema
-//define('SCHU', '_prd');//servidor
+//define('SCHU', '_qas');//esquema
+define('SCHU', '_prd');//servidor
+//-------------------------------------------
+define('SCHU_EMAIL', SCHU);//local
 //-------------------------------------------
 if (SCHU == '_qas') {
 	define('DIR', '/vac/sistema/');
@@ -39,18 +47,22 @@ if (SCHU == '_qas') {
 	define('ARCH', HTTPS.DOM.D_DIR.'/archivos/');
 	define('PLUG', HTTPS.DOM.D_DIR.'/plugins/');
 	define('SIST', HTTPS.DOM.D_DIR.'/sistema/');
+	//-------------------------------------------
+	define('WEB', HTTPS.DOM.D_DIR.'/web/');
 }else{
 	define('DIR', '/');
 	//-------------------------------------------
-	define('DOM', 'vac.net.pe/');
+	define('DOM', 'vac.net.pe');
 	define('D_DIR', '');
 	//-------------------------------------------
 	define('URL', HTTPS.'sistema.'.DOM.D_DIR.'/');
 	define('URL2', HTTPS.'sistema.'.DOM.D_DIR);
 	//-------------------------------------------
-	define('ARCH', HTTPS.'archivos.'.DOM.D_DIR.'/');
-	define('PLUG', HTTPS.'plugins.'.DOM.D_DIR.'/');
-	define('SIST', HTTPS.'sistema.'.DOM.D_DIR.'/');
+	define('ARCH', HTTPS.'archivos.'.DOM.'/');
+	define('PLUG', HTTPS.'plugins.'.DOM.'/');
+	define('SIST', HTTPS.'sistema.'.DOM.'/');
+	//-------------------------------------------
+	define('WEB', HTTP2.DOM.'/');
 }
 //-------------------------------------------
 define('IMG', ARCH.'img/');

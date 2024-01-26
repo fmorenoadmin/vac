@@ -25,21 +25,21 @@
 			$_tbl->success = 'add';
 			$_tbl->danger = 'no'.$_tbl->success;
 			//----------------------------------------
-			$nombre = filter_var($_POST['nombre'], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
-			$correo = filter_var($_POST['correo'], FILTER_SANITIZE_EMAIL);
-			$telefono = filter_var($_POST['telefono'], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
+			$nombre = $_dbs->custom_escape_string($_POST['nombre']);
+			$correo = $_dbs->custom_escape_string($_POST['correo']);
+			$telefono = $_dbs->custom_escape_string($_POST['telefono']);
 			$mensaje = str_replace("'", '´', $_POST['mensaje']);
-			$ip_cli = filter_var(base64_decode($_POST['ip_cli']), FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
-			$nav_cli = filter_var(base64_decode($_POST['nav_cli']), FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
-			$sist_cli = filter_var(base64_decode($_POST['sist_cli']), FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
-			$utm_id = filter_var($_POST['utm_id'], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
-			$utm_campaign = filter_var($_POST['utm_campaign'], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
-			$utm_source = filter_var($_POST['utm_source'], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
-			$utm_medium = filter_var($_POST['utm_medium'], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
-			$utm_content = filter_var($_POST['utm_content'], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
-			$utm_term = filter_var($_POST['utm_term'], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
-			$fbclid = filter_var($_POST['fbclid'], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
-			$gclid = filter_var($_POST['gclid'], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
+			$ip_cli = $_dbs->custom_escape_string(base64_decode($_POST['ip_cli']));
+			$nav_cli = $_dbs->custom_escape_string(base64_decode($_POST['nav_cli']));
+			$sist_cli = $_dbs->custom_escape_string(base64_decode($_POST['sist_cli']));
+			$utm_id = $_dbs->custom_escape_string($_POST['utm_id']);
+			$utm_campaign = $_dbs->custom_escape_string($_POST['utm_campaign']);
+			$utm_source = $_dbs->custom_escape_string($_POST['utm_source']);
+			$utm_medium = $_dbs->custom_escape_string($_POST['utm_medium']);
+			$utm_content = $_dbs->custom_escape_string($_POST['utm_content']);
+			$utm_term = $_dbs->custom_escape_string($_POST['utm_term']);
+			$fbclid = $_dbs->custom_escape_string($_POST['fbclid']);
+			$gclid = $_dbs->custom_escape_string($_POST['gclid']);
 			//----------------------------------------
 			$add = array(
 				"nombre"	=>	$nombre,
@@ -66,13 +66,7 @@
 			if ($resp->result) {
 				$html = null;
 				//----------------------------------------
-				$para = 'Informes - Frank Moreno <informes@frankmorenoalburqueque.com>';
-				$asunto = 'Formulario de contacto VAC';
-				//----------------------------------------
-				$headers = 'From: '.$para."\r\n".'X-Mailer: PHP/'.phpversion();
-				$headers .= 'Content-Type: text/html'."\r\n";
-				$headers .= 'CharSet: utf-8'."\r\n";
-				$headers .= 'X-Mailer: PHP/'.phpversion();
+				$asunto = 'Formulario de contacto - desde VAC';
 				//----------------------------------------
 				$html .= '<div>';
 					$html .= '<h3>Tienes un cliente interesado:</h3>';
@@ -90,24 +84,24 @@
 					$html .= '<p>'.$add['mensaje'].'</p>';
 				$html .= '</div>';
 				//----------------------------------------
-				if (SCHU == '_qas') {
-					//----------------------------------------
-					//$r_cor = mail($para, $asunto, $html, $headers);
-					//----------------------------------------
-					//echo $_SESSION['mensjEmail'] = $r_cor;
-				}else{
-					//----------------------------------------
 					require_once($ru0.DIRMOR.$cls['cl0'].'.php');
 					$_cor = new $cls['cl0']();
+					$dt = new stdClass();
 					//----------------------------------------
-					$json->asunto = $asunto;
-					$json->cuerpo = $html;
-					$json->fecha = $dt['created_at'];
+					$__cuenta = '_norep';//esta linea es requerida
 					//----------------------------------------
-					$r_cor = $_cor->sendMail($ru0, $json);
+					$dt->u_email = 'info@vac.net.pe';
+					$dt->u_name = 'Informes - Metodología VAC-PHP';
 					//----------------------------------------
-					$_SESSION['mensjEmail'] = $r_cor;
-				}
+					$dt->asunto = $asunto;
+					//----------------------------------------
+					$dt->cuerpo = $html;
+					$dt->fecha = $add['created_at'];
+					//----------------------------------------
+					$r_cor = $_cor->sendMail($ru0, $dt);
+					//----------------------------------------
+					$_SESSION['mensjEmail'] = $r_cor->inf;
+				//----------------------------------------
 			}
 			$_SESSION['stat'] = $resp->inf;
 			$_SESSION['sql'] = $resp->sql;
