@@ -64,7 +64,7 @@ define('E404', URL2.DIRERR.'404.shtml');
 define('FMMA', 'https://www.frankmorenoalburqueque.com/');
 define('LOGOF', FMMA.'images/logo.png');
 define('FACE', 'https://www.facebook.com/fmorenoadmin/');
-define('TWIT', 'https://www.facebook.com/fmorenoadmin/');
-define('INST', 'https://www.facebook.com/fmorenoadmin/');
+define('TWIT', 'https://www.twitter.com/fmorenoadmin/');
+define('INST', 'https://www.instagram.com/fmorenoadmin/');
 //-------------------------------------------
 define('SECRET_KEY', '');
