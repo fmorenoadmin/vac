@@ -17,6 +17,14 @@
 	<link href="https://getbootstrap.com/docs/5.3/examples/cover/cover.css" rel="stylesheet"/>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q69SF4RY9T"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		//---------------------------------------------
+		gtag('config', 'G-Q69SF4RY9T');
+	</script>
 </head>
 <body class="d-flex h-100 text-center" style="background-color: transparent !important; background-image: url('//archivos.jayway.net.pe/img/141.jpg'); background-size: cover; background-position: center;background-repeat: no-repeat;">
 	<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">

@@ -20,6 +20,15 @@
 	<link rel="stylesheet" href="<?= ARCH; ?>css/login.css" />
 	<!-- Favicons -->
 	<link href="https://localhost/vac/archivos/img/favicon.png" rel="icon"/>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q69SF4RY9T"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		//---------------------------------------------
+		gtag('config', 'G-Q69SF4RY9T');
+	</script>
 </head>
 <body class="d-flex align-items-center py-4 bg-body-tertiary">
 

@@ -16,3 +16,12 @@
 <link rel="stylesheet" href="<?= PLUG; ?>fontawesome-6.4.0/css/solid.css" />
 <!-- update existing v5 CSS to use v6 icons and assets -->
 <link rel="stylesheet" href="<?= PLUG; ?>fontawesome-6.4.0/css/v5-font-face.css" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q69SF4RY9T"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	//---------------------------------------------
+	gtag('config', 'G-Q69SF4RY9T');
+</script>
