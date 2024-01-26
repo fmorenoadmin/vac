@@ -79,3 +79,12 @@ define('TWIT', 'https://www.twitter.com/fmorenoadmin/');
 define('INST', 'https://www.instagram.com/fmorenoadmin/');
 //-------------------------------------------
 define('SECRET_KEY', '');
+//-------------------------------------------
+// Obtener la dirección IP real del visitante cuando se usa CloudFlare
+if (isset($_SERVER['HTTP_CF_CONNECTING_IP'])) {
+	$ip_cli = $_SERVER['HTTP_CF_CONNECTING_IP'];
+} elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+	$ip_cli = $_SERVER['HTTP_X_FORWARDED_FOR'];
+} else {
+	$ip_cli = $_SERVER['REMOTE_ADDR'];
+}

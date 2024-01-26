@@ -17,7 +17,6 @@ define('TIPE', 'Metedología VAC-PHP');
 define('DIRMOR', 'MORENOCL/');
 define('DIRACT', 'ACTIONJF/');
 //-------------------------------------------
-define('__DIRIMG__', $_SERVER['DOCUMENT_ROOT']."/vac/archivos/img/");
 define('DIRERR', '/error/');
 define('CONF', 'config/');
 define('VIEW', 'views/');
@@ -34,6 +33,8 @@ define('SCHU', '_prd');//servidor
 define('SCHU_EMAIL', SCHU);//local
 //-------------------------------------------
 if (SCHU == '_qas') {
+	define('__DIRIMG__', $_SERVER['DOCUMENT_ROOT']."/vac/archivos/img/");//ruta global donde se almacenan los archivos
+	//-------------------------------------------
 	define('DIR', '/vac/sistema/');
 	//-------------------------------------------
 	define('DOM', 'localhost/');
@@ -50,6 +51,8 @@ if (SCHU == '_qas') {
 	//-------------------------------------------
 	define('WEB', HTTPS.DOM.D_DIR.'/web/');
 }else{
+	define('__DIRIMG__', substr($_SERVER['DOCUMENT_ROOT'], 0, -8)."/archivos/img/");//ruta global donde se almacenan los archivos
+	//-------------------------------------------
 	define('DIR', '/');
 	//-------------------------------------------
 	define('DOM', 'vac.net.pe');
@@ -85,3 +88,12 @@ define('TWIT', 'https://www.twitter.com/fmorenoadmin/');
 define('INST', 'https://www.instagram.com/fmorenoadmin/');
 //-------------------------------------------
 define('SECRET_KEY', '');
+//-------------------------------------------
+// Obtener la dirección IP real del visitante cuando se usa CloudFlare
+if (isset($_SERVER['HTTP_CF_CONNECTING_IP'])) {
+	$ip_cli = $_SERVER['HTTP_CF_CONNECTING_IP'];
+} elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+	$ip_cli = $_SERVER['HTTP_X_FORWARDED_FOR'];
+} else {
+	$ip_cli = $_SERVER['REMOTE_ADDR'];
+}

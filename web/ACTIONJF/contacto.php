@@ -33,7 +33,7 @@
 			$url = base64_decode($_POST['url']);
 			//----------------------------------------
 			$cant = $_cl1->cantidad($ip_cli);
-			if ($cant < 2) {
+			if ($cant < 12) {
 				$nombre = $_dbs->custom_escape_string($_POST['nombre']);
 				$correo = $_dbs->custom_escape_string($_POST['correo']);
 				$telefono = $_dbs->custom_escape_string($_POST['telefono']);
@@ -72,23 +72,7 @@
 				if ($resp->result) {
 					$html = null;
 					//----------------------------------------
-					$asunto = 'Formulario de contacto - desde VAC';
-					//----------------------------------------
-					$html .= '<div>';
-						$html .= '<h3>Tienes un cliente interesado:</h3>';
-					$html .= '</div>';
-					$html .= '<div>';
-						$html .= '<h4>Sus datos son:</h4>';
-						$html .= '<ul>';
-							$html .= '<li>Nombre: <b>'.$add['nombre'].'</b></li>';
-							$html .= '<li>Correo: <b>'.$add['correo'].'</b></li>';
-							$html .= '<li>Teléfono: <b>'.$add['telefono'].'</b></li>';
-						$html .= '</ul>';
-					$html .= '</div>';
-					$html .= '<div>';
-						$html .= '<h4>Su mensaje es:</h4>';
-						$html .= '<p>'.$add['mensaje'].'</p>';
-					$html .= '</div>';
+					$asunto = 'Formulario de contacto - VAC';
 					//----------------------------------------
 						require_once($ru0.DIRMOR.$cls['cl0'].'.php');
 						$_cor = new $cls['cl0']();
@@ -100,6 +84,8 @@
 						$dt->u_name = 'Informes - Metodología VAC-PHP';
 						//----------------------------------------
 						$dt->asunto = $asunto;
+						//----------------------------------------
+						$html = $_cor->contacto($dt,$add);//llamamons al contenido del correo
 						//----------------------------------------
 						$dt->cuerpo = $html;
 						$dt->fecha = $add['created_at'];

@@ -1,6 +1,0 @@
-[26-Jan-2024 13:39:57 America/Lima] PHP Fatal error:  Uncaught TypeError: explode(): Argument #1 ($separator) must be of type string, array given in /home/ohwnggei/_vac/sistema/config/0code.php:35
-Stack trace:
-#0 /home/ohwnggei/_vac/sistema/config/0code.php(35): explode(Array, 'Moreno')
-#1 /home/ohwnggei/_vac/sistema/home/index.php(9): require_once('/home/ohwnggei/...')
-#2 {main}
-  thrown in /home/ohwnggei/_vac/sistema/config/0code.php on line 35

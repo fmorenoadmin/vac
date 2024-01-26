@@ -25,7 +25,6 @@ if (SCHU == '_qas') {
 }
 //------------------------------------
 $pid=0;$nav=null;$sist=null;
-$ip_cli = $_SERVER['REMOTE_ADDR'];
 $bot=' <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>';
 //------------------------------------
 if (isset($_REQUEST['sid'])) { $sid = $_SESSION['sid']; }else{ $sid = $_SESSION['sid'] = session_id(); }
