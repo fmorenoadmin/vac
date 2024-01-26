@@ -28,8 +28,8 @@ define('DB_TYPE', 'mysqli_');
 //-------------------------------------------
 define('ROWS', 25);
 //-------------------------------------------
-//define('SCHU', '_qas');//local
-define('SCHU', '_prd');//servidor
+define('SCHU', '_qas');//local
+//define('SCHU', '_prd');//servidor
 //-------------------------------------------
 define('SCHU_EMAIL', SCHU);//local
 //-------------------------------------------
