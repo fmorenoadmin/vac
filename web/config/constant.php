@@ -5,6 +5,7 @@ header("Access-Control-Allow-Origin: https://vac.frankmorenoalburqueque.com/");
 //-------------------------------------------
 define('HTTP', 'http://');
 define('HTTPS', 'https://');
+define('HTTP2', 'https://www.');
 //-------------------------------------------
 define('TIT', ' | Metedología VAC con PHP');
 //-------------------------------------------
@@ -14,38 +15,51 @@ define('DIRACT', 'ACTIONJF/');
 define('__DIRIMG__', $_SERVER['DOCUMENT_ROOT']."/vac/archivos/img/");
 define('DIRERR', '/error/');
 define('CONF', 'config/');
+define('VIEW', 'views/');
 //-------------------------------------------
 define('DB_TYPE', 'mysqli_');
 //define('DB_TYPE', 'pg_');
 //define('DB_TYPE', 'sqlsrv_');
 //-------------------------------------------
-define('SCHU', '_qas');//esquema
-//define('SCHU', '_prd');
+define('ROWS', 25);
+//-------------------------------------------
+define('SCHU', '_qas');//local
+//define('SCHU', '_prd');//servidor
 //-------------------------------------------
 if (SCHU == '_qas') {
+	define('DIR', '/vac/sistema/');
+	//-------------------------------------------
 	define('DOM', 'localhost/');
-	define('DIR', 'vac');
+	define('D_DIR', 'vac');
 	//-------------------------------------------
-	define('URL', HTTPS.DOM.DIR.'/web/');
-	define('URL2', HTTPS.DOM.DIR.'/web');
+	define('URL', HTTPS.DOM.D_DIR.'/web/');
+	define('URL2', HTTPS.DOM.D_DIR.'/web');
+	//-------------------------------------------
+	define('ARCH', HTTPS.DOM.D_DIR.'/archivos/');
+	define('PLUG', HTTPS.DOM.D_DIR.'/plugins/');
+	define('SIST', HTTPS.DOM.D_DIR.'/sistema/');
 }else{
-	define('DOM', 'frankmorenoalburqueque.com/');
-	define('DIR', '');
+	define('DIR', '/');
 	//-------------------------------------------
-	define('URL', HTTPS.'vac.'.DOM.DIR.'/');
-	define('URL2', HTTPS.'vac.'.DOM.DIR.'');
+	define('DOM', 'www.vac.ne.pe/');
+	define('D_DIR', '');
+	//-------------------------------------------
+	define('URL', HTTPS.DOM.D_DIR.'/');
+	define('URL2', HTTPS.DOM.D_DIR.'');
+	//-------------------------------------------
+	define('ARCH', HTTPS.'archivos.'.DOM.D_DIR.'/');
+	define('PLUG', HTTPS.'plugins.'.DOM.D_DIR.'/');
+	define('SIST', HTTPS.'sistema.'.DOM.D_DIR.'/');
 }
 //-------------------------------------------
-define('ARCH', HTTPS.DOM.DIR.'/archivos/');
-define('PLUG', HTTPS.DOM.DIR.'/plugins/');
-define('SIST', HTTPS.DOM.DIR.'/sistema/');
-//-------------------------------------------
 define('IMG', ARCH.'img/');
-define('XCEL', SIST.'excel/');
-define('LOGI', SIST.'login/');
-define('PDFS', SIST.'pdf/');
 //-------------------------------------------
 define('ACTI', URL.DIRACT);
+//-------------------------------------------
+define('E401', URL2.DIRERR.'401.shtml');
+define('E402', URL2.DIRERR.'402.shtml');
+define('E403', URL2.DIRERR.'403.shtml');
+define('E404', URL2.DIRERR.'404.shtml');
 //-------------------------------------------
 define('FMMA', 'https://www.frankmorenoalburqueque.com/');
 define('LOGOF', FMMA.'images/logo.png');

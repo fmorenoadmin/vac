@@ -1,19 +1,27 @@
 <?php
 require_once($rut.'config/constant.php');
 //------------------------------------
-$_SESSION['location_web'] = $location = HTTPS.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-//------------------------------------
-if ($_SERVER['REQUEST_URI'] == DIRERR) {
-}else if ($_SERVER['REQUEST_URI'] == DIR) {
-}else{
-	/*
-	if (!isset($_SESSION['user_id'])) {
-		$_SESSION['_dir_url'] = base64_encode($_SERVER['REQUEST_URI']);
-		//-----------------------------------------------------------------------
-		header("Location: ".LOGI);
+$location = ((SCHU=='_qas') ? HTTPS : HTTP2).$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+//$location = HTTP.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+$uri = $_SERVER['REQUEST_URI'];
+//----------------------------
+$exp_url = explode('.', $_SERVER['HTTP_HOST']);
+if (SCHU == '_qas') {
+	if (empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] === "off") {
+		header('Location: '.$location);
 		exit();
 	}
-	*/
+}else{
+	if ($exp_url[0] == 'www' || $exp_url[0] == 'www.' || $exp_url[1] == 'www' || $exp_url[1] == 'www.') {
+		$location = HTTPS.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+		if (empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] === "off") {
+			header('Location: '.$location);
+			exit();
+		}
+	}else{
+		header("Location: ".$location);
+		exit();
+	}
 }
 //------------------------------------
 $pid=0;$nav=null;$sist=null;

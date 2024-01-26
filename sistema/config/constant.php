@@ -13,7 +13,6 @@ define('DIRACT', 'ACTIONJF/');
 //-------------------------------------------
 define('__DIRIMG__', $_SERVER['DOCUMENT_ROOT']."/vac/archivos/img/");
 define('DIRERR', '/error/');
-define('DIR', '/vac/sistema/');
 define('CONF', 'config/');
 define('VIEW', 'views/');
 //-------------------------------------------
@@ -24,9 +23,11 @@ define('DB_TYPE', 'mysqli_');
 define('ROWS', 25);
 //-------------------------------------------
 define('SCHU', '_qas');//esquema
-//define('SCHU', '_prd');
+//define('SCHU', '_prd');//servidor
 //-------------------------------------------
 if (SCHU == '_qas') {
+	define('DIR', '/vac/sistema/');
+	//-------------------------------------------
 	define('DOM', 'localhost/');
 	define('D_DIR', 'vac');
 	//-------------------------------------------
@@ -34,17 +35,23 @@ if (SCHU == '_qas') {
 	//-------------------------------------------
 	define('URL', HTTPS.DOM.D_DIR.'/sistema/');
 	define('URL2', HTTPS.DOM.D_DIR.'/sistema');
+	//-------------------------------------------
+	define('ARCH', HTTPS.DOM.D_DIR.'/archivos/');
+	define('PLUG', HTTPS.DOM.D_DIR.'/plugins/');
+	define('SIST', HTTPS.DOM.D_DIR.'/sistema/');
 }else{
-	define('DOM', 'frankmorenoalburqueque.com/');
+	define('DIR', '/');
+	//-------------------------------------------
+	define('DOM', 'vac.net.pe/');
 	define('D_DIR', '');
 	//-------------------------------------------
-	define('URL', HTTPS.'vac.'.DOM.D_DIR.'sistema/');
-	define('URL2', HTTPS.'vac.'.DOM.D_DIR.'sistema');
+	define('URL', HTTPS.'sistema.'.DOM.D_DIR.'/');
+	define('URL2', HTTPS.'sistema.'.DOM.D_DIR);
+	//-------------------------------------------
+	define('ARCH', HTTPS.'archivos.'.DOM.D_DIR.'/');
+	define('PLUG', HTTPS.'plugins.'.DOM.D_DIR.'/');
+	define('SIST', HTTPS.'sistema.'.DOM.D_DIR.'/');
 }
-//-------------------------------------------
-define('ARCH', HTTPS.DOM.D_DIR.'/archivos/');
-define('PLUG', HTTPS.DOM.D_DIR.'/plugins/');
-define('SIST', HTTPS.DOM.D_DIR.'/sistema/');
 //-------------------------------------------
 define('IMG', ARCH.'img/');
 define('XCEL', SIST.'excel/');

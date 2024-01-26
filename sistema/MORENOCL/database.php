@@ -5,12 +5,12 @@
 	class database
 	{
 		//-----------------------------
-		private $db_prd = 'localhost';//IP SERVER prd
+		private $db_prd = 'ohwnggei_vac';//IP SERVER prd
 		private $db_qas = 'localhost';//IP SERVER qas
 		private $db_port = '5489';
 		private $db_name = 'vac';
 		private $db_user = 'root';
-		private $db_pass = '';
+		private $db_pass = 'mph#_%@GB=NjHM3X.j';
 		//---------------------------------------
 		protected $db_type = DB_TYPE;
 		protected $db_conec = NULL;
@@ -51,16 +51,16 @@
 				//----------------------------------
 				switch ($db) {
 					case 'vac2':
-						$_port = '';
-						$_user = 'root';
-						$_pass = '';
-						$_name = 'vac2';
+						$_port = $this->db_port;
+						$_user = ((SCHU=='_qas') ? $this->db_user : 'ohwnggei_vac');
+						$_pass = ((SCHU=='_qas') ? NULL : $this->db_pass);
+						$_name = ((SCHU=='_qas') ? NULL : 'ohwnggei_').'vac2';
 					break;
 					default:
 						$_port = $this->db_port;
-						$_user = $this->db_user;
-						$_pass = $this->db_pass;
-						$_name = $this->db_name;
+						$_user = ((SCHU=='_qas') ? $this->db_user : 'ohwnggei_vac');
+						$_pass = ((SCHU=='_qas') ? NULL : $this->db_pass);
+						$_name = ((SCHU=='_qas') ? NULL : 'ohwnggei_').$this->db_name;
 					break;
 				}
 				//----------------------------------
@@ -78,7 +78,7 @@
 						return($con);
 					break;
 					default://conexcióna  base de datos MySQL - Siempre por defecto
-						$con = $fc_conec($db_host, $_user, $_pass);
+						$con = $fc_conec($db_host, $_user, $_pass) OR die($db_host.' - '.$_user.' - '.$_pass);
 						mysqli_select_db($con, $_name);
 						$con->set_charset("utf8");
 					break;
