@@ -28,6 +28,7 @@
 				<?php if ($_pg_na=='curso_detail'): ?>
 					<li><a href="<?= $location; ?>" class="menu--active">Detalle del Curso</a></li>
 				<?php endif ?>
+				<li><a href="<?= URL; ?>documentacion/" <?= (($_pg_na=='documentacion') ? 'class="menu--active"' : NULL); ?>>Documentación</a></li>
 				<li>
 					<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 						<input name="cmd" type="hidden" value="_s-xclick"/>
