@@ -56,36 +56,88 @@
 								Contenido
 							</a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="#scrollspyHeading1">First</a></li>
-								<li><a class="dropdown-item" href="#scrollspyHeading2">Second</a></li>
-								<li><a class="dropdown-item" href="#scrollspyHeading3">Third</a></li>
+								<li><a class="dropdown-item" href="#scrollspyHeading1">¿Por qué VAC?</a></li>
+								<li><a class="dropdown-item" href="#scrollspyHeading2">¿Por qué usarla?</a></li>
+								<li><a class="dropdown-item" href="#scrollspyHeading3">TREE</a></li>
 								<li><a class="dropdown-item" href="#scrollspyHeading4">Fourth</a></li>
-								<li><hr class="dropdown-divider"/></li>
 								<li><a class="dropdown-item" href="#scrollspyHeading5">Fifth</a></li>
+								<li><hr class="dropdown-divider"/></li>
+								<li><a class="dropdown-item" href="#scrollspyHeading15">Sobre el Creador</a></li>
 							</ul>
 						</li>
 					</ul>
 				</nav>
 				<div class="scrollspy-example bg-body-tertiary p-3 rounded-2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" data-bs-spy="scroll" data-bs-target="#navbar-example2" tabindex="0" style="max-height: 750px; overflow: auto;">
-					<h4 id="scrollspyHeading1">First heading</h4>
-					<p>
-						Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
+					<h4 id="scrollspyHeading1">¿Por qué VAC?</h4>
+					<p class="pb-3">
+						No quise complicarme la vida, tratando de escoger un nombre para la metodología. Por ello fui muy simple y le puse <b>VAC (*)</b><br>
+						Traté de hacerlo lo más simple, al igual que la metodología en SÍ. <br>
+						De esta forma, muchos personas, no solo programadores, podrían ser capaces de entender, utilizar y aprender PHP junto a la metodología. <br>
+						La metodología en si ya tiene incluido muchos temas que se podrían aprender en clases o de forma autodidacta, como: <b>Tipos de Datos, Condicionales, Bucles, Arreglos, Objetos, Clases, Instanciamientos, SEssiones, Cookies, etc.</b>
+						<ul class="list-group">
+							<li class="list-group-item">
+								<b>VAC (*)</b> solo es una abreviatura de:
+								<ul class="list-group">
+									<li class="list-group-item"><b>V</b> => Vistas</li>
+									<li class="list-group-item"><b>A</b> => Acciones</li>
+									<li class="list-group-item"><b>C</b> => Clases</li>
+								</ul>
+							</li>
+						</ul>
 					</p>
-					<h4 id="scrollspyHeading2">Second heading</h4>
-					<p>
-						Al contrario del pensamiento popular, el texto de Lorem Ipsum no es simplemente texto aleatorio. Tiene sus raices en una pieza cl´sica de la literatura del Latin, que data del año 45 antes de Cristo, haciendo que este adquiera mas de 2000 años de antiguedad. Richard McClintock, un profesor de Latin de la Universidad de Hampden-Sydney en Virginia, encontró una de las palabras más oscuras de la lengua del latín, "consecteur", en un pasaje de Lorem Ipsum, y al seguir leyendo distintos textos del latín, descubrió la fuente indudable. Lorem Ipsum viene de las secciones 1.10.32 y 1.10.33 de "de Finnibus Bonorum et Malorum" (Los Extremos del Bien y El Mal) por Cicero, escrito en el año 45 antes de Cristo. Este libro es un tratado de teoría de éticas, muy popular durante el Renacimiento. La primera linea del Lorem Ipsum, "Lorem ipsum dolor sit amet..", viene de una linea en la sección 1.10.32
+					<hr>
+					<h4 id="scrollspyHeading2">¿Por qué usarla?</h4>
+					<p class="pb-3">
+						<b>VAC</b> Tiene mucho potencial de crecimiento constante y es apadtable a cualquier tipo de sistema.<br>
+						<b>VAC</b> Soporta desde PHP7.4 hasta la última versión, sin tener problemas de deprecación, o rendimiento.<br>
+						<b>VAC</b> Es compatible con 3 tipos de Bases de datos mas comunes hoy en día: <b>MySQL, PostgreSQL y SQL Server</b>.<br>
+						<ul class="list-group">
+							<li class="list-group-item">
+								<b>Otros puntos son:</b>
+								<ul class="list-group">
+									<li class="list-group-item">Por que es práctica.</li>
+									<li class="list-group-item">Por que es muy fácil de entender, desarrollar e implementar.</li>
+									<li class="list-group-item">Por que se puede reutilizar el código.</li>
+									<li class="list-group-item">Por que no demora mucho tiempo en cargar.</li>
+									<li class="list-group-item">Por que no haces trabajos en la vista. Solo muestras la información.</li>
+									<li class="list-group-item">Por que es de código abierto.</li>
+								</ul>
+							</li>
+						</ul>
 					</p>
+					<hr>
 					<h4 id="scrollspyHeading3">Third heading</h4>
-					<p>
+					<p class="pb-3">
 						El trozo de texto estándar de Lorem Ipsum usado desde el año 1500 es reproducido debajo para aquellos interesados. Las secciones 1.10.32 y 1.10.33 de "de Finibus Bonorum et Malorum" por Cicero son también reproducidas en su forma original exacta, acompañadas por versiones en Inglés de la traducción realizada en 1914 por H. Rackham.
 					</p>
+					<hr>
 					<h4 id="scrollspyHeading4">Fourth heading</h4>
-					<p>
+					<p class="pb-3">
 						Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que tiene una distribución más o menos normal de las letras, al contrario de usar textos como por ejemplo "Contenido aquí, contenido aquí". Estos textos hacen parecerlo un español que se puede leer. Muchos paquetes de autoedición y editores de páginas web usan el Lorem Ipsum como su texto por defecto, y al hacer una búsqueda de "Lorem Ipsum" va a dar por resultado muchos sitios web que usan este texto si se encuentran en estado de desarrollo. Muchas versiones han evolucionado a través de los años, algunas veces por accidente, otras veces a propósito (por ejemplo insertándole humor y cosas por el estilo).
 					</p>
+					<hr>
 					<h4 id="scrollspyHeading5">Fifth heading</h4>
-					<p>
+					<p class="pb-3">
 						Hay muchas variaciones de los pasajes de Lorem Ipsum disponibles, pero la mayoría sufrió alteraciones en alguna manera, ya sea porque se le agregó humor, o palabras aleatorias que no parecen ni un poco creíbles. Si vas a utilizar un pasaje de Lorem Ipsum, necesitás estar seguro de que no hay nada avergonzante escondido en el medio del texto. Todos los generadores de Lorem Ipsum que se encuentran en Internet tienden a repetir trozos predefinidos cuando sea necesario, haciendo a este el único generador verdadero (válido) en la Internet. Usa un diccionario de mas de 200 palabras provenientes del latín, combinadas con estructuras muy útiles de sentencias, para generar texto de Lorem Ipsum que parezca razonable. Este Lorem Ipsum generado siempre estará libre de repeticiones, humor agregado o palabras no características del lenguaje, etc.
+					</p>
+					<h4 id="scrollspyHeading15">Sobre el Creador</h4>
+					<p class="pb-3">
+						<ul class="list-group">
+							<li class="list-group-item">
+								<b>Todo sobre mí:</b>
+								<ul class="list-group">
+									<li class="list-group-item">Me llamo: <b>Frank Moreno Alburqueque</b></li>
+									<li class="list-group-item">Tengo: <b><?= (date('Y') - 1994); ?> Años</b>.</li>
+									<li class="list-group-item">Soy de: <b>Bellavista - Sullana - Piura</b>.</li>
+									<li class="list-group-item">Soy: <b>WebMaster</b>.</li>
+									<li class="list-group-item">Soy: <b>Partner de Microsoft</b>.</li>
+									<li class="list-group-item">Tengo: Más de <b>6 años como programador PHP</b></li>
+									<li class="list-group-item">Trabajo con: <b><a href="https://www.cloudflare.com/?utm_id=1&utm_campaign=CloidFlare&utm_source=vac.net.pe&utm_medium=redirect&utm_content=nombramiento+en+nuestra+web&utm_term=redireccionamiento">CloudFlare</a></b> para la seguridad de dominios y Servidores.</li>
+									<li class="list-group-item">He desarrollado muchos Sistemas Webs, usando VAC.</li>
+									<li class="list-group-item">He particido en el desarrollo de varios proyectos internacionales.</li>
+								</ul>
+							</li>
+						</ul>
 					</p>
 				</div>
 			</div>

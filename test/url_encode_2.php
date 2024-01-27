@@ -2,12 +2,12 @@
 $rut = '../';
 require_once($rut.'web/config/constant.php');
 //-------------------------------
-$utm_id = 'A1234';
-$utm_campaign = 'cursos gratis';
-$utm_source = 'google';
-$utm_medium = 'facebook';
-$utm_content = 'mas informacion';
-$utm_term = 'cursos gratis online';
+$utm_id = 1;
+$utm_campaign = 'CloidFlare';
+$utm_source = 'vac.net.pe';
+$utm_medium = 'redirect';
+$utm_content = 'nombramiento en nuestra web';
+$utm_term = 'redireccionamiento';
 $fbclid = '';
 $gclid = '';
 //-------------------------------

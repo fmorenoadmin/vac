@@ -73,7 +73,7 @@
 					<div class="d-flex">
 						<input class="form-control me-2 light-table-filter" id="val" type="text" placeholder="Buscar:">
 						<button type="button" id="btn_busq" class="btn btn-info"><i class="fa fa-search"></i></button>
-						<a href="<?= $location; ?>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+						<a href="<?= $location; ?>" class="btn btn-danger"><i class="fa fa-eraser"></i></a>
 					</div>
 				</div>
 				<hr>

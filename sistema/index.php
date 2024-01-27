@@ -2,12 +2,21 @@
 	if(isset($_SESSION)){}else{ session_start(); }
 	//---------------------------------
 	$rut='./';
-	$rut2='../';
 	//---------------------------------
 	$pagina = 'Login';
-	$action = 'login.php';
+	$action = 'login.php';$action2 = 'ip_block.php';
 	//---------------------------------
 	require_once($rut.'config/0code.php');
+	//---------------------------------------------
+	$data = null;
+	//---------------------------------------------
+	require_once($rut.DIRACT.$action2);
+	$data = sistema($rut);
+	//---------------------------------------------
+	if ($data->block > 0) {
+		header("Location: ".$rut."error/423.shtml");
+		exit();
+	}
 ?>
 <!DOCTYPE html>
 <html>

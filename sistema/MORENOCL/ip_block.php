@@ -21,7 +21,7 @@
 					break;
 					default:	$sql .= "id_created=".$_SESSION['user_id']." AND ";	break;
 				}
-				$sql .= " status = 1 ;";
+				$sql .= " status=1;";
 				//--------------------------------
 				$res = $this->db_exec($sql,false);
 				//--------------------------------

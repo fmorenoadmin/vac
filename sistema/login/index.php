@@ -1,8 +1,22 @@
 <?php
 	if(isset($_SESSION)){}else{ session_start(); }
+	//---------------------------------------------
 	$rut='../';
-	require($rut.'config/constant.php');
+	//---------------------------------------------
 	$cod_vers='3.0.12';$txt_vers='Versión Actual';
+	$action2 = 'ip_block.php';
+	//---------------------------------------------
+	require($rut.'config/constant.php');
+	//---------------------------------------------
+	$data = null;
+	//---------------------------------------------
+	require_once($rut.DIRACT.$action2);
+	$data = sistema($rut);
+	//---------------------------------------------
+	if ($data->block > 0) {
+		header("Location: ".$rut."error/423.shtml");
+		exit();
+	}
 ?>
 <!DOCTYPE html>
 <html>
