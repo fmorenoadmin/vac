@@ -115,7 +115,8 @@
 							<li class="list-group-item">
 								<b>Descargar e instalar:</b>
 								<ul class="list-group">
-									<li class="list-group-item"><b>Servidor local:</b> <a target="_blank" href="https://www.apachefriends.org/es/download.html<?= $txt_url; ?>">XAMPP</a> <span class="badge bg-secondary">yo utilizo este</span>, WAMP o LAMP, ya que te ofresen un servidor virtual de manera local, donde puedes desplegar tus proyectos sin necesidad de tener un servidor o hosting.</li>
+									<li class="list-group-item"><b>Navegador Web:</b> <a target="_blank" href="https://www.mozilla.org/es-ES/firefox/developer/<?= $txt_url; ?>">Firefox Developers Edition</a> <span class="badge bg-secondary">yo utilizo este</span>, Google Chrome o el se su preferencia. Recomiendo: Firefox Developers Edition, porque tiene una estabilidad mejor y un inspeccionador de código mejor que Google Chrome.</li>
+									<li class="list-group-item"><b>Servidor local:</b> <a target="_blank" href="https://www.apachefriends.org/es/download.html<?= $txt_url; ?>">XAMPP</a> <span class="badge bg-secondary">yo utilizo este</span>, WAMP o LAMP, ya que te ofresen un servidor virtual de manera local, donde puedes desplegar tus proyectos sin necesidad de tener un servidor o hosting.<li>
 									<li class="list-group-item"><b>Editor de código:</b> <a target="_blank" href="https://www.sublimetext.com/download<?= $txt_url; ?>">Sublime Text</a> <span class="badge bg-secondary">yo utilizo este</span>, Visual Studio Code, o el de tu preferenca</li>
 									<li class="list-group-item"><b>Cuenta de github:</b> Es necesario que tengas una cuenta en <a target="_blank" href="https://github.com/<?= $txt_url; ?>">GitHub</a>, ya que el repositorio y las actualizaciones se subiran en ese lugar.</li>
 									<li class="list-group-item"><b>GitHub Desktop:</b> Es necesario que tengas <a target="_blank" href="https://desktop.github.com/<?= $txt_url; ?>">GitHub Desktop</a>, ya que ofrece una interface gráfica, la cual es muy sencilla y fácil de usar, para poder subir y bajar cambios, con comentarios, sin tener que hacerlo por consola. <b>(Es requerido tener la cuenta de github creada antes de la configuración de GitHub Desktop)</b></li>
@@ -139,7 +140,7 @@
 														<li class="list-group-item">Pegar todo el contenido del archivo database.sql, dentro del bloque de la consulta SQL y Luego ejecutar</li>
 													</ol>
 												</li>
-												<li class="list-group-item">El proyecto VAC utiliza HTTPS, por lo que siempre le saldrá la alerta de </li>
+												<li class="list-group-item">Arbir el proyecto: <a href="https://localhost/vac/web/" target="_blank"></a> El proyecto VAC utiliza HTTPS, por lo que siempre le saldrá la alerta de </li>
 											</ol>
 										</ul>
 									</li>
