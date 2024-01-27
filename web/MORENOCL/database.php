@@ -8,7 +8,7 @@
 		private $db_prd = 'localhost';//IP SERVER prd
 		private $db_qas = 'localhost';//IP SERVER qas
 		//---------------------------------------
-		private $db_port = '5489';
+		private $db_port = '5489';//solo se usa con postgresql
 		//---------------------------------------
 		private $db_name_qas = 'vac';
 		private $db_name_prd = 'ohwnggei_vac';
@@ -73,6 +73,12 @@
 						$_pass = $this->$pass;
 						$_name = 'vac2';//nombre de otra base de datos
 					break;
+					case 'vac3':
+						$_port = $this->db_port;
+						$_user = 'lalito';
+						$_pass = 'GGGGGGGGGGGGm';
+						$_name = 'vac3';//nombre de otra base de datos
+					break;
 					default:
 						$_port = $this->db_port;
 						$_user = $this->$user;
@@ -110,9 +116,9 @@
 				$data = new stdClass();
 				$error = NULL;
 				//----------------------------
-				$_cc = $this->connect(SCHU,$db);
+				$_cc = $this->connect(SCHU,$db);//esta linea retorna la cadena de conexión a la base de datos
 				//---------------------------------------------------------
-				$res = $fc_query($_cc, $sql) OR $error = $fc_error($_cc);
+				$res = $fc_query($_cc, $sql) OR $error = $fc_error($_cc);//esta liena ejecuta la senticea SQL, en caso error lo guar en $error
 				if ($res) {
 					if ($ret_res) {
 						if ((($this->db_type == 'mysqli_') ? $res->$fc_num_r : $fc_num_r($res)) > 0) {
@@ -126,7 +132,7 @@
 						}
 					}else{
 						$data->result = true;
-						$data->cant = (($this->db_type == 'mysqli_') ? $res->$fc_num_r : $fc_num_r($res));
+						$data->cant = (($this->db_type == 'mysqli_') ? $res->$fc_num_r : $fc_num_r($res));//$res->num_rows | pg_num_rows(res)
 						$data->mensaje = "Ejecutado exitosamente";
 					}
 				}else{

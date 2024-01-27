@@ -10,7 +10,7 @@
 		private $tid= 'id';
 		//---------------------------------------
 		function listar(){
-			$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
+			$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;//convierte las funciones de la base de datos en variables
 			//---------------------------------------------------------
 			$inf=null;$n=1;
 			//---------------------

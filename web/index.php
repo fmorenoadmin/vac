@@ -4,7 +4,7 @@
 	$rut='./';$_pg_na='index';
 	//---------------------------------------------
 	$pagina='Principal';
-	$action='index.php';
+	$action='index.php';//contiene el nombre de la acción
 	//---------------------------------------------
 	require_once($rut.'config/0code.php');
 ?>
@@ -18,7 +18,7 @@
 		//-----------------------------------
 		$data = null;$inf=null;
 		//-----------------------------------
-		require_once($rut.DIRACT.$action);
+		require_once($rut.DIRACT.$action);//requiero a mi acción
 		$data = index($rut);
 		//-----------------------------------
 		if (isset($data->inf)) {
