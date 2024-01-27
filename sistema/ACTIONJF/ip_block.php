@@ -8,12 +8,10 @@
 		"cl1"	=>	'ip_block',
 	);
 	//-----------------------------------
-	$di1 = $cls['cl1'].'/';
-	$di2=$di1.'detalle/?p=';
 	$dt = array();$json = new stdClass();
 	//-----------------------------------
 	$_tbl = new stdClass();
-	$_tbl->tname = 'public.'.$cls['cl1'];
+	$_tbl->tname = $cls['cl1'];
 	$_tbl->tid = 'ip_ipb';
 	$_tbl->pid = 0;
 	$_tbl->test = true;

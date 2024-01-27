@@ -21,13 +21,13 @@
 		function index($rut,$uid,$rid,$url,$pag){
 			global $cls;
 			require_once($rut.DIRMOR.$cls['dbs'].'.php');
-			require_once($rut.DIRMOR.$cls['cl1'].'.php');
+			require_once($rut.DIRMOR.$cls['cl1'].'.php');//LA ACCION INVOCA A LA CLASE
 			$_dbs = new $cls['dbs']();
 			$_cl1 = new $cls['cl1']();
 			$data = new stdClass();
 			//----------------------------------------
 			$total = $_cl1->cantidad($rid);
-			$data->inf = $_cl1->listar($total,$pag,$rid,$uid,$url);
+			$data->inf = $_cl1->listar($total,$pag,$rid,$uid,$url);//CUERPO HTML TABLA
 			$data->btns = $_dbs->db_get_btns($total,$pag,$url);
 			//----------------------------------------
 			return $data;

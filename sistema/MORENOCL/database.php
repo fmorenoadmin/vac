@@ -698,7 +698,21 @@
 							//----------------------------
 							// Mostrar la nueva URL
 							$_url = $newUrl;
-						} else {
+						}else if (isset($queryParams['new'])) {
+							// Eliminar el parámetro "pag"
+							unset($queryParams['new']);
+							//----------------------------
+							// Construir la nueva URL
+							$newUrl = $parsedUrl['scheme'] . '://' . $parsedUrl['host'] . $parsedUrl['path'];
+							//----------------------------
+							// Agregar los nuevos parámetros si hay alguno
+							if (!empty($queryParams)) {
+								$newUrl .= '?' . http_build_query($queryParams);
+							}
+							//----------------------------
+							// Mostrar la nueva URL
+							$_url = $newUrl;
+						}else {
 							// No hay parámetro "pag", la URL permanece igual
 							$_url = $url;
 						}
@@ -713,11 +727,16 @@
 					$resultados_por_pagina = ROWS;
 					$total_paginas = ceil($total / $resultados_por_pagina);
 					//----------------------------
+					//boton primera
+					$inf .= '<li class="page-item ' . (($pag == 1) ? 'disabled' : null) . '" title="Primera Página">';
+						$inf .= '<a href="' . (($pag == 1) ? null : $_url . '?pag=' . base64_encode(1)) . '" class="page-link"><i class="fas fa-backward-fast"></i></a>';
+					$inf .= '</li>';
+					//----------------------------
 					//boton anterior
 					$anterior = max(1, $pag - 1);
 					//----------------------------
-					$inf .= '<li class="page-item ' . (($pag == 1) ? 'disabled' : null) . '">';
-					$inf .= '<a href="' . (($pag == 1) ? null : $_url . '?pag=' . base64_encode($anterior)) . '" class="page-link">Anterior</a>';
+					$inf .= '<li class="page-item ' . (($pag == 1) ? 'disabled' : null) . '" title="Página Anterior">';
+						$inf .= '<a href="' . (($pag == 1) ? null : $_url . '?pag=' . base64_encode($anterior)) . '" class="page-link">Anterior</a>';
 					$inf .= '</li>';
 					//----------------------------
 					//calcular el rango de botones de página a mostrar
@@ -741,8 +760,13 @@
 					//----------------------------
 					//boton siguiente
 					$siguiente = min($total_paginas, $pag + 1);
-					$inf .= '<li class="page-item ' . (($pag == $total_paginas || $total_paginas <= 1) ? 'disabled' : null) . '">';
-					$inf .= '<a href="' . (($pag == $total) ? null : $_url . '?pag=' . base64_encode($siguiente)) . '" class="page-link">Siguiente</a>';
+					$inf .= '<li class="page-item ' . (($pag == $total_paginas || $total_paginas <= 1) ? 'disabled' : null) . '" title="Página Siguiente">';
+						$inf .= '<a href="' . (($pag == $total) ? null : $_url . '?pag=' . base64_encode($siguiente)) . '" class="page-link">Siguiente</a>';
+					$inf .= '</li>';
+					//----------------------------
+					//boton último
+					$inf .= '<li class="page-item ' . (($pag == $total_paginas) ? 'disabled' : null) . '" title="Última Página">';
+						$inf .= '<a href="' . (($pag == $total_paginas) ? null : $_url . '?pag=' . base64_encode($total_paginas)) . '" class="page-link"><i class="fas fa-forward-fast"></i></a>';
 					$inf .= '</li>';
 				$inf .= '</ul>';
 				//----------------------------

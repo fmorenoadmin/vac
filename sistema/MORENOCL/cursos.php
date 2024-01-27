@@ -9,12 +9,22 @@
 		private $detail='detalle/?p=';
 		private $tid= 'id';
 		//---------------------------------------
-			function cantidad($rid){
+			function cantidad($rid){//DEVUELVE LA CANTIDAD DE REGISTRO QUE HAY EN LA TABLA
 				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
 				//---------------------------------------------------------
 				$inf = 0;
 				//---------------------------------------------------------
-				$sql = "SELECT ".$this->tid." FROM ".$this->table." WHERE status<>2 ;";
+				$sql = "SELECT ".$this->tid." FROM ".$this->table." WHERE ";
+					switch ($rid) {
+						case 1:
+						case 2:
+							$sql .= " status<>2 ";
+						break;
+						default:
+							$sql .= " status=1 ";
+						break;
+					}
+				$sql .= " ;";
 				$res = $this->db_exec($sql,false);
 				//--------------------------------
 				$inf = $res->cant;
@@ -23,7 +33,7 @@
 				return $inf;
 			}
 		//----------------------------------
-			function listar($total,$pag,$rid,$uid,$url,$busq=null,$val=null,$test=false){
+			function listar($total,$pag,$rid,$uid,$url,$busq=null,$val=null,$test=false){//DEVUELVE EL CUERPO HTML A LA ACCION
 				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
 				//---------------------------------------------------------
 				$data = new stdClass();
@@ -52,7 +62,16 @@
 					$inf.='</tr>';
 				$inf.='</thead>';
 				$inf.='<tbody>';
-					$sql = "SELECT * FROM ".$this->table." WHERE status <> 2 ";
+					$sql = "SELECT * FROM ".$this->table." WHERE ";
+						switch ($rid) {
+							case 1:
+							case 2:
+								$sql .= " status<>2 ";
+							break;
+							default:
+								$sql .= " status=1 ";
+							break;
+						}
 						//--------------------------------
 							if ($busq==true) {
 								$sql .= " AND (id LIKE '%".$val."%' OR nombre LIKE '%".$val."%' OR descrip LIKE '%".$val."%' OR imagen LIKE '%".$val."%') ";
@@ -191,7 +210,7 @@
 					$inf.='</tr>';
 				$inf.='</thead>';
 				$inf.='<tbody>';
-					$sql = "SELECT * FROM ".$this->table." WHERE status<>2 ;";
+					$sql = "SELECT * FROM ".$this->table." WHERE status=1 ;";
 					$res = $this->db_exec($sql);
 					if ($res->result==true && $res->cant > 0) {
 						while ($row = $fc_assoc($res->res)) {

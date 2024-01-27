@@ -18,7 +18,7 @@
 		//---------------------------------
 		$data=null;$inf=null;
 		//---------------------------------
-		require_once($rut.DIRACT.$action);
+		require_once($rut.DIRACT.$action);//VISTA INVOCA A LA ACCION
 		$data = index($rut,$uid,$rid,$location,$pag);
 		//---------------------------------
 		if (isset($data->inf)) {

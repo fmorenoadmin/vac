@@ -56,3 +56,4 @@ if ($_SERVER['REQUEST_URI'] == DIRERR) {
 		$pag = 1;
 	}
 }
+//echo '<pre style="display: none;">'.__DIRIMG__.'</pre>';
