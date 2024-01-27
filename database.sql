@@ -2,6 +2,22 @@
 	CREATE DATABASE IF NOT EXISTS vac;
 	USE vac;
 /*----------------------------------------------------------*/
+/*
+	status:
+	0			INACTIVO
+	1			ACTIVO
+	2			ELIMINADO
+	
+	ALTER TABLE productos
+	ADD COLUMN created_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+	ADD COLUMN id_created INT NULL DEFAULT 1,
+	ADD COLUMN updated_at DATETIME NULL DEFAULT NULL,
+	ADD COLUMN id_updated INT NULL DEFAULT 0,
+	ADD COLUMN drop_at DATETIME NULL DEFAULT NULL,
+	ADD COLUMN motivo_drop TEXT NULL DEFAULT NULL,
+	ADD COLUMN id_drop INT NULL DEFAULT 0,
+	ADD COLUMN status INT NULL DEFAULT 1;
+*/
 /*----------------------------------------------------------*/
 /*----------------------------------------------------------*/
 /*----------------------------------------------------------*/
