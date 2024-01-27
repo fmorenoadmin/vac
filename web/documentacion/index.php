@@ -121,6 +121,28 @@
 									<li class="list-group-item"><b>GitHub Desktop:</b> Es necesario que tengas <a target="_blank" href="https://desktop.github.com/<?= $txt_url; ?>">GitHub Desktop</a>, ya que ofrece una interface gráfica, la cual es muy sencilla y fácil de usar, para poder subir y bajar cambios, con comentarios, sin tener que hacerlo por consola. <b>(Es requerido tener la cuenta de github creada antes de la configuración de GitHub Desktop)</b></li>
 									<li class="list-group-item"><b>Composer y GitBash:</b> Es <b>opcional</b> que tengas <a target="_blank" href="https://getcomposer.org/download/<?= $txt_url; ?>">Composer</a> y <a target="_blank" href="https://git-scm.com/downloads<?= $txt_url; ?>">GitBash</a>, ya que ambos de la mano te permiten descargar las actulizaciones de los paquetes y librerías.</li>
 									<li class="list-group-item"><b>Hosting y Dominio:</b> Es <b>opcional</b> que tengas <a target="_blank" href="https://hosting.frankmorenoalburqueque.com/<?= $txt_url; ?>">Hosting y Dominio</a>, pero si estás interesado en alquilar alguno, te recomiendo <a target="_blank" href="https://hosting.frankmorenoalburqueque.com/<?= $txt_url; ?>">BanaHosting</a>, con el cual tengo mis productos de Hosting de manera confiable y eficiente. A un precio justo y con capacidades muy sofisticadas para tus proyectos.</li>
+									<li class="list-group-item">
+										<b>Descargar el Repositorio:</b> Utilizando GitHub Desktop, debes clonar <a target="_blank" href="https://github.com/fmorenoadmin/vac<?= $txt_url; ?>">Este Repositorio</a>
+										<ul class="list-group">
+											Estos son los pasos:
+											<ol class="list-group list-group-numbered">
+												<li class="list-group-item">Abrir GitHub Desktop</li>
+												<li class="list-group-item">Clic en la cinta de opciones superior izquierda: File</li>
+												<li class="list-group-item">En el Modal Clone a repository: Clic en la terces opción: URL</li>
+												<li class="list-group-item">Pegar esta URL: <code>https://github.com/fmorenoadmin/vac.git</code></li>
+												<li class="list-group-item">La ruta por defecto es: <code>C:\xampp\htdocs</code> no modificar a menos que xamp esté instalado en otro disco, o si usa otro servidor local colocar la carpeta pública de su servidor local, esto en automático creará la carpeta vac, asi que no es necesario colocarla</li>
+												<li class="list-group-item">
+													Cargar Base de datos:
+													<ol class="list-group list-group-numbered">
+														<li class="list-group-item"><a target="_blank" href="https://localhost/phpmyadmin/index.php?route=/server/sql/">Click aqui para abrir phpmyadmin</a></li>
+														<li class="list-group-item">Abrir y Copiar el contenido del Archivo: <a target="_blank" href="https://localhost/vac/database.sql">database.sql</a> si no se ve con ese enlace la ruta es: <code>C:/xampp/htdocs/vac/database.sql</code> dentro del proyecto</li>
+														<li class="list-group-item">Pegar todo el contenido del archivo database.sql, dentro del bloque de la consulta SQL y Luego ejecutar</li>
+													</ol>
+												</li>
+												<li class="list-group-item">El proyecto VAC utiliza HTTPS, por lo que siempre le saldrá la alerta de </li>
+											</ol>
+										</ul>
+									</li>
 								</ul>
 							</li>
 						</ul>
@@ -143,9 +165,8 @@
 								<ul class="list-group">
 									<li class="list-group-item">Me llamo: <b>Frank Moreno Alburqueque</b></li>
 									<li class="list-group-item">Tengo: <b><?= (date('Y') - 1994); ?> Años</b>.</li>
-									<li class="list-group-item">Soy de: <b>Bellavista - Sullana - Piura</b>.</li>
-									<li class="list-group-item">Soy: <b>WebMaster</b>.</li>
-									<li class="list-group-item">Soy: <b>Partner de Microsoft</b>.</li>
+									<li class="list-group-item">Soy de: <b>Bellavista - Sullana - Piura</b>. Y Resido en: <b>Lima</b>.</li>
+									<li class="list-group-item">Soy: <b>WebMaster</b>, <b>Partner de Microsoft</b>.</li>
 									<li class="list-group-item">Tengo: Más de <b>6 años como programador PHP</b></li>
 									<li class="list-group-item">Trabajo con: <b><a target="_blank" href="https://www.cloudflare.com/<?= $txt_url; ?>">CloudFlare</a></b> para la seguridad de dominios y Servidores.</li>
 									<li class="list-group-item">He desarrollado muchos Sistemas Webs, usando VAC.</li>
