@@ -4,7 +4,7 @@
 	$rut='../';$_pg_na='contacto';
 	//---------------------------------------------
 	$pagina='Contacto';
-	$direc='contacto.php';
+	$action='contacto.php';
 	//---------------------------------------------
 	require_once($rut.'config/0code.php');
 ?>
@@ -45,7 +45,7 @@
 					</div>
 				</div>
 			</div>
-			<form method="post" action="<?= ACTI.$direc; ?>" class="contact__form">
+			<form method="post" action="<?= ACTI.$action; ?>" class="contact__form">
 				<input type="text" name="nombre" placeholder="Nombre Completo" required="required" />
 				<input type="text" name="correo" placeholder="Correo electrónico" required="required" />
 				<input type="text" name="telefono" placeholder="Teléfono" required="required" />

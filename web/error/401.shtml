@@ -20,10 +20,10 @@
 	<div id="notfound">
 		<div class="notfound">
 			<div class="notfound-404">
-				<h3>Se requiere autorización</h3>
+				<h3>Se requiere</h3>
 				<h1><span>4</span><span>0</span><span>1</span></h1>
 			</div>
-			<h2><hr><br></h2>
+			<h2>autorización<br></h2>
 			<p>
 				<a href="mailto:admin@frankmorenoalburqueque.com" target="_blank" class="btn btn-success">
 					<i class="fa fa-envelope-o"></i> Contactar al Administrador <i class="fa fa-envelope-o"></i>

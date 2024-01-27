@@ -11,36 +11,37 @@ define('HTTP', 'http://');
 define('HTTPS', 'https://');
 define('HTTP2', 'https://www.');
 //-------------------------------------------
-define('TIT', ' | Metedología VAC-PHP');
-define('TIPE', 'Metedología VAC-PHP');
+define('TIT', ' | Metedología VAC-PHP');//titulo de todas las paginas
+define('TIPE', 'Metedología VAC-PHP');//nomrbe de proyecto
 //-------------------------------------------
-define('DIRMOR', 'MORENOCL/');
-define('DIRACT', 'ACTIONJF/');
+define('DIRMOR', 'MORENOCL/');//carpeta donde se alamacenan las clases
+define('DIRACT', 'ACTIONJF/');//carpeta donde se alamacenan las acciones
 //-------------------------------------------
-define('__DIRIMG__', $_SERVER['DOCUMENT_ROOT']."/vac/archivos/img/");
-define('DIRERR', '/error/');
-define('CONF', 'config/');
-define('VIEW', 'views/');
+define('DIRERR', '/error/');//carpeta donde se alamacenan los archivos de error
+define('CONF', 'config/');//carpeta principal donde de almacena la configuración del Proyecto
+define('VIEW', 'views/');//se almacenan vistas que pueden ser llamadas desde varias vistas globales
 //-------------------------------------------
-define('DB_TYPE', 'mysqli_');
-//define('DB_TYPE', 'pg_');
-//define('DB_TYPE', 'sqlsrv_');
+define('DB_TYPE', 'mysqli_');//base de datos MySQL
+//define('DB_TYPE', 'pg_');//base de datos PostgreSQL
+//define('DB_TYPE', 'sqlsrv_');//base de datos SQL Server
 //-------------------------------------------
-define('ROWS', 25);
+define('ROWS', 25);//cantidad de registros por vista, para las tablas
 //-------------------------------------------
 define('SCHU', '_qas');//local
 //define('SCHU', '_prd');//servidor
 //-------------------------------------------
-define('SCHU_EMAIL', SCHU);//local
+define('SCHU_EMAIL', SCHU);//pero para los correos electrónicos
 //-------------------------------------------
 if (SCHU == '_qas') {
-	define('DIR', '/vac/sistema/');
+	define('__DIRIMG__', $_SERVER['DOCUMENT_ROOT']."/vac/archivos/img/");//ruta global donde se almacenan los archivos
+	//-------------------------------------------
+	define('DIR', '/vac/web/');
 	//-------------------------------------------
 	define('DOM', 'localhost/');
 	define('D_DIR', 'vac');
 	//-------------------------------------------
-	define('URL', HTTPS.DOM.D_DIR.'/web/');
-	define('URL2', HTTPS.DOM.D_DIR.'/web');
+	define('URL', HTTPS.DOM.D_DIR.'/web/');//URL PRINCIPALES
+	define('URL2', HTTPS.DOM.D_DIR.'/web');//URL PRINCIPALES
 	//-------------------------------------------
 	define('ARCH', HTTPS.DOM.D_DIR.'/archivos/');
 	define('PLUG', HTTPS.DOM.D_DIR.'/plugins/');
@@ -48,13 +49,15 @@ if (SCHU == '_qas') {
 	//-------------------------------------------
 	define('WEB', HTTPS.DOM.D_DIR.'/web/');
 }else{
+	define('__DIRIMG__', substr($_SERVER['DOCUMENT_ROOT'], 0, -4)."/archivos/img/");//ruta global donde se almacenan los archivos
+	//-------------------------------------------
 	define('DIR', '/');
 	//-------------------------------------------
 	define('DOM', 'vac.net.pe');
 	define('D_DIR', '');
 	//-------------------------------------------
-	define('URL', HTTP2.DOM.D_DIR.'/');
-	define('URL2', HTTP2.DOM.D_DIR.'');
+	define('URL', HTTP2.DOM.D_DIR.'/');//URL PRINCIPALES
+	define('URL2', HTTP2.DOM.D_DIR.'');//URL PRINCIPALES
 	//-------------------------------------------
 	define('ARCH', HTTPS.'archivos.'.DOM.'/');
 	define('PLUG', HTTPS.'plugins.'.DOM.'/');
@@ -64,6 +67,8 @@ if (SCHU == '_qas') {
 }
 //-------------------------------------------
 define('IMG', ARCH.'img/');
+//-------------------------------------------
+define('LOGO', IMG.'logo600x300.png');
 //-------------------------------------------
 define('ACTI', URL.DIRACT);
 //-------------------------------------------

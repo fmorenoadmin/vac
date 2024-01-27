@@ -4,7 +4,7 @@
 	$rut='../';$_pg_na='curso_detail';
 	//---------------------------------------------
 	$pagina='Detalle del Curso';
-	$direc='index.php';
+	$action='index.php';
 	//---------------------------------------------
 	require_once($rut.'config/0code.php');
 ?>
@@ -18,7 +18,7 @@
 		//---------------------------------
 		$data=null;$inf=null;
 		//---------------------------------
-		require_once($rut.DIRACT.$direc);
+		require_once($rut.DIRACT.$action);
 		$data = detalle($rut,$pid);
 		//---------------------------------
 		if (isset($data->inf)) {

@@ -8,7 +8,7 @@
 		 *
 		*/
 		//-------------------------------------------
-		private $_admin	=	array("name" => 'Adminsitrador', "admin" => 'alertas');
+		private $_admin	=	array("name" => 'Administrador', "email" => 'admin');
 		private $_alert	=	array("name" => 'Alertas', "email" => 'alertas');
 		private $_info	=	array("name" => 'Informes', "email" => 'info');
 		private $_email	=	array("name" => 'Mail', "email" => 'mail');
@@ -39,7 +39,7 @@
 				set_time_limit(99999999999); // Establece el límite a 60 segundos
 				ini_set('memory_limit', '6144M'); // Establece el límite a 6144 megabytes
 				//------------------------------------------
-				$er=1;
+				$er=1;//sirve para poder verificar si hay un error antes de enviar el correo
 				if(is_null($cuenta)){ $er=0; }
 				if(is_null($dt->u_email)){ $er=0; }
 				if(is_null($dt->cuerpo)){ $er=0; }
@@ -124,7 +124,7 @@
 																					$styles .= '<tr style="border: 0 !important; border-style: none !important;">';
 																						$styles .= '<td align="center" valign="middle" style="border: 0 !important; border-style: none !important;">';
 																							$styles .= '<a href="https://www.vac.net.pe?utm_source=correo&amp;utm_content='.htmlentities($dt->asunto).'&amp;utm_medium=email">';
-																								$styles .= '<img src="https://archivos.vac.net.pe/img/logo600x300.png" height="42" alt="Jayway Net">';
+																								$styles .= '<img src="'.LOGO.'" height="42" alt="'.TIPE.'">';
 																							$styles .= '</a>';
 																						$styles .= '</td>';
 																					$styles .= '</tr>';
@@ -252,7 +252,7 @@
 					}
 				}else{
 					$data->result = false;
-					$data->mensaje = "No se envió el correo. Algún campo obligatorio está vacio";
+					$data->mensaje = "No se envió el correo. Algún campo obligatorio está vacio. Datos: ".json_encode($dt);
 				}
 				//------------------------------------------
 				$mail = null;
@@ -298,6 +298,7 @@
 									$html .= '<li>Nombre: <b>'.$add['nombre'].'</b></li>';
 									$html .= '<li>Correo electrónico: <b>'.$add['correo'].'</b></li>';
 									$html .= '<li>Teléfono: <b>'.$add['telefono'].'</b></li>';
+									//$html .= '<li>Dirección: <b>'.$add['direccion'].'</b></li>';
 								$html .= '</ul>';
 							$html .= '</div>';
 						$html .= '</td>';
@@ -330,7 +331,7 @@
 						$html .= '<td align="center" valign="middle" style="border: 0 !important; border-style: none !important;">';
 							$html .= '<div style="text-align:left; padding: 0 20px 20px 20px; font-size: 16px; line-height: 1.5; color: #333;">';
 								$html .= '<p style="font-style: italic; margin-top: 20px; margin-bottom: 20px;">';
-									$html .= 'Debes ingresar al sistema, para que le deas un seguimiento a este cliente.';
+									$html .= 'Debes ingresar al sistema, para que le des un seguimiento a este cliente.';
 								$html .= '</p>';
 							$html .= '</div>';
 						$html .= '</td>';
@@ -376,10 +377,10 @@
 													$html .= '<tr style="border: 0 !important; border-style: none !important;">';
 														$html .= '<td align="center" valign="top" style="padding: 20px; text-align: justify; border: 0 !important; border-style: none !important;">';
 															$html .= '<p style="font-size: 16px; line-height: 1.5; color: #333;">';
-																$html .= 'Gracias por unirte a Jayway Net. Nos llena de alegría tenerte como parte de nuestra familia de clientes. Estamos entusiasmados por comenzar esta relación y esperamos que sea duradera y beneficiosa para ambos. Tu participación es fundamental, y estamos emocionados de construir juntos una comunidad sólida y exitosa.';
+																$html .= 'Gracias por unirte a '.TIPE.'. Nos llena de alegría tenerte como parte de nuestra familia de clientes. Estamos entusiasmados por comenzar esta relación y esperamos que sea duradera y beneficiosa para ambos. Tu participación es fundamental, y estamos emocionados de construir juntos una comunidad sólida y exitosa.';
 															$html .= '</p>';
 															$html .= '<p class="lead" style="font-size: 18px; line-height: 1.5; color: #333; font-weight: bold;">';
-																$html .= '¡Bienvenido a Jayway Net!';
+																$html .= '¡Bienvenido a '.TIPE.'!';
 															$html .= '</p>';
 														$html .= '</td>';
 													$html .= '</tr>';

@@ -8,7 +8,7 @@
 		 *
 		*/
 		//-------------------------------------------
-		private $_admin	=	array("name" => 'Adminsitrador', "admin" => 'alertas');
+		private $_admin	=	array("name" => 'Administrador', "email" => 'admin');
 		private $_alert	=	array("name" => 'Alertas', "email" => 'alertas');
 		private $_info	=	array("name" => 'Informes', "email" => 'info');
 		private $_email	=	array("name" => 'Mail', "email" => 'mail');
@@ -124,7 +124,7 @@
 																					$styles .= '<tr style="border: 0 !important; border-style: none !important;">';
 																						$styles .= '<td align="center" valign="middle" style="border: 0 !important; border-style: none !important;">';
 																							$styles .= '<a href="https://www.vac.net.pe?utm_source=correo&amp;utm_content='.htmlentities($dt->asunto).'&amp;utm_medium=email">';
-																								$styles .= '<img src="https://archivos.vac.net.pe/img/logo600x300.png" height="42" alt="Jayway Net">';
+																								$styles .= '<img src="'.LOGO.'" height="42" alt="'.TIPE.'">';
 																							$styles .= '</a>';
 																						$styles .= '</td>';
 																					$styles .= '</tr>';

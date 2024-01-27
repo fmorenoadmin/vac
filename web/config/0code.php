@@ -1,5 +1,5 @@
 <?php
-require_once($rut.'config/constant.php');
+require_once($rut.'config/constant.php');//requere a las constantes en todas las vistas
 //------------------------------------
 $location = ((SCHU=='_qas') ? HTTPS : HTTP2).$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 //$location = HTTP.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
@@ -35,6 +35,9 @@ $_seg = new Seguridad();
 //------------------------------------
 $nav_cli = $_seg->getBrowser($_SERVER['HTTP_USER_AGENT']);
 $sist_cli = $_seg->getPlatform($_SERVER['HTTP_USER_AGENT']);
+//------------------------------------
+//------------------------------------
+//------------------------------------
 //------------------------------------
 if(isset($_REQUEST['utm_id'])){
 	$utm_id = $_SESSION['utm_id'] = $_REQUEST['utm_id'];
@@ -100,3 +103,4 @@ if(isset($_REQUEST['gclid'])){
 	$gclid = null;
 }
 //------------------------------------
+echo '<pre style="display: none;">'.$location.'</pre>';

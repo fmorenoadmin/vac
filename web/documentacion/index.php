@@ -4,7 +4,7 @@
 	$rut='../';$_pg_na='documentacion';
 	//---------------------------------------------
 	$pagina='Documentación';
-	$direc='documentacion.php';
+	$action='documentacion.php';
 	//---------------------------------------------
 	require_once($rut.'config/0code.php');
 ?>
