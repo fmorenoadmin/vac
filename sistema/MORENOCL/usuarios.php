@@ -2,7 +2,7 @@
 	/**
 	 * 
 	 */
-	class usuarios extends DataBase
+	class usuarios extends database
 	{
 		private $table	='usuarios';
 		private $table0	='';

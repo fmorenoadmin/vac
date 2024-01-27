@@ -2,7 +2,7 @@
 	/**
 	 * 
 	 */
-	class intentos extends DataBase
+	class intentos extends database
 	{
 		private $table='intentos';
 		private $actio='intentos.php';

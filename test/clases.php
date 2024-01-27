@@ -2,7 +2,7 @@
 	/**
 	 * 
 	 */
-	class [CLASS_NAME] extends DataBase
+	class [CLASS_NAME] extends database
 	{
 		private $table	='[CLASS_NAME]';
 		private $table0	='';

@@ -2,7 +2,7 @@
 	/**
 	 * 
 	 */
-	class registro extends DataBase
+	class registro extends database
 	{
 		private $table='registro';
 		private $table2='usuarios';

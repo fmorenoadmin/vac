@@ -17,6 +17,8 @@
 		include_once($rut.CONF.'1styles.php');
 		//---------------------------------------------
 		require_once($rut.CONF.'0mens.php');
+		//---------------------------------------------
+		$txt_url = '?utm_id=1&utm_campaign=CloidFlare&utm_source=vac.net.pe&utm_medium=redirect&utm_content=nombramiento+en+nuestra+web&utm_term=redireccionamiento';
 	?>
 </head>
 <body>
@@ -58,7 +60,7 @@
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="#scrollspyHeading1">¿Por qué VAC?</a></li>
 								<li><a class="dropdown-item" href="#scrollspyHeading2">¿Por qué usarla?</a></li>
-								<li><a class="dropdown-item" href="#scrollspyHeading3">TREE</a></li>
+								<li><a class="dropdown-item" href="#scrollspyHeading3">Primeros pasos</a></li>
 								<li><a class="dropdown-item" href="#scrollspyHeading4">Fourth</a></li>
 								<li><a class="dropdown-item" href="#scrollspyHeading5">Fifth</a></li>
 								<li><hr class="dropdown-divider"/></li>
@@ -73,7 +75,7 @@
 						No quise complicarme la vida, tratando de escoger un nombre para la metodología. Por ello fui muy simple y le puse <b>VAC (*)</b><br>
 						Traté de hacerlo lo más simple, al igual que la metodología en SÍ. <br>
 						De esta forma, muchos personas, no solo programadores, podrían ser capaces de entender, utilizar y aprender PHP junto a la metodología. <br>
-						La metodología en si ya tiene incluido muchos temas que se podrían aprender en clases o de forma autodidacta, como: <b>Tipos de Datos, Condicionales, Bucles, Arreglos, Objetos, Clases, Instanciamientos, SEssiones, Cookies, etc.</b>
+						La metodología en si ya tiene incluido muchos temas que se podrían aprender en clases o de forma autodidacta, como: <b>Tipos de Datos, Condicionales, Bucles, Arreglos, Objetos, Clases, Instanciamientos, Sessiones, Cookies, etc.</b>
 						<ul class="list-group">
 							<li class="list-group-item">
 								<b>VAC (*)</b> solo es una abreviatura de:
@@ -106,9 +108,22 @@
 						</ul>
 					</p>
 					<hr>
-					<h4 id="scrollspyHeading3">Third heading</h4>
+					<h4 id="scrollspyHeading3">Primeros pasos</h4>
 					<p class="pb-3">
-						El trozo de texto estándar de Lorem Ipsum usado desde el año 1500 es reproducido debajo para aquellos interesados. Las secciones 1.10.32 y 1.10.33 de "de Finibus Bonorum et Malorum" por Cicero son también reproducidas en su forma original exacta, acompañadas por versiones en Inglés de la traducción realizada en 1914 por H. Rackham.
+						Necesitas tener todo esto para poder empezar a utlizar la metodología y los archivos. <br>
+						<ul class="list-group">
+							<li class="list-group-item">
+								<b>Descargar e instalar:</b>
+								<ul class="list-group">
+									<li class="list-group-item"><b>Servidor local:</b> <a target="_blank" href="https://www.apachefriends.org/es/download.html<?= $txt_url; ?>">XAMPP</a> <span class="badge bg-secondary">yo utilizo este</span>, WAMP o LAMP, ya que te ofresen un servidor virtual de manera local, donde puedes desplegar tus proyectos sin necesidad de tener un servidor o hosting.</li>
+									<li class="list-group-item"><b>Editor de código:</b> <a target="_blank" href="https://www.sublimetext.com/download<?= $txt_url; ?>">Sublime Text</a> <span class="badge bg-secondary">yo utilizo este</span>, Visual Studio Code, o el de tu preferenca</li>
+									<li class="list-group-item"><b>Cuenta de github:</b> Es necesario que tengas una cuenta en <a target="_blank" href="https://github.com/<?= $txt_url; ?>">GitHub</a>, ya que el repositorio y las actualizaciones se subiran en ese lugar.</li>
+									<li class="list-group-item"><b>GitHub Desktop:</b> Es necesario que tengas <a target="_blank" href="https://desktop.github.com/<?= $txt_url; ?>">GitHub Desktop</a>, ya que ofrece una interface gráfica, la cual es muy sencilla y fácil de usar, para poder subir y bajar cambios, con comentarios, sin tener que hacerlo por consola. <b>(Es requerido tener la cuenta de github creada antes de la configuración de GitHub Desktop)</b></li>
+									<li class="list-group-item"><b>Composer y GitBash:</b> Es <b>opcional</b> que tengas <a target="_blank" href="https://getcomposer.org/download/<?= $txt_url; ?>">Composer</a> y <a target="_blank" href="https://git-scm.com/downloads<?= $txt_url; ?>">GitBash</a>, ya que ambos de la mano te permiten descargar las actulizaciones de los paquetes y librerías.</li>
+									<li class="list-group-item"><b>Hosting y Dominio:</b> Es <b>opcional</b> que tengas <a target="_blank" href="https://hosting.frankmorenoalburqueque.com/<?= $txt_url; ?>">Hosting y Dominio</a>, pero si estás interesado en alquilar alguno, te recomiendo <a target="_blank" href="https://hosting.frankmorenoalburqueque.com/<?= $txt_url; ?>">BanaHosting</a>, con el cual tengo mis productos de Hosting de manera confiable y eficiente. A un precio justo y con capacidades muy sofisticadas para tus proyectos.</li>
+								</ul>
+							</li>
+						</ul>
 					</p>
 					<hr>
 					<h4 id="scrollspyHeading4">Fourth heading</h4>
@@ -132,7 +147,7 @@
 									<li class="list-group-item">Soy: <b>WebMaster</b>.</li>
 									<li class="list-group-item">Soy: <b>Partner de Microsoft</b>.</li>
 									<li class="list-group-item">Tengo: Más de <b>6 años como programador PHP</b></li>
-									<li class="list-group-item">Trabajo con: <b><a href="https://www.cloudflare.com/?utm_id=1&utm_campaign=CloidFlare&utm_source=vac.net.pe&utm_medium=redirect&utm_content=nombramiento+en+nuestra+web&utm_term=redireccionamiento">CloudFlare</a></b> para la seguridad de dominios y Servidores.</li>
+									<li class="list-group-item">Trabajo con: <b><a target="_blank" href="https://www.cloudflare.com/<?= $txt_url; ?>">CloudFlare</a></b> para la seguridad de dominios y Servidores.</li>
 									<li class="list-group-item">He desarrollado muchos Sistemas Webs, usando VAC.</li>
 									<li class="list-group-item">He particido en el desarrollo de varios proyectos internacionales.</li>
 								</ul>

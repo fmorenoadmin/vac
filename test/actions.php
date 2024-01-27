@@ -4,7 +4,7 @@
 	$ru0='../';
 	//-----------------------------------
 	$cls = array(
-		"dbs"	=>	'DataBase',
+		"dbs"	=>	'database',
 		"cl1"	=>	'[CLASS_NAME]',
 	);
 	//-----------------------------------
@@ -20,8 +20,8 @@
 	//-----------------------------------
 		function index($rut,$rid,$uid,$url){
 			global $cls;
-			require($rut.DIRCLA.$cls['dbs'].'.php');
-			require_once($rut.DIRCLA.$cls['cl1'].'.php');
+			require($rut.DIRMOR.$cls['dbs'].'.php');
+			require_once($rut.DIRMOR.$cls['cl1'].'.php');
 			$_dbs = new $cls['dbs']();
 			$_cl1 = new $cls['cl1']();
 			$data = new stdClass();
@@ -35,8 +35,8 @@
 		}
 		function detalle($rut,$rid,$pid){
 			global $cls,$_tbl;
-			require($rut.DIRCLA.$cls['dbs'].'.php');
-			require_once($rut.DIRCLA.$cls['cl1'].'.php');
+			require($rut.DIRMOR.$cls['dbs'].'.php');
+			require_once($rut.DIRMOR.$cls['cl1'].'.php');
 			$_dbs = new $cls['dbs']();
 			$_cl1 = new $cls['cl1']();
 			$data = new stdClass();
@@ -55,8 +55,8 @@
 		$destino= __DIRIMG__."cursos/";
 		//----------------------------------------
 		if (isset($_SESSION['user_id'])) {
-			require($ru0.DIRCLA.$cls['dbs'].'.php');
-			require_once($ru0.DIRCLA.$cls['cl1'].'.php');
+			require($ru0.DIRMOR.$cls['dbs'].'.php');
+			require_once($ru0.DIRMOR.$cls['cl1'].'.php');
 			$_dbs = new $cls['dbs']();
 			$_cl1 = new $cls['cl1']();
 			//-----------------------------------
@@ -102,8 +102,8 @@
 		$destino= __DIRIMG__."cursos/";
 		//----------------------------------------
 		if (isset($_SESSION['user_id'])) {
-			require($ru0.DIRCLA.$cls['dbs'].'.php');
-			require_once($ru0.DIRCLA.$cls['cl1'].'.php');
+			require($ru0.DIRMOR.$cls['dbs'].'.php');
+			require_once($ru0.DIRMOR.$cls['cl1'].'.php');
 			$_dbs = new $cls['dbs']();
 			$_cl1 = new $cls['cl1']();
 			//-----------------------------------

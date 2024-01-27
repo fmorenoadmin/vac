@@ -2,7 +2,7 @@
 	/**
 	 * 
 	 */
-	class ip_block extends DataBase
+	class ip_block extends database
 	{
 		private $table='ip_block';
 		private $actio='ip_block.php';
