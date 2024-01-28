@@ -126,3 +126,54 @@
 	//--------------------------------------
 </script>
 <button id="btnVolverArriba" class="btn btn-primary fixed-bottom fixed-right" title="Ir al Principio" style="z-index: 999;bottom: 40px; display: none;" onclick="volverArriba()"><i class="fas fa-angles-up"></i></button>
+<!--MODAL DROP-->
+<div class="modal fade" id="eliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<form method="POST" action="<?= ACTI.$action; ?>" enctype="multipart/form-data">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Eliminar <?= $singlr; ?></h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<p>¿Está seguro de <b>Eliminar el Registro: <em><label class="col-form-label" id="lbl_name"></label></em></b>?</p>
+							</div>
+						</div>
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label for="" class="form-control-plaintext">Motivo de Eliminación:</label>
+								<textarea name="motivo_drop" class="form-control ckeditor" required="required"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<input type="hidden" name="pid" id="dropid" />
+					<input type="hidden" name="uid" value="<?= base64_encode($uid); ?>" />
+					<input type="hidden" name="sid" value="<?= base64_encode($sid); ?>" />
+					<input type="hidden" name="url" value="<?= base64_encode($location); ?>" />
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+					<button type="submit" name="drop" class="btn btn-primary">Borrar el <?= $singlr; ?></button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	function eliminar(datos){
+		var infor=datos.split("||");
+		/*
+		Divide la cadena a array por este caracter: ( || )
+			'MQ==||Comunicación||'			cadena que recibe y la divide dentro de un array de la siguiente manera:
+			$infor[0] = 'MQ=='				valor 0
+			$infor[1] = 'Comunicación'		valor 1
+			$infor[2] = ''					valor 2
+		*/
+		//--------------------------------
+		$('#dropid').val(infor[0]);
+		$('#lbl_name').html(atob(infor[1]));
+	}
+</script>

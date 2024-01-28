@@ -64,7 +64,7 @@
 		if(isset($_SESSION)){}else{ session_start(); }
 		require_once($ru0.'config/constant.php');
 		//----------------------------------------
-		if (isset($_SESSION['sid'])) {
+		if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0) {
 			require_once($ru0.DIRMOR.$cls['dbs'].'.php');
 			require_once($ru0.DIRMOR.$cls['cl1'].'.php');
 			$_dbs = new $cls['dbs']();
@@ -100,7 +100,7 @@
 		if(isset($_SESSION)){}else{ session_start(); }
 		require_once($ru0.'config/constant.php');
 		//----------------------------------------
-		if (isset($_SESSION['sid'])) {
+		if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0) {
 			require_once($ru0.DIRMOR.$cls['dbs'].'.php');
 			$_dbs = new $cls['dbs']();
 			//----------------------------------------

@@ -48,7 +48,7 @@
 			}
 			$this->db_fre_r = $this->db_type.'free_result';
 			$this->db_close = $this->db_type.'close';
-		}
+		}//Lista
 		//---------------------------------------------------------CON
 			function connect($schu=null,$db='con'){
 				$fc_conec=$this->db_conec;
@@ -102,7 +102,7 @@
 				}
 				//----------------------------------
 				return($con);
-			}
+			}//Lista
 		//---------------------------------------------------------EXEC
 			public function db_exec($sql,$ret_res=true,$db='con'){
 				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
@@ -140,7 +140,7 @@
 				$data->error = $error;
 				//---------------------------------------------------------
 				return $data;
-			}
+			}//Lista
 			public function db_exec_sql($sql,$ret_res=true,$db='con'){
 				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
 				//---------------------------------------------------------
@@ -398,18 +398,14 @@
 				return $input;
 			}
 			public function custom_escape_string($value) {
-				// Si estás utilizando una conexión a la base de datos,
-				// utiliza la función de escape proporcionada por tu API de base de datos
-				// o considera usar sentencias preparadas.
 				// Aquí hay un ejemplo básico de cómo podrías escapar caracteres especiales.
-				// Esta función no garantiza la seguridad contra todas las formas de ataque.
 				$search = array("\\", "\x00", "\n", "\r", "'", '"', "\x1a");
 				$replace = array("\\\\", "\\0", "\\n", "\\r", "\\'", '\\"', "\\Z");
 				//---------------------------------------------------------
 				$_temp = str_replace($search, $replace, $value);
 				//---------------------------------------------------------
 				return $_temp;
-			}
+			}//lista
 		//---------------------------------------------------------GET
 			public function db_get_string($dt,$json,$db='con'){
 				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
@@ -816,7 +812,7 @@
 				//------------------
 				$fc_close($_cc);
 				return $data;
-			}
+			}//listo
 			public function db_add_all($dt,$json,$db='con'){
 				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
 				//---------------------------------------------------------
@@ -953,11 +949,11 @@
 				//----------------------------
 				switch ($json->success) {
 					case "edit":
-						$success = "modificado";
+						$success = "modifico";
 						$danger = "modificar";
 					break;
 					case "drop":
-						$success = "eliminado";
+						$success = "elimino";
 						$danger = "eliminar";
 					break;
 					case "active":
@@ -969,12 +965,12 @@
 						$danger = "desactivar";
 					break;
 					case "lock":
-						$success = "bloquear";
+						$success = "bloqueo";
 						$danger = "bloquear";
 					break;
 					case "unlock":
-						$success = "desbloquear";
-						$danger = "desbloqueado";
+						$success = "desbloqueo";
+						$danger = "desbloquear";
 					break;
 					default:
 						$success = "agregado";
@@ -1117,7 +1113,7 @@
 				$tipo=1, //Tipo de sentencia: 1 para INSERT / 2 para UPDATE / 3 para CALL
 				$this_tid=null, //Nombre del campo Primary Key(PK) de la Tabla. Solo usar para UPDATE
 				$json_pid=null, //valor del PK a editar. Solo usar para UPDATE
-				$return=false, //este campo indica si se retorna o no el ID el insert
+				$return=false, //este campo indica si se retorna o no el ID del insert
 				$adic=null //campos adicionales en sentencia WHERE del UPDATE
 			){
 				switch ($tipo) {
@@ -1126,7 +1122,7 @@
 						//-----------campos----------------
 							foreach ($dt as $key => $value) {
 								$sql .= $key.", ";
-							}
+							}					
 						//-----------fin-campos------------
 						$sql = substr($sql, 0, -2).") VALUES (";
 						//-----------valores----------------
@@ -1138,7 +1134,7 @@
 						$sql .= " )";
 						//-----------return-ult-id----------
 						if ($return) {
-							$sql .= " RETURNING ".$this_tid;
+							$sql .= " RETURNING ".$this_tid;//solo aplica para PostgreSQL
 						}
 						$sql .= " ;";
 					break;

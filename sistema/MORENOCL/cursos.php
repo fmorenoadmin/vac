@@ -37,7 +37,7 @@
 				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
 				//---------------------------------------------------------
 				$data = new stdClass();
-				$inf = null; $n=1; $cant = 11; $data->error = null;
+				$inf = null; $n=1; $cant = 6; $data->error = null;
 				//--------------------------------
 					// Configuración de la paginación
 					$resultados_por_pagina = ROWS;
@@ -120,7 +120,7 @@
 											$inf.='</a>';
 										break;
 									}
-									$inf.='<button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#eliminar" onclick="eliminar('."'".base64_encode($row[$this->tid])."||".$row['nombre']."||'".');"><i class="fa fa-trash"></i></button>';
+									$inf.='<button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#eliminar" onclick="eliminar('."'".base64_encode($row[$this->tid])."||".base64_encode(utf8_encode($row['nombre']))."||'".');"><i class="fa fa-trash"></i></button>';
 								$inf.='</td>';
 							$inf.='</tr>';
 							//----------------------------------

@@ -64,7 +64,7 @@
 		//----------------------------------------
 		$destino= __DIRIMG__."cursos/";
 		//----------------------------------------
-		if (isset($_SESSION['sid'])) {
+		if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0) {
 			require_once($ru0.DIRMOR.$cls['dbs'].'.php');
 			$_dbs = new $cls['dbs']();
 			//----------------------------------------
@@ -85,10 +85,12 @@
 				$sub_file = false;
 			}
 			//----------------------------------------
+			//Las key deben se iguales a los campos de la tabla
 			$add = array(
 				"nombre"	=>	$nombre,
 				"descrip"	=>	$descrip,
 				"imagen"	=>	$imagen,
+				"id_created"	=> base64_decode($_POST['uid']),
 				"created_at"	=>	date('Y-m-d H:i:s')
 			);
 			//----------------------------------------
@@ -118,7 +120,7 @@
 		//----------------------------------------
 		$destino= __DIRIMG__."cursos/";
 		//----------------------------------------
-		if (isset($_SESSION['sid'])) {
+		if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0) {
 			require_once($ru0.DIRMOR.$cls['dbs'].'.php');
 			$_dbs = new $cls['dbs']();
 			//----------------------------------------
@@ -144,7 +146,7 @@
 				"nombre"	=>	$nombre,
 				"descrip"	=>	$descrip,
 				"imagen"	=>	$imagen,
-				"id_updated"	=>	1,
+				"id_updated"	=>	base64_decode($_POST['uid']),
 				"updated_at"	=>	date('Y-m-d H:i:s')
 			);
 			//----------------------------------------
@@ -173,7 +175,7 @@
 		require_once($ru0.'config/constant.php');
 		$resp = new stdClass();
 		//-----------------------------
-		if (isset($_SESSION['user_id'])) {
+		if (isset($_SESSION['user_id']) && $_SESSION['user_id'] > 0) {
 			require_once($ru0.DIRMOR.$cls['dbs'].'.php');
 			require_once($ru0.DIRMOR.$cls['cl1'].'.php');
 			$_dbs = new $cls['dbs']();
