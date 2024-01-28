@@ -49,7 +49,7 @@
 				//---------------------------------------------------------
 				$inf=null;
 				//---------------------------------------------------------
-				$sql="SELECT ".$campo." FROM ".$this->table0." WHERE ";
+				$sql="SELECT ".$campo." FROM ".$this->table." WHERE ";
 					switch ($rid) {
 						case 1:
 						case 2:
@@ -138,7 +138,7 @@
 					$inf.='</tr>';
 				$inf.='</thead>';
 				$inf.='<tbody style="width: 100%;">';
-					$sql = "SELECT * FROM ".$this->table0." WHERE ";
+					$sql = "SELECT * FROM ".$this->table." WHERE ";
 						switch ($rid) {
 							case 1:
 							case 2:
