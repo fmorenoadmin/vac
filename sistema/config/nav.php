@@ -15,7 +15,7 @@
 							Gestión
 						</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="<?= SIST; ?>tipos_usuarios/">Tipos de Usuarios</a></li>
+							<li><a class="dropdown-item" href="<?= HOME; ?>tipos_usuarios/">Tipos de Usuarios</a></li>
 							<li><a class="dropdown-item" href="<?= HOME; ?>usuarios/">Usuarios</a></li>
 							<li><hr class="dropdown-divider"></li>
 							<li><a class="dropdown-item" href="<?= HOME; ?>registro/">Registro</a></li>

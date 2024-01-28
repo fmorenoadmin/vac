@@ -59,7 +59,7 @@
 			return $data;
 		}
 	//------------------------------
-	if (isset($_POST['guardar'])) {
+	if (isset($_POST['nuevo'])) {
 		require_once($ru0.'config/constant.php');
 		//----------------------------------------
 		$destino= __DIRIMG__."cursos/";
