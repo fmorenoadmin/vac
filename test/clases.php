@@ -25,7 +25,17 @@
 				//---------------------------------------------------------
 				$inf = 0;
 				//---------------------------------------------------------
-				$sql = "SELECT ".$this->tid." FROM ".$this->table0." WHERE status=1 ;";
+				$sql = "SELECT ".$this->tid." FROM ".$this->table." WHERE ";
+					switch ($rid) {
+						case 1:
+						case 2:
+							$sql .= " status<>2 ";
+						break;
+						default:
+							$sql .= " status=1 ";
+						break;
+					}
+				$sql .= " ;";
 				$res = $this->db_exec($sql,false);
 				//--------------------------------
 				$inf = $res->cant;
@@ -39,7 +49,17 @@
 				//---------------------------------------------------------
 				$inf=null;
 				//---------------------------------------------------------
-				$sql="SELECT ".$campo." FROM ".$this->table0." WHERE status=1 ORDER BY ".$campo." ASC ;";
+				$sql="SELECT ".$campo." FROM ".$this->table0." WHERE ";
+					switch ($rid) {
+						case 1:
+						case 2:
+							$sql .= " status<>2 ";
+						break;
+						default:
+							$sql .= " status=1 ";
+						break;
+					}
+				$sql .= " ORDER BY ".$campo." ASC ;";
 				$res = $this->db_exec($sql);
 				if ($res->result==true && $res->cant > 0) {
 					while ($row = $fc_assoc($res->res)){
@@ -61,7 +81,7 @@
 				//--------------------------------
 				$inf.='<option value="'.base64_encode(0).'">Seleccione al Cliente/Proveedor:</option>';
 				//--------------------------------
-				$sql = "SELECT * FROM ".$this->table0." ;";
+				$sql = "SELECT * FROM ".$this->table1." WHERE status=1 ;";
 				//--------------------------------
 				$res = $this->db_exec($sql);
 				if ($res->result==true && $res->cant > 0) {
@@ -118,7 +138,16 @@
 					$inf.='</tr>';
 				$inf.='</thead>';
 				$inf.='<tbody style="width: 100%;">';
-					$sql = "SELECT * FROM ".$this->table0." WHERE status<>2 ";
+					$sql = "SELECT * FROM ".$this->table0." WHERE ";
+						switch ($rid) {
+							case 1:
+							case 2:
+								$sql .= " status<>2 ";
+							break;
+							default:
+								$sql .= " status=1 ";
+							break;
+						}
 						//--------------------------------
 							if ($busq==true) {
 								$sql .= " AND (id_int LIKE '%".$val."%' OR nombre_comp LIKE '%".$val."%' OR razon_soc LIKE '%".$val."%' OR telefono_u LIKE '%".$val."%' OR correo_u LIKE '%".$val."%' OR datos_adic::text LIKE '%".$val."%') ";
@@ -401,7 +430,7 @@
 					$inf.='</tr>';
 				$inf.='</thead>';
 				$inf.='<tbody>';
-					$sql = "SELECT * FROM ".$this->table." WHERE status<>2 ;";
+					$sql = "SELECT * FROM ".$this->table." WHERE status=1 ;";
 					$res = $this->db_exec($sql);
 					if ($res->result==true && $res->cant > 0) {
 						while ($row = $fc_assoc($res->res)) {

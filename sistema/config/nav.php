@@ -18,6 +18,10 @@
 							<li><a class="dropdown-item" href="<?= SIST; ?>tipos_usuarios/">Tipos de Usuarios</a></li>
 							<li><a class="dropdown-item" href="<?= HOME; ?>usuarios/">Usuarios</a></li>
 							<li><hr class="dropdown-divider"></li>
+							<li><a class="dropdown-item" href="<?= HOME; ?>registro/">Registro</a></li>
+							<li><a class="dropdown-item" href="<?= HOME; ?>intentos/">Intentos</a></li>
+							<li><a class="dropdown-item" href="<?= HOME; ?>ip_block/">Ips Bloqueadas</a></li>
+							<li><hr class="dropdown-divider"></li>
 							<li><a class="dropdown-item" href="<?= HOME; ?>usuarios/">Permisos</a></li>
 						</ul>
 					</li>

@@ -5,7 +5,7 @@
 	//-----------------------------------
 	$cls = array(
 		"dbs"	=>	'database',
-		"cl1"	=>	'[CLASS_NAME]',
+		"cl1"	=>	'registro',
 	);
 	//-----------------------------------
 	$di1 = $cls['cl1'].'/';
@@ -13,8 +13,8 @@
 	$dt = array();$json = new stdClass();
 	//-----------------------------------
 	$_tbl = new stdClass();
-	$_tbl->tname = 'public.'.$cls['cl1'];
-	$_tbl->tid = '[TABLE_ID]';
+	$_tbl->tname = $cls['cl1'];
+	$_tbl->tid = 'id_r';
 	$_tbl->pid = 0;
 	$_tbl->test = true;
 	//-----------------------------------

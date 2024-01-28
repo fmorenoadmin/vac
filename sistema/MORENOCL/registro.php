@@ -7,6 +7,7 @@
 		private $table='registro';
 		private $table2='usuarios';
 		private $table3='tipos_usuarios';
+		private $actio	='registro.php';
 		private $tid	='id_r';
 		private $tid2	='id_user';
 		private $tid3	='id_tipo';
@@ -17,34 +18,43 @@
 				$inf = 0;
 				//---------------------------------------------------------
 				$sql = "SELECT ".$this->tid." FROM ".$this->table." WHERE ";
-				switch ($rid) {
-					case 1:
-					case 2:
-					case 4:
-					break;
-					default:	$sql .= "id_created=".$_SESSION['user_id']." AND ";	break;
-				}
-				$sql .= " status = 1 ;";
+					switch ($rid) {
+						case 1:
+						case 2:
+							$sql .= " status<>2 ";
+						break;
+						default:
+							$sql .= " status=1 ";
+						break;
+					}
+				$sql .= " ;";
 				$res = $this->db_exec($sql,false);
 				//--------------------------------
 				$inf = $res->cant;
 				//--------------------------------
-				$fc_close();
+				$fc_close($this->connect());
 				return $inf;
 			}
 		//-----------------------------------
-			function listar($rid,$uid,$url){
+			function listar($total,$pag,$rid,$uid,$url,$busq=false,$val=null,$test=false){
 				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
 				//---------------------------------------------------------
 				$data = new stdClass();
-				$inf = null; $n=1; $cant = 7; $data->error = null;
-				//-----------------------------
-				$month = date('Y-m');
-				$mes_ant = date('Y-m', strtotime("{$month} - 1 month"));
-				$aux = date('Y-m-d', strtotime("{$month} + 1 month"));
-				$last_day = date('Y-m-d', strtotime("{$aux} - 1 day"));
-				//-----------------------------------
-				$inf.='<thead>';
+				$inf = null; $n=1; $cant = 8; $data->error = null;
+				//--------------------------------
+					// Configuración de la paginación
+					$resultados_por_pagina = ROWS;
+					//-----------------------------------------
+					// Calcular el número total de páginas
+					$total_paginas = ceil($total / $resultados_por_pagina);
+					//-----------------------------------------
+					// Obtener el número de página actual
+					$pagina_actual = $pag;
+					//-----------------------------------------
+					// Calcular el índice del primer resultado en la página actual
+					$inicio = ($pagina_actual - 1) * $resultados_por_pagina;
+				//--------------------------------
+				$inf.='<thead style="width: 100%;">';
 					$inf.='<tr>';
 						$inf.='<th><i class="fas fa-list-ol"></i></th>';
 						$inf.='<th><i class="fas fa-id-badge"></i></th>';
@@ -53,26 +63,32 @@
 						$inf.='<th>Hora de Ingreso</th>';
 						$inf.='<th>Navegador Usado</th>';
 						$inf.='<th>Dirección IP</th>';
+						$inf.='<th>Estado</th>';
 					$inf.='</tr>';
 				$inf.='</thead>';
-				//-----------------------------------
-				$inf.='<tbody>';
-					$sql = "SELECT r.*, CONCAT(u.nombres_u, ' ', u.apellidos_u) AS nombre_comp, u.id_tipo FROM ".$this->table." r INNER JOIN ".$this->table2." u ON r.".$this->tid2."=u.".$this->tid2." WHERE r.status=1 AND u.status=1 ";
-					switch ($rid) {
-						case 1:
-							$sql .= "";
-						break;
-						case 2:
-							$sql .= " AND u.id_tipo NOT IN (1) ";
-						break;
-						case 4:
-							$sql .= " AND u.id_tipo NOT IN (1) ";
-						break;
-						default:
-							$sql .= " AND r.".$this->tid1."=".$uid." ";
-						break;
-					}
-					$sql .= " AND (r.fecha_ing >= '".$mes_ant.'-01'."' AND r.fecha_ing <= '".date('Y-m-d')."') ORDER BY ".$this->tid." DESC ;";
+				$inf.='<tbody style="width: 100%;">';
+					$sql = "SELECT r.*, CONCAT(u.nombres_u, ' ', u.apellidos_u) AS nombre_comp, u.id_tipo FROM ".$this->table." r INNER JOIN ".$this->table2." u ON r.".$this->tid2."=u.".$this->tid2." WHERE ";
+						switch ($rid) {
+							case 1:
+							case 2:
+								$sql .= " r.status<>2 ";
+							break;
+							default:
+								$sql .= " r.status=1 ";
+							break;
+						}
+						//--------------------------------
+							if ($busq==true) {
+								$sql .= " AND (id_r LIKE '%".$val."%' OR CONCAT(u.nombres_u, ' ', u.apellidos_u) LIKE '%".$val."%' OR fecha_ing LIKE '%".$val."%' OR hora_ing LIKE '%".$val."%' OR ip_ing LIKE '%".$val."%' OR geo_ip LIKE '%".$val."%') ";
+							}
+							//--------------------------------
+							$sql .= " ORDER BY ".$this->tid." DESC ";
+							//--------------------------------
+							if ($busq==false) {
+								$sql .= " LIMIT ".$resultados_por_pagina." OFFSET ".$inicio." ";
+							}
+						//--------------------------------
+					$sql .= " ;";
 					//--------------------------------
 					$res = $this->db_exec($sql);
 					if ($res->result==true && $res->cant > 0) {
@@ -80,6 +96,10 @@
 						$data->mensaje = 'Registros encontrados.';
 						//--------------------------------
 						while ($row = $fc_assoc($res->res)) {
+							$status = $row['status'];
+							//-------------------------------------
+							$datos2 = base64_encode($row[$this->tid]).'||'.$row['ip_ing'].'||'.base64_encode(utf8_decode($row['nombre_comp']));
+							//-------------------------------------
 							$inf.='<tr>';
 								$inf.='<td>'.$n.'</td>';
 								$inf.='<td>'.$row[$this->tid].'</td>';
@@ -90,8 +110,35 @@
 								$inf.='<td>';
 									$inf.=$row['ip_ing'].' - '.str_replace(',13z', ',21z', $row['geo_ip']);
 								$inf.='</td>';
+								$inf.='<td>';
+									if ($rid==1 || $rid==2) {
+										switch ($status) {
+											case 1:
+												$inf.='<a href="'.ACTI.$this->actio.'?pid='.base64_encode($row[$this->tid]).'&meth=desact&url='.base64_encode($url).'" class="btn btn-xs btn-block btn-outline-success btn-flat"><i class="fas fa-check-circle"></i></a>';
+											break;
+											case 2:
+												$inf.='<a href="'.ACTI.$this->actio.'?pid='.base64_encode($row[$this->tid]).'&meth=act&url='.base64_encode($url).'" class="btn btn-xs btn-block btn-outline-danger btn-flat"><i class="fas fa-times-circle"></i></a>';
+											break;
+											default:
+												$inf.='<a href="'.ACTI.$this->actio.'?pid='.base64_encode($row[$this->tid]).'&meth=act&url='.base64_encode($url).'" class="btn btn-xs btn-block btn-outline-warning btn-flat"><i class="fas fa-ban"></i></a>';
+											break;
+										}
+									}else{
+										switch ($status) {
+											case 1:
+												$inf.='<span class="btn btn-xs btn-block btn-outline-success btn-flat"><i class="fas fa-check-circle"></i></span>';
+											break;
+											case 2:
+												$inf.='<span class="btn btn-xs btn-block btn-outline-danger btn-flat"><i class="fas fa-times-circle"></i></span>';
+											break;
+											default:
+												$inf.='<span class="btn btn-xs btn-block btn-outline-warning btn-flat"><i class="fas fa-ban"></i></span>';
+											break;
+										}
+									}
+								$inf.='</td>';
 							$inf.='</tr>';
-							//-----------------------------------
+							//---------------------------------
 							$n++;
 						}
 						//--------------------------------
@@ -103,16 +150,19 @@
 							$inf .= '';
 						}else{
 							$data->result = false;
-							$data->mensaje = 'No se ejecutó la consulta. Error: '.$data->error;
+							$data->mensaje = 'No se ejecutó la consulta. Error: '.$res->error;
 							$inf .= '';
 						}
 					}
-				$inf .= '</tbody>';
+				$inf.='</tbody>';
 				//--------------------------------
 				$data->inf = $inf;
-				$data->sql = $sql;
+				$data->cant = $res->cant;
+				if (isset($test) && $test==true) {
+					$data->sql = $sql;
+				}
 				//--------------------------------
-				$fc_close();
+				$fc_close($this->connect());
 				return $data;
 			}
 			function miregistro($rid,$uid){
@@ -174,7 +224,7 @@
 				$data->inf = $inf;
 				$data->sql = $sql;
 				//--------------------------------
-				$fc_close();
+				$fc_close($this->connect());
 				return $data;
 			}
 			function listarMR($schu,$uid){
@@ -240,7 +290,7 @@
 				$data->inf = $inf;
 				$data->sql = $sql;
 				//--------------------------------
-				$fc_close();
+				$fc_close($this->connect());
 				return $data;
 			}
 		//-----------------------------------
