@@ -18,7 +18,7 @@ define('DIRMOR', 'MORENOCL/');//carpeta donde se alamacenan las clases
 define('DIRACT', 'ACTIONJF/');//carpeta donde se alamacenan las acciones
 //-------------------------------------------
 define('DIRERR', '/error/');//carpeta donde se alamacenan los archivos de error
-define('CONF', 'config/');//carpeta principal donde de almacena la configuración del Proyecto
+define('CONF', 'config/');//carpeta principal donde se almacenan los archivos de configuración del Proyecto
 define('VIEW', 'views/');//se almacenan vistas que pueden ser llamadas desde varias vistas globales
 //-------------------------------------------
 define('DB_TYPE', 'mysqli_');//base de datos MySQL
