@@ -39,7 +39,7 @@
 				set_time_limit(99999999999); // Establece el límite a 60 segundos
 				ini_set('memory_limit', '6144M'); // Establece el límite a 6144 megabytes
 				//------------------------------------------
-				$er=1;
+				$er=1;//sirve para poder verificar si hay un error antes de enviar el correo
 				if(is_null($cuenta)){ $er=0; }
 				if(is_null($dt->u_email)){ $er=0; }
 				if(is_null($dt->cuerpo)){ $er=0; }
@@ -252,7 +252,7 @@
 					}
 				}else{
 					$data->result = false;
-					$data->mensaje = "No se envió el correo. Algún campo obligatorio está vacio";
+					$data->mensaje = "No se envió el correo. Algún campo obligatorio está vacio. Datos: ".json_encode($dt);
 				}
 				//------------------------------------------
 				$mail = null;
