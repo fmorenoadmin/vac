@@ -196,4 +196,75 @@
 				return $data;
 			}
 		//-----------------------------
+			function exportar(){
+				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
+				//---------------------------------------------------------
+				$inf=null;$n=1;$cant=10;
+				//-------------------------------------
+				$inf.='<thead>';
+					$inf.='<tr>';
+						$inf.='<th>#</th>';
+						$inf.='<th>Usuario</th>';
+						$inf.='<th>Contraseña</th>';
+						$inf.='<th>Fecha</th>';
+						$inf.='<th>Hora</th>';
+						$inf.='<th>Navegador</th>';
+						$inf.='<th>IP</th>';
+						$inf.='<th>GEO IP</th>';
+						$inf.='<th>Descripción</th>';
+						$inf.='<th>Creado</th>';
+						$inf.='<th>Editado</th>';
+						$inf.='<th>Eliminado</th>';
+						$inf.='<th>Estado</th>';
+					$inf.='</tr>';
+				$inf.='</thead>';
+				$inf.='<tbody>';
+					$sql = "SELECT * FROM ".$this->table." WHERE status<>2 ;";
+					$res = $this->db_exec($sql);
+					if ($res->result==true && $res->cant > 0) {
+						while ($row = $fc_assoc($res->res)) {
+							$inf.='<tr>';
+								$inf.='<td>'.$n.'</td>';
+								$inf.='<td>'.$row['usua'].'</td>';
+								$inf.='<td>'.$row['pass'].'</td>';
+								$inf.='<td>'.$row['fecha_int'].'</td>';
+								$inf.='<td>'.$row['hora_int'].'</td>';
+								$inf.='<td>'.$row['nav_int'].'</td>';
+								$inf.='<td>'.$row['ip_int'].'</td>';
+								$inf.='<td>'.$row['geo_ip'].'</td>';
+								$inf.='<td>'.$row['descrip'].'</td>';
+								$inf.='<td>'.$row['created_at'].'</td>';
+								$inf.='<td>'.$row['updated_at'].'</td>';
+								$inf.='<td>'.$row['drop_at'].'</td>';
+								$inf.='<td>';
+									switch ($row['status']) {
+										case 0:
+											$inf.='Inactivo';
+										break;
+										case 1:
+											$inf.='Activo';
+										break;
+										case 2:
+											$inf.='Eliminado';
+										break;
+									}
+								$inf.='</td>';
+							$inf.='</tr>';
+							//-------------------------------------
+							$n++;
+						}
+						$fc_fre_r($res->res);//liberar memoria del resultado
+					}else{
+						if ($res->cant == 0) {
+							$inf.='';
+						}else{
+							$inf.='<tr><td colspan="'.$cant.'"><div class="alert alert-danger">Error: '.$res->error.'</div></td></tr>';
+						}
+					}
+				$inf.='</tbody>';
+				//-------------------------------------
+				$fc_close($this->connect());
+				return $inf;
+			}
+		//-----------------------------
 	}

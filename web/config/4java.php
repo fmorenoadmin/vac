@@ -35,4 +35,4 @@
 	}
 	//--------------------------------------
 </script>
-<button id="btnVolverArriba" class="btn btn-primary fixed-bottom fixed-right" title="Ir al Principio" style="z-index: 999;bottom: 40px; display: none;" onclick="volverArriba()"><i class="fas fa-angles-up"></i></button>
+<button id="btnVolverArriba" class="btn btn-primary fixed-left" title="Ir al Principio" style="z-index: 999;bottom: 40px; display: none;" onclick="volverArriba()"><i class="fas fa-angles-up"></i></button>

@@ -143,7 +143,7 @@
 												<li class="list-group-item">
 													Cargar Base de datos:
 													<ol class="list-group list-group-numbered">
-														<li class="list-group-item"><a target="_blank" href="https://localhost/phpmyadmin/index.php?route=/server/sql/">Click aqui para abrir phpmyadmin</a></li>
+														<li class="list-group-item"><a target="_blank" href="https://localhost/phpmyadmin/index.php?route=/server/sql/">Click aqui para abrir phpmyadmin</a>, luego clic en la cinta de opciones: SQL</li>
 														<li class="list-group-item">Abrir y Copiar el contenido del Archivo: <a target="_blank" href="https://localhost/vac/database.sql">database.sql</a> si no se ve con ese enlace la ruta es: <code>C:/xampp/htdocs/vac/database.sql</code> dentro del proyecto</li>
 														<li class="list-group-item">Pegar todo el contenido del archivo database.sql, dentro del bloque de la consulta SQL y Luego ejecutar</li>
 													</ol>

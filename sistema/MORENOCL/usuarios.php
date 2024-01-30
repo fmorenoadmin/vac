@@ -246,8 +246,12 @@
 				$inf.='<thead>';
 					$inf.='<tr>';
 						$inf.='<th>#</th>';
+						$inf.='<th>Foto</th>';
+						$inf.='<th>Tipo de Usuario</th>';
 						$inf.='<th>Nombre</th>';
-						$inf.='<th>Descripción</th>';
+						$inf.='<th>Correo</th>';
+						$inf.='<th>Usuario</th>';
+						$inf.='<th>Teléfono</th>';
 						$inf.='<th>Creado</th>';
 						$inf.='<th>Editado</th>';
 						$inf.='<th>Eliminado</th>';
@@ -256,14 +260,44 @@
 					$inf.='</tr>';
 				$inf.='</thead>';
 				$inf.='<tbody>';
-					$sql = "SELECT * FROM ".$this->table." WHERE status=1 ;";
+					$sql = "SELECT u.*, CONCAT(u.nombres_u, ' ', u.apellidos_u) AS nombre_comp, tu.nombre_t FROM ".$this->table." u INNER JOIN ".$this->table1." tu ON u.".$this->tid1."=tu.".$this->tid1." WHERE u.status=1 ;";
 					$res = $this->db_exec($sql);
 					if ($res->result==true && $res->cant > 0) {
 						while ($row = $fc_assoc($res->res)) {
 							$inf.='<tr>';
-								$inf.='<th>'.$n.'</th>';
-								$inf.='<td>'.$row['nombre'].'</td>';
-								$inf.='<td>'.$row['descrip'].'</td>';
+								$inf.='<td>'.$n.'</td>';
+								$inf.='<td>';
+									if (strlen($row['foto_u']) > 5) {
+										if ($tip==1) {
+											$inf.='<img style="max-width: 100px; max-height: 100px;" src="'.IMG.'usuarios/'.$row['foto_u'].'" />';
+										}else{
+											$imagenPath = __DIRIMG__ . 'usuarios/' . $row['foto_u'];
+											$extension = pathinfo($imagenPath, PATHINFO_EXTENSION);
+											//-------------------------------------
+											if (in_array($extension, ['svg'])) {
+												// Cargar imagen SVG
+												$svg = file_get_contents($imagenPath);
+												$inf .= '<img src="data:image/svg+xml;base64,' . base64_encode($svg) . '" style="max-width: 100px; max-height: 100px;" />';
+											} elseif (in_array($extension, ['png', 'jpg', 'jpeg'])) {
+												// Cargar imagen PNG o JPG y codificar en base64
+												$imagenData = file_get_contents($imagenPath);
+												$imagenBase64 = 'data:image/' . $extension . ';base64,' . base64_encode($imagenData);
+												$inf .= '<img src="' . $imagenBase64 . '" style="max-width: 100px; max-height: 100px;" />';
+											} else {
+												// Manejar otros tipos de archivo o extensiones aquí
+												$inf .= 'Tipo de archivo no compatible';
+											}
+											//$inf.='<img style="max-width: 100px; max-height: 100px;" src="'.__DIRIMG__.'cursos/'.$row['foto_u'].'" />';
+										}
+									}else{
+										$inf.='No imagen';
+									}
+								$inf.='</td>';
+								$inf.='<td>'.$row['nombre_t'].'</td>';
+								$inf.='<td>'.$row['nombre_comp'].'</td>';
+								$inf.='<td>'.$row['correo_u'].'</td>';
+								$inf.='<td>'.$row['usuario_u'].'</td>';
+								$inf.='<td><a href="https://wa.me/'.$row['telefono_u'].'" target="_blank">'.$row['telefono_u'].'</a></td>';
 								$inf.='<td>'.$row['created_at'].'</td>';
 								$inf.='<td>'.$row['updated_at'].'</td>';
 								$inf.='<td>'.$row['drop_at'].'</td>';
@@ -280,17 +314,6 @@
 										break;
 									}
 								$inf.='</td>';
-									$inf.='<td>';
-										if (strlen($row['imagen']) > 5) {
-											if ($tip==1) {
-												$inf.='<img style="max-width: 100px; max-height: 100px;" src="'.IMG.'usuarios/'.$row['imagen'].'" />';
-											}else{
-												$inf.='<img style="max-width: 100px; max-height: 100px;" src="'.__DIRIMG__.'usuarios/'.$row['imagen'].'" />';
-											}
-										}else{
-											$inf.='No imagen';
-										}
-									$inf.='</td>';
 							$inf.='</tr>';
 							//-------------------------------------
 							$n++;

@@ -49,8 +49,8 @@
 					Acciones
 					</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					<a class="dropdown-item" href="<?= XCEL.$action; ?>">Exportar Excel <i class="fa fa-file-excel-o"></i></a>
-					<a class="dropdown-item" href="<?= PDFS.$action; ?>">Exportar PDF <i class="fa fa-file-pdf-o"></i></a>
+					<a class="dropdown-item" href="<?= XCEL; ?>?cls=<?= substr($action, 0, -4); ?>">Exportar Excel <i class="fa fa-file-excel-o"></i></a>
+					<a class="dropdown-item" href="<?= PDFS; ?>?cls=<?= substr($action, 0, -4); ?>">Exportar PDF <i class="fa fa-file-pdf-o"></i></a>
 					<!--<a class="dropdown-item" href="#">Something else here</a>-->
 					</div>
 				</div>

@@ -234,33 +234,33 @@
 										break;
 									}
 								$inf.='</td>';
-									$inf.='<td>';
-										if (strlen($row['imagen']) > 5) {
-											if ($tip==1) {
-												$inf.='<img style="max-width: 100px; max-height: 100px;" src="'.IMG.'cursos/'.$row['imagen'].'" />';
-											}else{
-												$imagenPath = __DIRIMG__ . 'cursos/' . $row['imagen'];
-												$extension = pathinfo($imagenPath, PATHINFO_EXTENSION);
-												//-------------------------------------
-												if (in_array($extension, ['svg'])) {
-													// Cargar imagen SVG
-													$svg = file_get_contents($imagenPath);
-													$inf .= '<img src="data:image/svg+xml;base64,' . base64_encode($svg) . '" style="max-width: 100px; max-height: 100px;" />';
-												} elseif (in_array($extension, ['png', 'jpg', 'jpeg'])) {
-													// Cargar imagen PNG o JPG y codificar en base64
-													$imagenData = file_get_contents($imagenPath);
-													$imagenBase64 = 'data:image/' . $extension . ';base64,' . base64_encode($imagenData);
-													$inf .= '<img src="' . $imagenBase64 . '" style="max-width: 100px; max-height: 100px;" />';
-												} else {
-													// Manejar otros tipos de archivo o extensiones aquí
-													$inf .= 'Tipo de archivo no compatible';
-												}
-												//$inf.='<img style="max-width: 100px; max-height: 100px;" src="'.__DIRIMG__.'cursos/'.$row['imagen'].'" />';
-											}
+								$inf.='<td>';
+									if (strlen($row['imagen']) > 5) {
+										if ($tip==1) {
+											$inf.='<img style="max-width: 100px; max-height: 100px;" src="'.IMG.'cursos/'.$row['imagen'].'" />';
 										}else{
-											$inf.='No imagen';
+											$imagenPath = __DIRIMG__ . 'cursos/' . $row['imagen'];
+											$extension = pathinfo($imagenPath, PATHINFO_EXTENSION);
+											//-------------------------------------
+											if (in_array($extension, ['svg'])) {
+												// Cargar imagen SVG
+												$svg = file_get_contents($imagenPath);
+												$inf .= '<img src="data:image/svg+xml;base64,' . base64_encode($svg) . '" style="max-width: 100px; max-height: 100px;" />';
+											} elseif (in_array($extension, ['png', 'jpg', 'jpeg'])) {
+												// Cargar imagen PNG o JPG y codificar en base64
+												$imagenData = file_get_contents($imagenPath);
+												$imagenBase64 = 'data:image/' . $extension . ';base64,' . base64_encode($imagenData);
+												$inf .= '<img src="' . $imagenBase64 . '" style="max-width: 100px; max-height: 100px;" />';
+											} else {
+												// Manejar otros tipos de archivo o extensiones aquí
+												$inf .= 'Tipo de archivo no compatible';
+											}
+											//$inf.='<img style="max-width: 100px; max-height: 100px;" src="'.__DIRIMG__.'cursos/'.$row['imagen'].'" />';
 										}
-									$inf.='</td>';
+									}else{
+										$inf.='No imagen';
+									}
+								$inf.='</td>';
 							$inf.='</tr>';
 							//-------------------------------------
 							$n++;

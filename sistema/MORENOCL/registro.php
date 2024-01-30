@@ -294,4 +294,71 @@
 				return $data;
 			}
 		//-----------------------------------
+			function exportar(){
+				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
+				//---------------------------------------------------------
+				$inf=null;$n=1;$cant=10;
+				//-------------------------------------
+				$inf.='<thead>';
+					$inf.='<tr>';
+						$inf.='<th>#</th>';
+						$inf.='<th>Nombre de Usuarios</th>';
+						$inf.='<th>Fecha de Ingreso</th>';
+						$inf.='<th>Hora de Ingreso</th>';
+						$inf.='<th>Navegador Usado</th>';
+						$inf.='<th>Dirección IP</th>';
+						$inf.='<th>Creado</th>';
+						$inf.='<th>Editado</th>';
+						$inf.='<th>Eliminado</th>';
+						$inf.='<th>Estado</th>';
+					$inf.='</tr>';
+				$inf.='</thead>';
+				$inf.='<tbody>';
+					$sql = "SELECT r.*, CONCAT(u.nombres_u, ' ', u.apellidos_u) AS nombre_comp, u.id_tipo FROM ".$this->table." r INNER JOIN ".$this->table2." u ON r.".$this->tid2."=u.".$this->tid2." WHERE r.status=1 ;";
+					$res = $this->db_exec($sql);
+					if ($res->result==true && $res->cant > 0) {
+						while ($row = $fc_assoc($res->res)) {
+							$inf.='<tr>';
+								$inf.='<th>'.$n.'</th>';
+								$inf.='<td>'.$row['nombre_comp'].'</td>';
+								$inf.='<td>'.$row['fecha_ing'].'</td>';
+								$inf.='<td>'.$row['hora_ing'].'</td>';
+								$inf.='<td>'.$row['nav_ing'].'</td>';
+								$inf.='<td>';
+									$inf.=$row['ip_ing'].' - '.str_replace(',13z', ',21z', $row['geo_ip']);
+								$inf.='</td>';
+								$inf.='<td>'.$row['created_at'].'</td>';
+								$inf.='<td>'.$row['updated_at'].'</td>';
+								$inf.='<td>'.$row['drop_at'].'</td>';
+								$inf.='<td>';
+									switch ($row['status']) {
+										case 0:
+											$inf.='Inactivo';
+										break;
+										case 1:
+											$inf.='Activo';
+										break;
+										case 2:
+											$inf.='Eliminado';
+										break;
+									}
+								$inf.='</td>';
+							$inf.='</tr>';
+							//-------------------------------------
+							$n++;
+						}
+						$fc_fre_r($res->res);//liberar memoria del resultado
+					}else{
+						if ($res->cant == 0) {
+							$inf.='';
+						}else{
+							$inf.='<tr><td colspan="'.$cant.'"><div class="alert alert-danger">Error: '.$res->error.'</div></td></tr>';
+						}
+					}
+				$inf.='</tbody>';
+				//-------------------------------------
+				$fc_close($this->connect());
+				return $inf;
+			}
+		//-----------------------------------
 	}

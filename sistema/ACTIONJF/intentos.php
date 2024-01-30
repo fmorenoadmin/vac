@@ -48,6 +48,18 @@
 			//-----------------------------------
 			return $data;
 		}
+		function exportar($rut){
+			global $cls;
+			require_once($rut.DIRMOR.$cls['dbs'].'.php');
+			require_once($rut.DIRMOR.$cls['cl1'].'.php');
+			$_dbs = new $cls['dbs']();
+			$_cl1 = new $cls['cl1']();
+			$data = new stdClass();
+			//-------------------------------
+			$data->inf = $_cl1->exportar();
+			//-------------------------------
+			return $data;
+		}
 	//-----------------------------------
 	if (isset($_POST['nuevo'])) {
 		require_once($ru0.'config/constant.php');
