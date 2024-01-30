@@ -30,9 +30,9 @@
 	<!-- Header Section end -->
 
 	<!-- Hero Section -->
-	<section class="contact__page">
-		<div class="contact__warp">
-			<div class="row">
+	<section class="container pt-2">
+		<div class="container-fluid pt-4">
+			<div class="row pt-4">
 				<div class="col-md-5">
 					<h2><?= $pagina; ?></h2>
 					<div class="contact__social">
