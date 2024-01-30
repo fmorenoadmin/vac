@@ -14,7 +14,7 @@
 			//---------------------------------------------------------
 			$inf=null;$n=1;
 			//---------------------
-			$inf.='<div class="hero-slider">';
+			$inf.='<div class="hero-slider" style="max-height: 560px !important;">';
 				$sql = "SELECT nombre, imagen FROM ".$this->table." WHERE status=1;";
 				$res = $this->db_exec($sql);
 				if ($res->result==true && $res->cant > 0) {
@@ -31,7 +31,7 @@
 				}
 			$inf.='</div>';
 			//---------------------
-			$inf.='<div class="hero-text-slider">';
+			$inf.='<div class="hero-text-slider" style="max-height: 200px !important;">';
 				$sql = "SELECT id, nombre FROM ".$this->table." WHERE status=1;";
 				$res = $this->db_exec($sql);
 				if ($res->result==true && $res->cant > 0) {
