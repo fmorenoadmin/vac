@@ -116,6 +116,24 @@
 		document.documentElement.scrollTop = 0; // Para otros navegadores
 	}
 	//--------------------------------------
+	$( "form" ).submit(function( event ) {
+		loadBottomClick();
+	});
+	$( "a" ).click(function( event ) {
+		var clase = $(this).attr('class');
+		console.log(clase);
+		//-------------------------------------
+		if (
+			clase=='nav-link' || 
+			clase=='dropdown-toggle' || 
+			clase=='nav-link dropdown-toggle' || 
+			clase=='dropdown-item dropdown-toggle'
+		) {
+		}else{
+			loadBottomClick();
+		}
+	});
+	//--------------------------------------
 </script>
 <button id="btnVolverArriba" class="btn btn-primary fixed-left" title="Ir al Principio" style="z-index: 999;bottom: 40px; display: none;" onclick="volverArriba()"><i class="fas fa-angles-up"></i></button>
 <!--MODAL DROP-->
