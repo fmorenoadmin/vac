@@ -127,7 +127,10 @@
 			clase=='nav-link' || 
 			clase=='dropdown-toggle' || 
 			clase=='nav-link dropdown-toggle' || 
-			clase=='dropdown-item dropdown-toggle'
+			clase=='dropdown-item dropdown-toggle' ||
+			clase=='nav-link show' ||
+			clase=='nav-link active' ||
+			clase=='nav-link dropdown-toggle show'
 		) {
 		}else{
 			loadBottomClick();
