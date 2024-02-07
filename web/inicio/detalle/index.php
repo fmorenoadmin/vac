@@ -1,7 +1,7 @@
 <?php
 	if(isset($_SESSION)){}else{ session_start(); }
 	//---------------------------------------------
-	$rut='../';$_pg_na='curso_detail';
+	$rut='../../';$_pg_na='curso_detail';
 	//---------------------------------------------
 	$pagina='Detalle del Curso';
 	$action='index.php';
