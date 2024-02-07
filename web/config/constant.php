@@ -6,6 +6,7 @@ header("Access-Control-Allow-Origin: https://www.vac.net.pe/");
 header("Access-Control-Allow-Origin: https://archivos.vac.net.pe/");
 header("Access-Control-Allow-Origin: https://sistema.vac.net.pe/");
 header("Access-Control-Allow-Origin: https://plugins.vac.net.pe/");
+header("Access-Control-Allow-Origin: https://qr.vac.net.pe/");
 //-------------------------------------------
 define('HTTP', 'http://');
 define('HTTPS', 'https://');
@@ -27,8 +28,8 @@ define('DB_TYPE', 'mysqli_');//base de datos MySQL
 //-------------------------------------------
 define('ROWS', 25);//cantidad de registros por vista, para las tablas
 //-------------------------------------------
-define('SCHU', '_qas');//local
-//define('SCHU', '_prd');//servidor
+//define('SCHU', '_qas');//local
+define('SCHU', '_prd');//servidor
 //-------------------------------------------
 define('SCHU_EMAIL', SCHU);//pero para los correos electrónicos
 //-------------------------------------------
@@ -46,6 +47,7 @@ if (SCHU == '_qas') {
 	define('ARCH', HTTPS.DOM.D_DIR.'/archivos/');
 	define('PLUG', HTTPS.DOM.D_DIR.'/plugins/');
 	define('SIST', HTTPS.DOM.D_DIR.'/sistema/');
+	define('QR_G', HTTPS.DOM.D_DIR.'/qr/');
 	//-------------------------------------------
 	define('WEB', HTTPS.DOM.D_DIR.'/web/');
 }else{
@@ -62,6 +64,7 @@ if (SCHU == '_qas') {
 	define('ARCH', HTTPS.'archivos.'.DOM.'/');
 	define('PLUG', HTTPS.'plugins.'.DOM.'/');
 	define('SIST', HTTPS.'sistema.'.DOM.'/');
+	define('QR_G', HTTPS.'qr.'.DOM.'/');
 	//-------------------------------------------
 	define('WEB', HTTP2.DOM.'/');
 }

@@ -6,6 +6,7 @@ header("Access-Control-Allow-Origin: https://www.vac.net.pe/");
 header("Access-Control-Allow-Origin: https://archivos.vac.net.pe/");
 header("Access-Control-Allow-Origin: https://sistema.vac.net.pe/");
 header("Access-Control-Allow-Origin: https://plugins.vac.net.pe/");
+header("Access-Control-Allow-Origin: https://qr.vac.net.pe/");
 //-------------------------------------------
 define('HTTP', 'http://');
 define('HTTPS', 'https://');

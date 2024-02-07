@@ -38,6 +38,7 @@
 					</form>
 				</li>
 				<li><a href="https://github.com/fmorenoadmin/vac" target="_blank">GitHub</a></li>
+				<li><a href="<?= QR_G; ?>" target="_blank">Generador QR</a></li>
 				<li><a href="<?= SIST; ?>" target="_blank">Sistema</a></li>
 			</ul>
 		</nav>
