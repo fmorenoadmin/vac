@@ -3,3 +3,4 @@ composer.json
 *lock.json
 package-lock.json
 package.json
+*.lock
