@@ -34,9 +34,9 @@
 			$this->db_conec = $this->db_type.'connect';
 			$this->db_query = $this->db_type.'query';
 			if ($this->db_type == 'mysqli_') {
-				$this->db_error = $this->db_type.'error';
+				$this->db_error = $this->db_type.'error';//mysqli_error
 			} else {
-				$this->db_error = $this->db_type.'last_error';
+				$this->db_error = $this->db_type.'last_error';//pg_last_error
 			}
 			$this->db_array = $this->db_type.'fetch_array';
 			$this->db_object = $this->db_type.'fetch_object'; // Corrección aquí
@@ -404,6 +404,8 @@
 				return $input;
 			}
 			public function custom_escape_string($value) {
+				// Eliminar etiquetas HTML y JavaScript maliciosas
+				$value = strip_tags($value);
 				// Si estás utilizando una conexión a la base de datos,
 				// utiliza la función de escape proporcionada por tu API de base de datos
 				// o considera usar sentencias preparadas.
@@ -732,17 +734,17 @@
 					//----------------------------
 					// Mostrar botones de página
 					for ($i = $rango_inicial; $i <= $rango_final; $i++) {
-					    $inf .= '<li class="page-item ' . (($i == $pag) ? 'active' : null) . '"><a href="' . $_url . '?pag=' . base64_encode($i) . '" class="page-link">' . $i . '</a></li>';
+						$inf .= '<li class="page-item ' . (($i == $pag) ? 'active' : null) . '"><a href="' . $_url . '?pag=' . base64_encode($i) . '" class="page-link">' . $i . '</a></li>';
 					}
 					//----------------------------
 					// Agregar puntos suspensivos si hay más páginas después del rango final
 					if ($rango_final < $total_paginas) {
-					    $inf .= '<li class="page-item disabled"><span class="page-link">...</span></li>';
+						$inf .= '<li class="page-item disabled"><span class="page-link">...</span></li>';
 					}
 					//----------------------------
 					// Mostrar el último botón de página si no es parte del rango final
 					if ($rango_final != $total_paginas) {
-					    $inf .= '<li class="page-item"><a href="' . $_url . '?pag=' . base64_encode($total_paginas) . '" class="page-link">' . $total_paginas . '</a></li>';
+						$inf .= '<li class="page-item"><a href="' . $_url . '?pag=' . base64_encode($total_paginas) . '" class="page-link">' . $total_paginas . '</a></li>';
 					}
 					//----------------------------
 					//boton siguiente
