@@ -398,14 +398,22 @@
 				return $input;
 			}
 			public function custom_escape_string($value) {
+				// Eliminar etiquetas HTML y PHP
+				$value = strip_tags($value);
+				$value = htmlentities($value);
+				//---------------------------------------
+				// Si estás utilizando una conexión a la base de datos,
+				// utiliza la función de escape proporcionada por tu API de base de datos
+				// o considera usar sentencias preparadas.
 				// Aquí hay un ejemplo básico de cómo podrías escapar caracteres especiales.
+				// Esta función no garantiza la seguridad contra todas las formas de ataque.
 				$search = array("\\", "\x00", "\n", "\r", "'", '"', "\x1a");
 				$replace = array("\\\\", "\\0", "\\n", "\\r", "\\'", '\\"', "\\Z");
 				//---------------------------------------------------------
 				$_temp = str_replace($search, $replace, $value);
 				//---------------------------------------------------------
 				return $_temp;
-			}//lista
+			}
 		//---------------------------------------------------------GET
 			public function db_get_string($dt,$json,$db='con'){
 				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;

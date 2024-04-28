@@ -404,8 +404,10 @@
 				return $input;
 			}
 			public function custom_escape_string($value) {
-				// Eliminar etiquetas HTML y JavaScript maliciosas
+				// Eliminar etiquetas HTML y PHP
 				$value = strip_tags($value);
+				$value = htmlentities($value);
+				//---------------------------------------
 				// Si estás utilizando una conexión a la base de datos,
 				// utiliza la función de escape proporcionada por tu API de base de datos
 				// o considera usar sentencias preparadas.
