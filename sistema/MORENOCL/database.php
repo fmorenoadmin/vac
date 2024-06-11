@@ -397,6 +397,66 @@
 				//---------------------------------------
 				return $input;
 			}
+			public function reemp_car_esp($texto) {
+				// Array de reemplazo
+				$reemplazos = array(
+					'á' => 'a', '&aacute;' => 'a',
+					'é' => 'e', '&eacute;' => 'e',
+					'í' => 'i', '&iacute;' => 'i',
+					'ó' => 'o', '&oacute;' => 'o',
+					'ú' => 'u', '&uacute;' => 'u',
+					'ñ' => 'n', '&ntilde;' => 'n',
+					'Á' => 'A', '&Aacute;' => 'A',
+					'É' => 'E', '&Eacute;' => 'E',
+					'Í' => 'I', '&Iacute;' => 'I',
+					'Ó' => 'O', '&Oacute;' => 'O',
+					'Ú' => 'U', '&Uacute;' => 'U',
+					'Ñ' => 'N', '&Ntilde;' => 'N',
+					'ü' => 'u', '&uuml;' => 'u', 'Ü' => 'U', '&Uuml;' => 'U',
+					'ç' => 'c', '&ccedil;' => 'c', 'Ç' => 'C', '&Ccedil;' => 'C',
+					'º' => 'o', '&ordm;' => 'o', // grados
+					'ª' => 'a', '&ordf;' => 'a', // ordinales femeninos
+					'¡' => '', '&iexcl;' => '', // signo de exclamación invertido
+					'¿' => '', '&iquest;' => ''  // signo de interrogación invertido
+				);
+				//---------------------------------------------------------
+				// Realizar el reemplazo
+				$reemplazado = strtr($texto, $reemplazos);
+				//---------------------------------------------------------
+				return $reemplazado;
+			}
+			public function form_txt_sap($cadena,$codic='html',$longitud=30) {
+				// Divide la cadena en partes de longitud especificada
+				$partes = str_split($cadena, $longitud);
+				//---------------------------------------------------------
+				// Array para almacenar las partes convertidas a HTML
+				$html_parts = array();
+				//---------------------------------------------------------
+				$busq = array('`', '´');
+				// Itera sobre cada parte y convierte a HTML
+				foreach ($partes as $parte) {
+					// Convierte la parte a HTML
+					switch ($codic) {
+						case 'html':
+							// Primero reemplazamos los caracteres ` y ´ por &#039;
+							$parte_reemplazada = str_replace($busq, "'", $parte);
+							// Luego aplicamos htmlentities
+							$html_parte = htmlentities($parte_reemplazada);
+						break;
+						case 'str':
+							$html_parte = $this->reemp_car_esp($parte);
+						break;
+						default:
+							$html_parte = $parte;
+						break;
+					}
+					// Agrega la parte convertida al array
+					$html_parts[] = $html_parte;
+				}
+				//---------------------------------------------------------
+				// Retorna el array con las partes convertidas a HTML
+				return $html_parts;
+			}
 			public function custom_escape_string($value) {
 				// Eliminar etiquetas HTML y PHP
 				$value = strip_tags($value);
@@ -413,6 +473,25 @@
 				$_temp = str_replace($search, $replace, $value);
 				//---------------------------------------------------------
 				return $_temp;
+			}
+			public function calc_cod_txt($pid) {
+				$val = null;$largo = strlen($pid);
+				//---------------------------------------
+				switch ($largo) {
+					case 1:		$val = '0000000000'.$pid;	break;
+					case 2:		$val = '000000000'.$pid;	break;
+					case 3:		$val = '00000000'.$pid;		break;
+					case 4:		$val = '0000000'.$pid;		break;
+					case 5:		$val = '000000'.$pid;		break;
+					case 6:		$val = '00000'.$pid;		break;
+					case 7:		$val = '0000'.$pid;			break;
+					case 8:		$val = '000'.$pid;			break;
+					case 9:		$val = '00'.$pid;			break;
+					case 10:	$val = '0'.$pid;			break;
+					default:	$val = $pid;				break;
+				}
+				//---------------------------------------
+				return $val;
 			}
 		//---------------------------------------------------------GET
 			public function db_get_string($dt,$json,$db='con'){
