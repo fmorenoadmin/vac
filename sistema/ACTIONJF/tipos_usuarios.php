@@ -167,7 +167,7 @@
 			//-----------------------------
 			$val = $_dbs->custom_escape_string($_POST['val']);
 			//-----------------------------
-			$resp->inf = $_cl1->listar($total,$pag,$rid,$uid,$url,true,$val);
+			$resp->inf = $_cl1->listar($total,$pag,$rid,$uid,$url,true,$val,$_tbl->test);
 			$resp->btns = $_dbs->db_get_btns($total,$pag,$url);
 			if (isset($_tbl->test) && $_tbl->test==true) {
 				$_SESSION['sql'] = $resp->inf->sql;
