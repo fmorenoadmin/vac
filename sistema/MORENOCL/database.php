@@ -5,19 +5,19 @@
 	class database
 	{
 		//-----------------------------
-		private $db_prd = 'localhost';//IP SERVER prd
-		private $db_qas = 'localhost';//IP SERVER qas
-		//---------------------------------------
-		private $db_port = '5489';
-		//---------------------------------------
-		private $db_name_qas = 'vac';
-		private $db_name_prd = 'ohwnggei_vac';
-		//---------------------------------------
-		private $db_user_qas = 'root';
-		private $db_user_prd = 'ohwnggei_vac';
-		//---------------------------------------
-		private $db_pass_qas = '';
-		private $db_pass_prd = 'mph#_%@GB=NjHM3X.j';
+			private $db_prd = 'localhost';//IP SERVER prd
+			private $db_qas = 'localhost';//IP SERVER qas
+			//---------------------------------------
+			private $db_port = '5489';
+			//---------------------------------------
+			private $db_name_qas = 'vac';
+			private $db_name_prd = 'ohwnggei_vac';
+			//---------------------------------------
+			private $db_user_qas = 'root';
+			private $db_user_prd = 'ohwnggei_vac';
+			//---------------------------------------
+			private $db_pass_qas = '';
+			private $db_pass_prd = 'mph#_%@GB=NjHM3X.j';
 		//---------------------------------------
 		protected $db_type = DB_TYPE;
 		protected $db_conec = NULL;
@@ -291,6 +291,10 @@
 				return $nueva_fecha;
 			}
 			public function form_fecha($fecha){
+				if (is_null($fecha)) {
+					$fecha = date('Y-m-d');
+				}
+				//-----------------------------------
 				// Verificar si la fecha tiene el formato DD/MM/YYYY
 				$fecha_formato_dmy = DateTime::createFromFormat('d/m/Y', $fecha);
 				//-----------------------------------
@@ -492,6 +496,27 @@
 				}
 				//---------------------------------------
 				return $val;
+			}
+			public function get_mes_txt($mes){
+				switch (intval($mes)) {
+					case 1:		$mes_txt = '01-Enero';			break;
+					case 2:		$mes_txt = '02-Febrero';		break;
+					case 3:		$mes_txt = '03-Marzo';			break;
+					case 4:		$mes_txt = '04-Abril';			break;
+					case 5:		$mes_txt = '05-Mayo';			break;
+					case 6:		$mes_txt = '06-Junio';			break;
+					case 7:		$mes_txt = '07-Julio';			break;
+					case 8:		$mes_txt = '08-Agosto';			break;
+					case 9:		$mes_txt = '09-Septiembre';		break;
+					case 10:	$mes_txt = '10-Octubre';		break;
+					case 11:	$mes_txt = '11-Noviembre';		break;
+					case 12:	$mes_txt = '12-Diciembre';		break;
+					default:
+						$mes_txt = '00-No definido';
+					break;
+				}
+				//--------------------------------
+				return $mes_txt;
 			}
 		//---------------------------------------------------------GET
 			public function db_get_string($dt,$json,$db='con'){
