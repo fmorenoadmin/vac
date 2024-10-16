@@ -1,0 +1,345 @@
+<?php
+	/**
+	 * 
+	 */
+	class correo
+	{
+		/*
+		 *
+		*/
+		//-------------------------------------------
+		private $_admin	=	array("name" => 'Administrador', "email" => 'admin');
+		private $_alert	=	array("name" => 'Alertas', "email" => 'alertas');
+		private $_info	=	array("name" => 'Informes', "email" => 'info');
+		private $_email	=	array("name" => 'Mail', "email" => 'mail');
+		private $_norep	=	array("name" => 'No Responder', "email" => 'no-repply');
+		private $_sopor	=	array("name" => 'Soporte', "email" => 'soporte');
+		//-------------------------------------------
+		//private $host='smtp.gmail.com';//google
+		private $host='mail.domain.ext';
+		//private $host='banahosting.com';
+		//private $host='email-smtp.us-east-1.amazonaws.com';//amazon
+		//private $user='';
+		private $user='@domain.ext';
+		//private $pass='';
+		private $pass='PASSWORD_EMAILS';
+		//private $pass='';
+		private $secr='TLS';
+		//private $secr='SSL';//google
+		//private $port=25;//amazon
+		private $port=587;
+		//private $port=465;//google
+		//----------------------------
+		private $arch='<i>Si hay imagenes pegadas dentro del cuerpo del correo, solo las podrá ver en el sistema, ya que google no lee las imagenes con el formato en el que se pegan las imagenes del capturador de pantallas de windows</i>';
+		//----------------------------
+			public function sendMail($rut,$dt,$cuenta='_norep'){
+				$data = new stdClass();
+				$inf=null;
+				//------------------------------------------
+				set_time_limit(99999999999); // Establece el límite a 60 segundos
+				ini_set('memory_limit', '6144M'); // Establece el límite a 6144 megabytes
+				//------------------------------------------
+				$er=1;//sirve para poder verificar si hay un error antes de enviar el correo
+				if(is_null($cuenta)){ $er=0; }
+				if(is_null($dt->u_email)){ $er=0; }
+				if(is_null($dt->cuerpo)){ $er=0; }
+				//------------------------------------------
+				if ($er==1) {
+					//require_once($rut.'../plugins/phpmailer/Exception.php');
+					require_once($rut.'../plugins/phpmailer/PHPMailer.php');
+					require_once($rut.'../plugins/phpmailer/SMTP.php');
+					$mail = new PHPMailer;
+					//------------------------------------------
+					try {
+						$cuenta = $this->$cuenta;
+						$correo_envio = $cuenta["email"].$this->user;
+						$nombre_envio = $cuenta["name"];
+						//------------------------------------------
+						//$mail->SMTPDebug = 2;
+						$mail->SMTPDebug = 0;
+						$mail->isSMTP();
+						$mail->Host		 = $this->host;
+						$mail->SMTPAuth	 = true;
+						$mail->Username	 = $correo_envio;
+						$mail->Password	 = $this->pass;
+						$mail->Port		 = $this->port;
+						$mail->SMTPSecure = $this->secr;
+						$mail->Timeout = 99999999999; // Ajusta el tiempo de espera según tus necesidades
+						//------------------------------------------
+						$mail->setFrom($correo_envio, $nombre_envio.' - '.TIPE.'');
+						if ($dt->u_email == 'admin@frankmorenoalburqueque.com' || $dt->u_email == 'soporte@vac.net.pe') {
+						}else{
+							$mail->addAddress($dt->u_email, $dt->u_name);
+						}
+						// Correo con copia oculta (CCO)
+						$mail->addBCC($correo_envio, $nombre_envio);
+						//$mail->addBCC('admin@frankmorenoalburqueque.com', 'Frank Moreno');
+						//------------------------------------------
+						$mail->addReplyTo('admin@vac.net.pe', 'Administador - '.TIPE.'');
+						//------------------------------------------
+						if (isset($dt->arr_addCC)) {
+							foreach ($dt->addCC as $key => $value) {
+								$mail->addCC(
+									((isset($value->email)) ? $value->email : $value["email"]),
+									((isset($value->name)) ? $value->name : $value["name"])
+								);
+							}
+						}else{
+							if (isset($dt->addCC)) {
+								if ($dt->addCC) {
+									$mail->addCC($dt->emailCC, $dt->nameCC);
+								}
+							}
+						}
+						//------------------------------------------
+						$mail->isHTML(true);$scss=null;$styles=null;$end=null;
+						//------------------------------------------
+						$scss = 'body{background-color:#eee!important;background-image:none;background-repeat:repeat;background-position:top left;background-attachment:scroll;color:#333;font-family:Helvetica,Arial,sans-serif;line-height:1.25;-webkit-text-size-adjust:100%}.body-table{border:0;cellpadding:0;cellspacing:0;height:100%;width:100%;class:body-table}table{border:0!important}thead{border:0!important}tbody{border:0!important}tr{border:0!important}td{border:0!important}.outer-email-container{border:0;cellpadding:20;cellspacing:0;width:600;class:outer-email-container}.email-container{background-color:#fff;background-image:none;background-repeat:repeat;background-position:top left;background-attachment:scroll;class:email-container}.email-divider{background-color:#eeeeee;width:249}.header-message{text-align:left;padding:0 0 20px 0;font-size:14px;line-height:1.5;width:80%}.footer{margin:0 auto;color:#322f37;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:1.3;margin:0 auto;padding:0;text-align:left;vertical-align:top;width:270px}.footer a{color:#9147ff;font-family:Helvetica,Arial,sans-serif;font-weight:400;line-height:1.3;margin:0;text-align:left;text-decoration:none}.btn{padding:10px 20px;color:white;border:none;border-radius:5px;cursor:pointer}';
+						//------------------------------------------
+						$styles .= '<!DOCTYPE html>';
+						$styles .= '<html xmlns="http://www.w3.org/1999/xhtml" style="background-color: #efeef1 !important" lang="es">';
+							$styles .= '<head>';
+								$styles .= '<base target="_blank">';
+								$styles .= '<meta charset="UTF-8" >';
+								$styles .= '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
+								$styles .= '<title>'.$dt->asunto.'</title>';
+								$styles .= '<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">';
+								$styles .= '<style type="text/css">'.$scss.'</style>';
+							$styles .= '</head>';
+							$styles .= '<body>';
+								$styles .= '<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" class="body-table" style="border: 0 !important; border-style: none !important;">';
+									$styles .= '<tbody style="border: 0 !important; border-style: none !important;">';
+										$styles .= '<tr style="border: 0 !important; border-style: none !important;">';
+											$styles .= '<td align="center" valign="top" style="border: 0 !important; border-style: none !important;">';
+												$styles .= '<table border="0" cellpadding="20" cellspacing="0" width="600" class="outer-email-container" style="border: 0 !important; border-style: none !important;">';
+													$styles .= '<tbody style="border: 0 !important; border-style: none !important;">';
+														$styles .= '<tr style="border: 0 !important; border-style: none !important;">';
+															$styles .= '<td align="center" valign="top" style="border: 0 !important; border-style: none !important;">';
+																$styles .= '<table border="0" cellpadding="0" cellspacing="0" width="100%" class="email-container" style="border: 0 !important; border-style: none !important;">';
+																	$styles .= '<tr style="border: 0 !important; border-style: none !important;">';
+																		$styles .= '<td align="center" valign="top" style="border: 0 !important; border-style: none !important;">';
+																			$styles .= '<table border="0" cellpadding="0" cellspacing="0" height="90" width="100%" class="email-logo"
+																				style="background-color: #fff; background-image: none; background-repeat: repeat; background-position: top left; background-attachment: scroll; border: 0 !important; border-style: none !important;">';
+																				$styles .= '<tbody style="border: 0 !important; border-style: none !important;">';
+																					$styles .= '<tr style="border: 0 !important; border-style: none !important;">';
+																						$styles .= '<td align="center" valign="middle" style="border: 0 !important; border-style: none !important;">';
+																							$styles .= '<a href="'.URL.'?utm_source=correo&amp;utm_content='.htmlentities($dt->asunto).'&amp;utm_medium=email">';
+																								$styles .= '<img src="'.LOGO.'" height="42" alt="'.TIPE.'">';
+																							$styles .= '</a>';
+																						$styles .= '</td>';
+																					$styles .= '</tr>';
+																				$styles .= '</tbody>';
+																			$styles .= '</table>';
+																		$styles .= '</td>';
+																	$styles .= '</tr>';
+																	$styles .= '<tr style="border: 0 !important; border-style: none !important;">';
+																		$styles .= '<td align="center" valign="top" style="border: 0 !important; border-style: none !important;">';
+																			$styles .= '<table border="0" cellpadding="0" cellspacing="0" height="1" width="100%" style="border: 0 !important; border-style: none !important;">';
+																				$styles .= '<tbody style="border: 0 !important; border-style: none !important;">';
+																					$styles .= '<tr style="border: 0 !important; border-style: none !important;">';
+																						$styles .= '<td align="center" valign="middle" style="border: 0 !important; border-style: none !important;">';
+																							$styles .= '<div style="text-align: center; padding: 20px 0 20px 0; font-size: 20px; line-height: 1.5; width: 80%;">';
+																								$styles .= '<b>'.$dt->asunto.'</b>';
+																							$styles .= '</div>';
+																						$styles .= '</td>';
+																					$styles .= '</tr>';
+																				$styles .= '</tbody>';
+																			$styles .= '</table>';
+																		$styles .= '</td>';
+																	$styles .= '</tr>';
+																	$styles .= '<!-- Contenido del correo aquí -->';
+																	//---------------------------------------------------------------
+																	//---------------------------------------------------------------
+																	$end .= '<!-- Fin Contenido del correo -->';
+																	$end .= '<tr style="border: 0 !important; border-style: none !important;">';
+																		$end .= '<td align="center" valign="top" style="border: 0 !important; border-style: none !important;">';
+																			$end .= '<table border="0" cellpadding="0" cellspacing="0" width="100%" class="footer" style="border: 0 !important; border-style: none !important;">';
+																				$end .= '<tbody style="border: 0 !important; border-style: none !important;">';
+																					$end .= '<tr style="border: 0 !important; border-style: none !important;">';
+																						$end .= '<td align="center" valign="top" style="border: 0 !important; border-style: none !important;">';
+																							$end .= '<p>';
+																								$end .= 'Atentamente,';
+																								$end .= '<br>';
+																								$end .= 'El equipo de '.TIPE.'';
+																							$end .= '</p>';
+																						$end .= '</td>';
+																					$end .= '</tr>';
+																				$end .= '</tbody>';
+																			$end .= '</table>';
+																		$end .= '</td>';
+																	$end .= '</tr>';
+																$end .= '</table>';
+															$end .= '</td>';
+														$end .= '</tr>';
+													$end .= '</tbody>';
+												$end .= '</table>';
+												$end .= '<span class="im">';
+													$end .= '<table align="center" style="background:0 0!important;border-collapse:collapse;border-spacing:0;margin:20px auto 0 auto;padding:0;text-align:inherit;vertical-align:top;width:580px; border: 0 !important; border-style: none !important;">';
+														$end .= '<tbody style="border: 0 !important; border-style: none !important;">';
+															$end .= '<tr style="border: 0 !important; border-style: none !important;">';
+																$end .= '<th style="border: 0 !important; border-style: none !important;">';
+																	$end .= '<table style="border-collapse:collapse;border-spacing:0;display:table;padding:0;text-align:left;vertical-align:top;width:100%; border: 0 !important; border-style: none !important;">';
+																		$end .= '<tbody style="border: 0 !important; border-style: none !important;">';
+																			$end .= '<tr style="padding: 0; text-align: right; vertical-align: top;border: 0 !important; border-style: none !important;">';
+																				$end .= '<th style="margin: 0; color: #322f37; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.3; padding: 0; padding-bottom: 0!important; padding-right: 10px; text-align: right; width: 270px; vertical-align: top;border: 0 !important; border-style: none !important;">';
+																					$end .= '<a href="'.FACE.'?utm_source=correo&amp;utm_content='.htmlentities($dt->asunto).'&amp;utm_medium=email" style="margin: 0; color: #9147ff; font-family: Helvetica, Arial, sans-serif; font-weight: 400; line-height: 1.3; padding: 0; text-align: right; text-decoration: none" target="_blank" data-saferedirecturl="https://www.google.com/url?q='.FACE.'?utm_source=correo&amp;utm_content='.htmlentities($dt->asunto).'&amp;utm_medium=email">';
+																						$end .= '<img src="'.IMG.'facebook.svg" width="20" height="20" alt="facebook" style="border: none; clear: both; display: block; float: right; max-width: 100%; outline: 0; text-align: right; text-decoration: none; width: auto; vertical-align: middle;" class="CToWUd" data-bit="iit" />';
+																					$end .= '</a>';
+																				$end .= '</th>';
+																				$end .= '<th style="margin: 0; color: #322f37; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.3; padding: 0; padding-bottom: 0!important; padding-left: 10px; padding-right: 10px; text-align: center; width: 270px; vertical-align: top; border: 0 !important; border-style: none !important;">';
+																					$end .= '<a href="'.INST.'?utm_source=correo&amp;utm_content='.htmlentities($dt->asunto).'&amp;utm_medium=email" style="margin: 0; color: #9147ff; font-family: Helvetica, Arial, sans-serif; font-weight: 400; line-height: 1.3; padding: 0; text-align: center; text-decoration: none" target="_blank" data-saferedirecturl="https://www.google.com/url?q='.INST.'?utm_source=correo&amp;utm_content='.htmlentities($dt->asunto).'&amp;utm_medium=email&amp;source=gmail&amp;ust=1702380997211000&amp;usg=AOvVaw0POfw4xk4ZM-ewsBRZxCsq">';
+																						$end .= '<img src="'.IMG.'instagram.svg" width="20" height="20" alt="instagram" style="border: none; clear: both; display: block; float: none; max-width: 100%; outline: 0; text-align: center; text-decoration: none; width: auto; vertical-align: middle;" class="CToWUd" data-bit="iit" />';
+																					$end .= '</a>';
+																				$end .= '</th>';
+																				$end .= '<th style="margin: 0; color: #322f37; font-family: Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 1.3; padding: 0; padding-bottom: 0!important; padding-left: 10px; padding-right: 10px; text-align: left; width: 270px; vertical-align: top;border: 0 !important; border-style: none !important;">';
+																					$end .= '<a href="'.TWIT.'?utm_source=correo&amp;utm_content='.htmlentities($dt->asunto).'&amp;utm_medium=email" style="margin: 0; color: #9147ff; font-family: Helvetica, Arial, sans-serif; font-weight: 400; line-height: 1.3; padding: 0; text-align: left; text-decoration: none" target="_blank" data-saferedirecturl="https://www.google.com/url?q='.TWIT.'?utm_source=correo&amp;utm_content='.htmlentities($dt->asunto).'&amp;utm_medium=email&amp;source=gmail&amp;ust=1702380997211000&amp;usg=AOvVaw0POfw4xk4ZM-ewsBRZxCsq">';
+																						$end .= '<img src="'.IMG.'twitter.svg" width="20" height="20" alt="twitter" style="border: none; clear: both; display: block; float: right; max-width: 100%; outline: 0; text-align: right; text-decoration: none; width: auto; vertical-align: middle;" class="CToWUd" data-bit="iit" />';
+																					$end .= '</a>';
+																				$end .= '</th>';
+																			$end .= '</tr>';
+																		$end .= '</tbody>';
+																	$end .= '</table>';
+																$end .= '</th>';
+															$end .= '</tr>';
+															$end .= '<tr style="padding:0;vertical-align:top;border: 0 !important; border-style: none !important;">';
+																$end .= '<th style="color:#322f37;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:1.3;margin:0;padding:0;border: 0 !important; border-style: none !important;">';
+																	$end .= '<p style="color:#322f37;font-family:Helvetica,Arial,Verdana,'."'Trebuchet MS'".';font-size:16px;font-weight:400;line-height:24px;margin:0;margin-top:5px;margin-bottom:10px;padding:0;padding-bottom:10px;text-align:center">';
+																		$end .= '<small style="color:#706a7c;font-size:14px">© 2017-'.date('Y').' '.TIPE.', todos los derechos reservados<br>Lima - Chorrillos - PERÚ<br></small>';
+																		$end .= '<small style="color:#706a7c;font-size:14px">Desarrollado por: <a href="'.FMMA.'" target="_blank">FMMA</a></small>';
+																	$end .= '</p>';
+																$end .= '</th>';
+																$end .= '<th style="color:#322f37;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:1.3;margin:0;padding:0!important;text-align:left;width:0;border: 0 !important; border-style: none !important;"></th>';
+															$end .= '</tr>';
+														$end .= '</tbody>';
+													$end .= '</table>';
+												$end .= '</span>';
+											$end .= '</td>';
+										$end .= '</tr>';
+									$end .= '</tbody>';
+								$end .= '</table>';
+								$end .= '<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>';
+							$end .= '</body>';
+						$end .= '</html>';
+						//------------------------------------------
+						$mensaje = $styles.$dt->cuerpo.$end;
+						//------------------------------------------
+						if (SCHU_EMAIL == '_qas' || SCHU_EMAIL == '_QAS') {
+							$_subjet = '[QAS - PRUEBAS] - '.$dt->asunto;
+						}else{
+							$_subjet = $dt->asunto;
+						}
+						//------------------------------------------
+						$mail->Subject = $_subjet;
+						$mail->Body	= $mensaje;
+						$mail->CharSet = 'UTF-8';
+						//------------------------------------------
+						$send = $mail->send();
+						//------------------------------------------
+						if ($send==1) {
+							$data->result = true;
+							$data->inf = "send";
+							$data->mensaje = "Correo enviado exitosamente.";
+						}else{
+							$data->result = false;
+							$data->inf = "nosend";
+							$data->mensaje = "No se logró enviar el correo. ".$mail->ErrorInfo.".";
+							error_log("Error al enviar el mensaje: {$mail->ErrorInfo}");
+							error_log("Datos del mensaje: ".json_encode($dt));
+						}
+					} catch (Exception $e) {
+						error_log("Error al enviar el mensaje: {$mail->ErrorInfo}");
+						error_log("Excepción: ".json_encode($e));
+					}
+				}else{
+					$data->result = false;
+					$data->mensaje = "No se envió el correo. Algún campo obligatorio está vacio. Datos: ".json_encode($dt);
+				}
+				//------------------------------------------
+				$mail = null;
+				//------------------------------------------
+				return $data;
+			}
+		//----------------------------
+		//---------PLANTILLAS---------
+		//----------------------------CONTACTO
+			public function contacto($dt,$add){
+				$html = null;
+				//----------------------------
+					$html .= '<tr style="border: 0 !important; border-style: none !important;">';
+						$html .= '<td align="center" valign="top" style="border: 0 !important; border-style: none !important;">';
+							$html .= '<table border="0" cellpadding="0" cellspacing="0" width="100%" class="email-content" style="border: 0 !important; border-style: none !important;">';
+								$html .= '<tbody style="border: 0 !important; border-style: none !important;">';
+									$html .= '<tr style="border: 0 !important; border-style: none !important;">';
+										$html .= '<td align="center" valign="top" style="border: 0 !important; border-style: none !important;">';
+											$html .= '<table border="0" cellpadding="0" cellspacing="0" width="100%" class="email-content-inner" style="border: 0 !important; border-style: none !important;">';
+												$html .= '<tbody style="border: 0 !important; border-style: none !important;">';
+													$html .= '<tr style="border: 0 !important; border-style: none !important;">';
+														$html .= '<td align="center" valign="top" style="padding: 20px; text-align: justify; border: 0 !important; border-style: none !important;">';
+															$html .= '<p class="header-message" style="font-size: 20px; line-height: 1.5; font-weight: bold; color: #333;">';
+																$html .= '¡Tienes un cliente interesado!';
+															$html .= '</p>';
+														$html .= '</td>';
+													$html .= '</tr>';
+												$html .= '</tbody>';
+											$html .= '</table>';
+										$html .= '</td>';
+									$html .= '</tr>';
+								$html .= '</tbody>';
+							$html .= '</table>';
+						$html .= '</td>';
+					$html .= '</tr>';
+					$html .= '<tr style="border: 0 !important; border-style: none !important;">';
+						$html .= '<td align="center" valign="middle" style="border: 0 !important; border-style: none !important;">';
+							$html .= '<div style="text-align:left; padding: 0 20px 20px 20px; font-size: 16px; line-height: 1.5; color: #333;">';
+								$html .= '<p style="margin-bottom: 20px;">';
+									$html .= '<b>Sus datos son:</b>';
+								$html .= '</p>';
+								$html .= '<ul style="list-style-type: disc; padding-left: 40px;">';
+									$html .= '<li>Nombre: <b>'.$add['nombre'].'</b></li>';
+									$html .= '<li>Correo electrónico: <b>'.$add['correo'].'</b></li>';
+									$html .= '<li>Teléfono: <b>'.$add['telefono'].'</b></li>';
+								$html .= '</ul>';
+							$html .= '</div>';
+						$html .= '</td>';
+					$html .= '</tr>';
+					$html .= '<tr style="border: 0 !important; border-style: none !important;">';
+						$html .= '<td align="center" valign="top" style="border: 0 !important; border-style: none !important;">';
+							$html .= '<table border="0" cellpadding="0" cellspacing="0" width="100%" class="email-content" style="border: 0 !important; border-style: none !important;">';
+								$html .= '<tbody style="border: 0 !important; border-style: none !important;">';
+									$html .= '<tr style="border: 0 !important; border-style: none !important;">';
+										$html .= '<td align="center" valign="top" style="border: 0 !important; border-style: none !important;">';
+											$html .= '<table border="0" cellpadding="0" cellspacing="0" width="100%" class="email-content-inner" style="border: 0 !important; border-style: none !important;">';
+												$html .= '<tbody style="border: 0 !important; border-style: none !important;">';
+													$html .= '<tr style="border: 0 !important; border-style: none !important;">';
+														$html .= '<td align="center" valign="top" style="padding: 20px; text-align: justify; border: 0 !important; border-style: none !important;">';
+															$html .= '<p class="lead" style="font-size: 18px; line-height: 1.5; color: #333; font-weight: bold;">';
+																$html .= 'Su Mensaje es:';
+															$html .= '</p>';
+															$html .= $add['mensaje'];
+														$html .= '</td>';
+													$html .= '</tr>';
+												$html .= '</tbody>';
+											$html .= '</table>';
+										$html .= '</td>';
+									$html .= '</tr>';
+								$html .= '</tbody>';
+							$html .= '</table>';
+						$html .= '</td>';
+					$html .= '</tr>';
+					$html .= '<tr style="border: 0 !important; border-style: none !important;">';
+						$html .= '<td align="center" valign="middle" style="border: 0 !important; border-style: none !important;">';
+							$html .= '<div style="text-align:left; padding: 0 20px 20px 20px; font-size: 16px; line-height: 1.5; color: #333;">';
+								$html .= '<p style="font-style: italic; margin-top: 20px; margin-bottom: 20px;">';
+									$html .= 'Debes ingresar al sistema, para que le deas un seguimiento a este cliente.';
+								$html .= '</p>';
+							$html .= '</div>';
+						$html .= '</td>';
+					$html .= '</tr>';
+				//----------------------------
+				return $html;
+			}
+		//----------------------------
+		//----------------------------
+		//----------------------------
+		//----------------------------
+	}
