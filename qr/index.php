@@ -4,6 +4,8 @@
 	$rut = './';
 	//-------------------------
 	require_once($rut.'config/constant.php');
+	//---------------------------------------
+	$pagina = 'Generador de URL | FMORENOADMIN - Tu Socio Tecnológico de Confianza';
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,6 +14,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="icon" href="<?= URL; ?>favicon.ico" />
 	<title>Generador de URL</title>
+	<!-- SEO -->
+	<meta name="keywords" content="fmorenoadmin, FMORENOADMIN, frank, base64 encode php, frank moreno, a moreno, frank martin, moreno a, eurorenting, base64_encode php, base64 php, Frank Moreno, Moreno Alburqueque, Frank Martin, Martin Moreno, Frank Moreno Alburqueque, Frank Alburqueque, Sistema Songoku" />
+	<meta name="generator" content="FMORENOADMIN" />
+	<meta name="author" content="Moreno Alburqueque Frank Martin, admin@fmorenoadmin.com.pe" />
+	<meta name="urlauthor" content="https://www.fmorenoadmin.com.pe" />
+	<meta name="copyright" content="Copyright © 2018 - <?= date('Y'); ?> Frank Martin Moreno Alburqueque" />
+	<meta name="og:title" content="<?= $pagina; ?>" />
+	<meta name="og:site_name" content="Frank Moreno Alburqueque" />
+	<!-- other -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 	<!-- Google tag (gtag.js) -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q69SF4RY9T"></script>

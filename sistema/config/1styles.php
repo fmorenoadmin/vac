@@ -1,6 +1,13 @@
-<meta name="description" content="" />
-<meta name="keywords" content="" />
+<meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- SEO -->
+<meta name="keywords" content="fmorenoadmin, FMORENOADMIN, frank, base64 encode php, frank moreno, a moreno, frank martin, moreno a, eurorenting, base64_encode php, base64 php, Frank Moreno, Moreno Alburqueque, Frank Martin, Martin Moreno, Frank Moreno Alburqueque, Frank Alburqueque, Sistema Songoku" />
+<meta name="generator" content="FMORENOADMIN" />
+<meta name="author" content="Moreno Alburqueque Frank Martin, admin@fmorenoadmin.com.pe" />
+<meta name="urlauthor" content="https://www.fmorenoadmin.com.pe" />
+<meta name="copyright" content="Copyright © 2018 - <?= date('Y'); ?> Frank Martin Moreno Alburqueque" />
+<meta name="og:title" content="<?= $pagina; ?>" />
+<meta name="og:site_name" content="Frank Moreno Alburqueque" />
 <!-- Favicons -->
 <link href="<?= IMG; ?>favicon.png" rel="icon"/>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">

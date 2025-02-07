@@ -1,6 +1,13 @@
-<meta name="description" content="">
-<meta name="keywords" content="">
+<meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- SEO -->
+<meta name="keywords" content="fmorenoadmin, FMORENOADMIN, frank, base64 encode php, frank moreno, a moreno, frank martin, moreno a, eurorenting, base64_encode php, base64 php, Frank Moreno, Moreno Alburqueque, Frank Martin, Martin Moreno, Frank Moreno Alburqueque, Frank Alburqueque, Sistema Songoku" />
+<meta name="generator" content="FMORENOADMIN" />
+<meta name="author" content="Moreno Alburqueque Frank Martin, admin@fmorenoadmin.com.pe" />
+<meta name="urlauthor" content="https://www.fmorenoadmin.com.pe" />
+<meta name="copyright" content="Copyright © 2018 - <?= date('Y'); ?> Frank Martin Moreno Alburqueque" />
+<meta name="og:title" content="<?= $pagina; ?>" />
+<meta name="og:site_name" content="Frank Moreno Alburqueque" />
 <!-- Favicons -->
 <link href="<?= IMG; ?>favicon.png" rel="icon"/>
 <!-- Stylesheets -->
@@ -29,3 +36,10 @@
 	//---------------------------------------------
 	gtag('config', 'G-Q69SF4RY9T');
 </script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MX8CQ346');</script>
+<!-- End Google Tag Manager -->
