@@ -8,16 +8,16 @@
 			private $db_prd = 'localhost';//IP SERVER prd
 			private $db_qas = 'localhost';//IP SERVER qas
 			//---------------------------------------
-			private $db_port = '5489';
+			private $db_port = '';
 			//---------------------------------------
 			private $db_name_qas = 'vac';
-			private $db_name_prd = 'vac';
+			private $db_name_prd = 'AQUI_TU_NOMBRE_DATABASE';
 			//---------------------------------------
 			private $db_user_qas = 'root';
-			private $db_user_prd = 'root';
+			private $db_user_prd = 'AQUI_TU_USUARIO';
 			//---------------------------------------
 			private $db_pass_qas = '';
-			private $db_pass_prd = '';
+			private $db_pass_prd = 'AQUI_TU_CONTRASEÑA';
 		//---------------------------------------
 		protected $db_type = DB_TYPE;
 		protected $db_conec = NULL;
@@ -48,7 +48,7 @@
 			}
 			$this->db_fre_r = $this->db_type.'free_result';
 			$this->db_close = $this->db_type.'close';
-		}//Lista
+		}
 		//---------------------------------------------------------CON
 			function connect($schu=null,$db='con'){
 				$fc_conec=$this->db_conec;
@@ -102,7 +102,7 @@
 				}
 				//----------------------------------
 				return($con);
-			}//Lista
+			}
 		//---------------------------------------------------------EXEC
 			public function db_exec($sql,$ret_res=true,$db='con'){
 				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
@@ -140,7 +140,7 @@
 				$data->error = $error;
 				//---------------------------------------------------------
 				return $data;
-			}//Lista
+			}
 			public function db_exec_sql($sql,$ret_res=true,$db='con'){
 				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
 				//---------------------------------------------------------
@@ -924,7 +924,7 @@
 				//------------------
 				$fc_close($_cc);
 				return $data;
-			}//listo
+			}
 			public function db_add_all($dt,$json,$db='con'){
 				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
 				//---------------------------------------------------------
@@ -933,7 +933,7 @@
 				//----------------------------
 				$_cc = $this->connect(SCHU,$db);
 				//----------------------------
-				$er=1;$n=0;
+				$er=1;$n=0;$r=0;
 				if(is_null($json->tname)){ $er=0; }
 				//----------------------------
 				if ($er == 1) {
@@ -952,6 +952,8 @@
 									);
 									//-----------------------------
 									array_push($result, $fila_res);
+									//-----------------------------
+									$r++;
 								}else{
 									$fila_res = array(
 										"result"	=>	false,
@@ -995,6 +997,7 @@
 				//$data->sql = $sql;
 				$data->res = (($n > 1000) ? $result[0] : $result);
 				$data->rows = $n;
+				$data->rows_add = $r;
 				//------------------
 				$fc_close($_cc);
 				return $data;
@@ -1191,6 +1194,73 @@
 				//$data->sql = $sql;
 				//------------------
 				$fc_close($_cc);
+				return $data;
+			}
+			public function db_edit_all($dt,$json,$_db='con'){
+				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
+				//---------------------------------------------------------
+				$data = new stdClass(); $sql = null; $result = array(); $fila_res = array();
+				$data->error = null;
+				//----------------------------
+				$er=1;$n=0;$r=0;
+				if(is_null($json->tname)){ $er=0; }
+				//----------------------------
+				if ($er == 1) {
+					foreach ($dt as $fila) {
+						$fila_res = array();
+						//-----------------------------
+						if (!is_null($fila[$json->t_camp])) {
+							$sql = $this->get_sql($json->tname, $fila, 2, $json->tid, $json->pid);
+							try {
+								$res = $fc_query($this->connect(SCHU,$_db),$sql) OR $data->error .= ($fc_error($this->connect(SCHU,$_db)));
+								if ($res) {
+									$result[] = array(
+										"result"	=>	true,
+										"inf"	=>	$json->success,
+										"mensaje"	=>	"Registro agregado exitosamente.",
+										"fila"	=>	$fila[$json->t_camp],
+									);
+									$r++;
+								}else{
+									$result[] = array(
+										"result"	=>	false,
+										"inf"	=>	$json->danger,
+										"mensaje"	=>	"No se logró agregar los datos.",
+										"fila"	=>	$fila,
+									);
+								}
+							} catch (Exception $e) {
+								$result[] = array(
+									"result"	=>	false,
+									"inf"	=>	$json->danger,
+									"mensaje"	=>	"No se logró agregar, Ya existe un valor igual.",
+									"fila"	=>	$fila,
+								);
+							}
+						}else{
+							$result[] = array(
+								"result"	=>	false,
+								"inf"	=>	$json->danger,
+								"mensaje"	=>	"El primer campo está vacío, por ello no se agregó la fila: ".$n,
+							);
+						}
+						//----------------------------
+						$n++;
+					}
+				}else{
+					$result[] = array(
+						"result"	=>	false,
+						"inf"	=>	'null',
+						"mensaje"	=>	"No existe el nombre de la tabla. Datos: ".json_encode($json),
+					);
+				}
+				//------------------
+				//$data->sql = $sql;
+				$data->res = (($n > 1000) ? $result[0] : $result);
+				$data->rows = $n;
+				$data->rows_edit = $r;
+				//------------------
+				$fc_close($this->connect(SCHU,$_db));
 				return $data;
 			}
 		//---------------------------------------------------------PREDETERMINADO
