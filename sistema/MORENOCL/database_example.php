@@ -107,6 +107,13 @@
 						$_pass = $this->$pass;
 						$_name = 'vac2';//nombre de otra base de datos
 					break;
+					case 'vac3':
+						$_host = $this->$name;
+						$_port = $this->db_port;
+						$_user = $this->$user;
+						$_pass = $this->$pass;
+						$_name = 'vac3';//nombre de otra base de datos
+					break;
 					default:
 						$_host = $this->$name;
 						$_port = $this->db_port;
@@ -144,7 +151,7 @@
 					$this->load_other_type($_db_type);
 				}
 				//---------------------------------------------------------
-				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_fecth=$this->db_fecth;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
+				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_fetch=$this->db_fetch;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
 				//---------------------------------------------------------
 				$data = new stdClass();
 				$error = NULL;
@@ -195,7 +202,7 @@
 					$this->load_other_type($_db_type);
 				}
 				//---------------------------------------------------------
-				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_fecth=$this->db_fecth;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
+				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_fetch=$this->db_fetch;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
 				//---------------------------------------------------------
 				$data = new stdClass();
 				$error = NULL;
@@ -252,7 +259,7 @@
 					$this->load_other_type($_db_type);
 				}
 				//---------------------------------------------------------
-				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_fecth=$this->db_fecth;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
+				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_fetch=$this->db_fetch;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
 				//---------------------------------------------------------
 				$data = new stdClass();$datos = array();
 				$error = NULL;
@@ -603,7 +610,7 @@
 					$this->load_other_type($_db_type);
 				}
 				//---------------------------------------------------------
-				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_fecth=$this->db_fecth;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
+				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_fetch=$this->db_fetch;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
 				//---------------------------------------------------------
 				$data = new stdClass(); $sql = null;
 				$data->error = null;
@@ -669,7 +676,7 @@
 					$this->load_other_type($_db_type);
 				}
 				//---------------------------------------------------------
-				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_fecth=$this->db_fecth;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
+				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_fetch=$this->db_fetch;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
 				//---------------------------------------------------------
 				$data = new stdClass(); $sql = null;
 				$data->error = null;
@@ -736,7 +743,7 @@
 					$this->load_other_type($_db_type);
 				}
 				//---------------------------------------------------------
-				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_fecth=$this->db_fecth;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
+				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_fetch=$this->db_fetch;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
 				//---------------------------------------------------------
 				$data = new stdClass(); $sql = null; $datos = array();
 				$data->error = null;
@@ -799,7 +806,7 @@
 					$this->load_other_type($_db_type);
 				}
 				//---------------------------------------------------------
-				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_fecth=$this->db_fecth;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
+				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_fetch=$this->db_fetch;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
 				//---------------------------------------------------------
 				$data = new stdClass(); $sql = null; $fila = array(); $inf = array();
 				$data->error = null;$n=0;
@@ -877,7 +884,7 @@
 					$this->load_other_type($_db_type);
 				}
 				//---------------------------------------------------------
-				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_fecth=$this->db_fecth;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
+				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_fetch=$this->db_fetch;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
 				//---------------------------------------------------------
 				$data = new stdClass(); $sql = null;
 				$data->error = null;
@@ -1049,7 +1056,7 @@
 					$this->load_other_type($_db_type);
 				}
 				//---------------------------------------------------------
-				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_fecth=$this->db_fecth;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
+				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_fetch=$this->db_fetch;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
 				//---------------------------------------------------------
 				$data = new stdClass(); $sql = null;
 				$data->error = null;
@@ -1093,7 +1100,7 @@
 					$this->load_other_type($_db_type);
 				}
 				//---------------------------------------------------------
-				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_fecth=$this->db_fecth;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
+				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_fetch=$this->db_fetch;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
 				//---------------------------------------------------------
 				$data = new stdClass(); $sql = null; $result = array(); $fila_res = array();
 				$data->error = null;
@@ -1167,7 +1174,7 @@
 					$this->load_other_type($_db_type);
 				}
 				//---------------------------------------------------------
-				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_fecth=$this->db_fecth;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
+				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_fetch=$this->db_fetch;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
 				//---------------------------------------------------------
 				$data = new stdClass(); $sql = null;
 				$data->error = null;
@@ -1235,7 +1242,7 @@
 					$this->load_other_type($_db_type);
 				}
 				//---------------------------------------------------------
-				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_fecth=$this->db_fecth;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
+				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_fetch=$this->db_fetch;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
 				//---------------------------------------------------------
 				$data = new stdClass(); $sql = null;
 				$data->error = null;
@@ -1310,7 +1317,7 @@
 					$this->load_other_type($_db_type);
 				}
 				//---------------------------------------------------------
-				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_fecth=$this->db_fecth;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
+				$fc_query=$this->db_query;$fc_error=$this->db_error;$fc_fetch=$this->db_fetch;$fc_array=$this->db_array;$fc_object=$this->db_object;$fc_assoc=$this->db_assoc;$fc_num_r=$this->db_num_r;$fc_fre_r=$this->db_fre_r;$fc_close=$this->db_close;
 				//---------------------------------------------------------
 				$data = new stdClass(); $sql = null;
 				$data->error = null;
