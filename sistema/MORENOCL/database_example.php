@@ -547,6 +547,27 @@
 				// Retorna el array con las partes convertidas a HTML
 				return $html_parts;
 			}
+			public function dividir_str($cadena, $longitud = 30) {
+				// Paso 1: Decodificar entidades HTML (&amp;, &lt;, etc.)
+				$cadena = html_entity_decode($cadena);
+				//---------------------------------------------------------
+				// Paso 2: Eliminar todas las etiquetas HTML
+				$cadena_limpia = strip_tags($cadena);
+				//---------------------------------------------------------
+				// Paso 3: Reemplazar las letras acentuadas por sus equivalentes sin acento
+				$acentos = array('á', 'é', 'í', 'ó', 'ú', 'Á', 'É', 'Í', 'Ó', 'Ú', 'ñ', 'Ñ');
+				$sin_acentos = array('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U', 'n', 'N');
+				$cadena_limpia = str_replace($acentos, $sin_acentos, $cadena_limpia);
+				//---------------------------------------------------------
+				// Paso 4: Eliminar espacios en blanco adicionales al principio y al final
+				$cadena_limpia = trim($cadena_limpia);
+				//---------------------------------------------------------
+				// Paso 5: Dividir la cadena en partes de la longitud especificada
+				$partes = str_split($cadena_limpia, $longitud);
+				//---------------------------------------------------------
+				// Retornar el array con las partes limpias
+				return $partes;
+			}
 			public function custom_escape_string($value) {
 				// Eliminar etiquetas HTML y PHP
 				$value = strip_tags($value);
@@ -1019,17 +1040,17 @@
 					//----------------------------
 					// Mostrar botones de página
 					for ($i = $rango_inicial; $i <= $rango_final; $i++) {
-					    $inf .= '<li class="page-item ' . (($i == $pag) ? 'active' : null) . '"><a href="' . $_url . '?pag=' . base64_encode($i) . '" class="page-link">' . $i . '</a></li>';
+						$inf .= '<li class="page-item ' . (($i == $pag) ? 'active' : null) . '"><a href="' . $_url . '?pag=' . base64_encode($i) . '" class="page-link">' . $i . '</a></li>';
 					}
 					//----------------------------
 					// Agregar puntos suspensivos si hay más páginas después del rango final
 					if ($rango_final < $total_paginas) {
-					    $inf .= '<li class="page-item disabled"><span class="page-link">...</span></li>';
+						$inf .= '<li class="page-item disabled"><span class="page-link">...</span></li>';
 					}
 					//----------------------------
 					// Mostrar el último botón de página si no es parte del rango final
 					if ($rango_final != $total_paginas) {
-					    $inf .= '<li class="page-item"><a href="' . $_url . '?pag=' . base64_encode($total_paginas) . '" class="page-link">' . $total_paginas . '</a></li>';
+						$inf .= '<li class="page-item"><a href="' . $_url . '?pag=' . base64_encode($total_paginas) . '" class="page-link">' . $total_paginas . '</a></li>';
 					}
 					//----------------------------
 					//boton siguiente
