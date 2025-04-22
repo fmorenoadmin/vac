@@ -569,19 +569,13 @@
 				return $partes;
 			}
 			public function custom_escape_string($value) {
+				// Paso 1: Decodificar entidades HTML (&amp;, &lt;, etc.)
+				$value = html_entity_decode($value, ENT_QUOTES, 'UTF-8');
+				//---------------------------------------------------------
 				// Eliminar etiquetas HTML y PHP
 				$value = strip_tags($value);
-				$value = htmlentities($value);
-				//---------------------------------------
-				// Si estás utilizando una conexión a la base de datos,
-				// utiliza la función de escape proporcionada por tu API de base de datos
-				// o considera usar sentencias preparadas.
-				// Aquí hay un ejemplo básico de cómo podrías escapar caracteres especiales.
-				// Esta función no garantiza la seguridad contra todas las formas de ataque.
-				$search = array("\\", "\x00", "\n", "\r", "'", '"', "\x1a");
-				$replace = array("\\\\", "\\0", "\\n", "\\r", "\\'", '\\"', "\\Z");
 				//---------------------------------------------------------
-				$_temp = str_replace($search, $replace, $value);
+				$_temp = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
 				//---------------------------------------------------------
 				return $_temp;
 			}
